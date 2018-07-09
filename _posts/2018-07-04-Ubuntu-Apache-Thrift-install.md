@@ -27,7 +27,7 @@ $ sudo apt-get install libboost-dev libboost-test-dev libboost-program-options-d
 
 위 링크를 wget 하여 apache thrift 설치 파일을 받아온다.
 
-![]({{ site.baseurl }}/assets/posts/apache-thrift/apache-thrift.png)
+![]({{ site.baseurl }}/assets/posts/apache-thrift/apache_thrift.png)
 
 다 받아지면
 
