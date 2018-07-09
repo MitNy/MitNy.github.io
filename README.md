@@ -1,1 +1,1 @@
-# MitNy github blog
+# Mi Jin Lee
