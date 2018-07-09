@@ -15,10 +15,15 @@ layout: page
 - [Github](https://github.com/MitNy)
 - [Tistory](http://mitny.tistory.com/)
 
+## Current Interest
+- Network
+- Pwnable
+
 ## Technical Skills
 - **Program Language** :: C, Java, Python, PHP, JS
 - **DB** :: MySQL
 - **Hacking** :: Web Hacking
 
 ## Activities
-### CTF
+- CTF
+
