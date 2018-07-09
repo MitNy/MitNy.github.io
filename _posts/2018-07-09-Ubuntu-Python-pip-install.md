@@ -2,8 +2,9 @@
 layout: post
 title: ! "[Python] Ubuntu python pip install"
 categories: [Python]
-excerpt_separator: <!--more-->
-comments : true
+excerpt: " "
+comments: true
+share: true
 tags:
   - Python
   - Ubuntu
