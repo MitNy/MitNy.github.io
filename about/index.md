@@ -3,6 +3,8 @@ title: about
 layout: page
 ---
 
+`[Tistory](http://mitny.tistory.com/) 블로그에서 이전 중입니다.`
+
 ## Mi Jin Lee [MitNy]
 - White Hacker
 
