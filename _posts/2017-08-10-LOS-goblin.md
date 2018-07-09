@@ -11,7 +11,7 @@ tags:
   - goblin
   - write-up
 ---
-![]({{ site.baseurl }}/assets/posts/los-goblin/goblin.png)
+![]({{ site.baseurl }}/assets/posts/los/goblin.png)
 
 cobolt 를 풀고 goblin으로 넘어오면 id 값은 guest로 고정이고 no 값만 입력받는 쿼리문이 있다.
 
@@ -35,7 +35,7 @@ cobolt 를 풀고 goblin으로 넘어오면 id 값은 guest로 고정이고 no �
 ```
 ' , " 등이 필터링 대상이기 때문에 쓸 수 없다.
 
-![]({{ site.baseurl }}/assets/posts/los-goblin/goblin_guest.png)
+![]({{ site.baseurl }}/assets/posts/los/goblin_guest.png)
 
 no 값이 1일때, Hello guest 가 뜬다.
 예상되는 구조는 다음과 같다.
@@ -52,7 +52,7 @@ id가 guest로 고정이기 때문에 no=2 를 넘겨도 id는 admin이 되지 �
 이런식으로 직접적으로 admin을 넣어주지 않고 char 를 써주면 97 100 109 105 110이 admin이 된다.
 그리고 no에는 guest의 no 값인 1을 넣어주면 풀리지 않는다.
 
-![]({{ site.baseurl }}/assets/posts/los-goblin/goblin_clear.png)
+![]({{ site.baseurl }}/assets/posts/los/goblin_clear.png)
 
 고블린 클리어!
 

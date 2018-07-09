@@ -11,7 +11,7 @@ tags:
   - cobolt
   - write-up
 ---
-![]({{ site.baseurl }}/assets/posts/los-cobolt/cobolt.png)
+![]({{ site.baseurl }}/assets/posts/los/cobolt.png)
 
 첫번째 문제 gremlin을 풀고 cobolt로 넘어오면 gremlin과 비슷한 쿼리문이 있다.
 
@@ -42,6 +42,6 @@ id는 admin으로 넣어주되, pw 부분을 주석 처리 해주는 방식으�
 
 이런식으로 값을 넣으면 쿼리문은 다음과 같다.
 
-![]({{ site.baseurl }}/assets/posts/los-cobolt/cobolt_clear.png)
+![]({{ site.baseurl }}/assets/posts/los/cobolt_clear.png)
 
 코볼트 클리어!

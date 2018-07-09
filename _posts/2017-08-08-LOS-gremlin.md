@@ -12,7 +12,7 @@ tags:
   - write-up
 ---
 
-![]({{ site.baseurl }}/assets/posts/los-gremlin/gremlin.png)
+![]({{ site.baseurl }}/assets/posts/los/gremlin.png)
 
 `query : select id from prob_gremlin where id='' and pw=''`
 
@@ -45,6 +45,6 @@ or문을 써야할 것 같다.
 1 또는 1이 되므로 pw는 참이 된다.
 
 또 다른 방법으로는 id 부분을 id='1'or'1=1' 이렇게 해주고 pw 부분을 주석처리 하는 것도 있다.
-![]({{ site.baseurl }}/assets/posts/los-gremlin/gremlin_clear.png)
+![]({{ site.baseurl }}/assets/posts/los/gremlin_clear.png)
 
 그렘린 클리어!
