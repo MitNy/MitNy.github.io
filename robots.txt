@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: http://MitNy.github.io/sitemap.xml
+Sitemap: http://mitny.github.io/sitemap.xml
