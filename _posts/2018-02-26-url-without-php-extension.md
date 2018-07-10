@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[PHP] Accessing url without .php extension"
+title: ! "[PHP] .php 확장자 없이 URL 접속하기"
 categories: [PHP]
 excerpt: " "
 comments: true
@@ -12,7 +12,7 @@ tags:
 ---
 
 
-## .php 확장자 없이 페이지 접속하기
+## Accessing url without .php extension
 ### 환경: Ubuntu 16.04 LTS
 
 php나 다른 언어로 페이지를 만들었을 때, 주소창에 abcd.com/index.php 보단 abcd.com/index 로 접속하는게 더 깔끔하고 보안상 더 좋다.

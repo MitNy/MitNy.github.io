@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[FreeACS] How to install FreeACS on Ubuntu 16.04"
+title: ! "[FreeACS] Ubuntu에 FreeACS 설치하기"
 categories: [FreeACS]
 excerpt: " "
 comments: true
@@ -11,7 +11,7 @@ tags:
   - install
 ---
 
-## 우분투에 FreeACS 설치하기
+## How to install FreeACS on Ubuntu 16.04
 ### 환경 : Ubuntu 16.04 LTS
 
 `참고 : https://forum.mikrotik.com/viewtopic.php?t=116977

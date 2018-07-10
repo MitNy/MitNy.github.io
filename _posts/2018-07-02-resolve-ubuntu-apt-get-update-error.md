@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[Ubuntu] How to fix apt-get update error on Ubuntu 16.04"
+title: ! "[Ubuntu] Ubuntu apt-get update 에러 해결"
 categories: [Ubuntu]
 excerpt: " "
 comments: true
@@ -11,6 +11,7 @@ tags:
   - error
 ---
 
+## How to fix apt-get update error on Ubuntu 16.04
 ### 환경: Ubuntu 16.04 LTS
 ### VMware Workstation 12 pro
 

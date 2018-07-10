@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[CTFd] How to install CTFd on Ubuntu 16.04"
+title: ! "[CTFd] CTFd 설치"
 categories: [CTFd]
 excerpt: " "
 comments: true
@@ -11,6 +11,7 @@ tags:
   - install
 ---
 
+## How to install CTFd on Ubuntu 16.04
 ### 환경: Ubuntu 16.04 LTS
 서버에 아무 것도 설치 및 세팅이 되지 않은 상태로 시작하였다.
 

@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ! "[Python] Ubuntu python pip install"
-categories: [Python]
+title: ! "[Ubuntu] Ubuntu python pip 설치"
+categories: [Ubuntu]
 excerpt: " "
 comments: true
 share: true
@@ -12,6 +12,7 @@ tags:
   - install
 ---
 
+## Ubuntu python pip install
 ### 환경 : Ubuntu 16.04 LTS
 
 `1. sudo apt-get install python-pip`

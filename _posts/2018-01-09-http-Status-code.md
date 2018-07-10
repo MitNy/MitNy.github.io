@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[WEB] HTTP Status code"
+title: ! "[WEB] HTTP 상태 코드"
 categories: [WEB]
 excerpt: " "
 comments: true
@@ -9,6 +9,8 @@ tags:
   - web
   - http
 ---
+
+## HTTP Status Code
 
 **1XX**
 

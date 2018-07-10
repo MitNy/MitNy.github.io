@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[Apache Thrift] How to install Apache Thrift on Ubuntu 16.04"
+title: ! "[Apache Thrift] Ubuntu에 Apache Thrift 설치하기"
 categories: [Apache Thrift]
 excerpt: " "
 comments: true
@@ -11,6 +11,7 @@ tags:
   - install
 ---
 
+## How to install Apache Thrift on Ubuntu 16.04
 ### 환경 : Ubuntu 16.04 LTS
 ### Apache thrift version : 0.11.0
 
