@@ -15,7 +15,7 @@ layout: page
 - [Github](https://github.com/MitNy)
 - [Tistory](http://mitny.tistory.com/)
 
-## Current Interest
+## Current Interests
 - Network
 - Pwnable
 
