@@ -72,7 +72,7 @@ mitny    1,reverse(id))) -- 이런식으로 입력하면 lv에는 mitny를 반�
 ![]({{ site.baseurl }}/assets/posts/webhackingkr/59_reverse.png)
 
 그럼 admin을 반대로 한 nimda를 id값으로 주고 reverse함수를 사용하면
-![]({{ site.baseurl }}/assets/posts/webhackingkr/59_reverse.png)
+![]({{ site.baseurl }}/assets/posts/webhackingkr/59_nimda.png)
 
 lv가 admin으로 바뀌고 문제가 풀린다
 
