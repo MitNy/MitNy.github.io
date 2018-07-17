@@ -36,7 +36,7 @@ mysql root 패스워드 설정을 해주는 부분이 나타나면 원하는 패
 설치된 폴더에 가보면 다음과 같은 파일들이 존재한다.
 ![]({{ site.baseurl }}/assets/posts/freeacs/freeacs_file.png)
 
-##Fusion Installation.pdf
+## Fusion Installation.pdf
 노란색으로 색칠된 부분은 옵션이지만 Comment를 읽고 넘어가는 것이 좋다고 한다.
 
 ![]({{ site.baseurl }}/assets/posts/freeacs/freeacs_install_1.png)
