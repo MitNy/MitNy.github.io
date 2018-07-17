@@ -73,5 +73,4 @@ wget localhost/tr069
 로그인을 하고 들어가면 아래와 같은 페이지를 볼 수 있다.
 ![]({{ site.baseurl }}/assets/posts/freeacs/freeacs_webpage.png)
 
-
-
+`freeacs MySQL ID:acs / PW:acs`
