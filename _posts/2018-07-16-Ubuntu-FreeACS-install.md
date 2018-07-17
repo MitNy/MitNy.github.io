@@ -67,8 +67,8 @@ wget localhost/web
 wget localhost/tr069
 ```
 
-설정을 다 마치고 localhost/web 또는 ip/web에 들어가보면
-로그인 페이지를 볼 수 있고
+설정을 다 마치고 localhost/web 또는 ip/web에 들어가보면 로그인 페이지를 볼 수 있다.
+![]({{ site.baseurl }}/assets/posts/freeacs/freeacs_login.png)
 `ID: admin / PW: freeacs` 로 로그인 하면 된다.
 로그인을 하고 들어가면 아래와 같은 페이지를 볼 수 있다.
 ![]({{ site.baseurl }}/assets/posts/freeacs/freeacs_webpage.png)
