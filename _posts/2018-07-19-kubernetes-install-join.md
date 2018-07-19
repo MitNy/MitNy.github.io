@@ -18,7 +18,7 @@ tags:
 1. master로 쓸 VM 하나와 node로 쓸 VM 하나를 준비한다.
 2. 아래의 설치 과정을 동일하게 진행한다.
 
-hostname 변경하는 방법
+### hostname 변경하는 방법
 ```
 1. vi /etc/hosts 에서 변경
 2. hostnamectl set-hostname 호스트네임
@@ -30,7 +30,7 @@ hostname 변경하는 방법
 
 `swapoff -a`
 
-/* Kubernetes 설치 */
+### Kubernetes 설치
 ```
 sudo apt-get update && apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add –
@@ -52,8 +52,7 @@ sudo apt-get install kubelet kubeadm kubectl
 
 아래 과정부터는 master와 node가 구분된다.
 ## master
-
-/* master 초기화 */
+### master 초기화
 `kubeadm init`
 
 kubeadm init 시 아래와 같은 에러가 발생할 수도 있다.
