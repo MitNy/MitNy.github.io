@@ -57,13 +57,13 @@ sudo apt-get install kubelet kubeadm kubectl
 
 kubeadm init 시 아래와 같은 에러가 발생할 수도 있다.
 ```
-e[]({{ site.baseurght] Some fatal errors occurred:
+[preflight] Some fatal errors occurred:
 	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-apiserver-amd64:v1.11.1]: exit status 1
 	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-controller-manager-amd64:v1.11.1]: exit status 1
 	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-scheduler-amd64:v1.11.1]: exit status 1
 	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-proxy-amd64:v1.11.1]: exit status 1
-[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`l }}/assets/posts/ctfd/ctfd_setup.png)
 ```
+
 ![]({{ site.baseurl }}/assets/posts/kubernetes/kube_version_error.png)
 
 버전과 관련된 에러이기 때문에 `kubeadm init --kubernetes-version=1.11.0` 이렇게 버전 옵션을 따로 줘서 해결할 수 있다.
