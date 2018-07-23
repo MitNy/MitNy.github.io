@@ -23,7 +23,7 @@ tags:
 첫 페이지 url http://wargame.kr:8080/already_got/ 일 때 돌려보니 쿠키값만 나와서
 http://wargame.kr:8080/already_got/index.php로 바꿔서 돌려보니 이렇게FLAG 값이 떴다.
 
-![]({{ site.baseurl }}/assets/posts/wargamekr/already-flag.png)
-![]({{ site.baseurl }}/assets/posts/wargamekr/already-clear.png)
+![]({{ site.baseurl }}/assets/posts/wargamekr/already-got-flag.png)
+![]({{ site.baseurl }}/assets/posts/wargamekr/already-got-clear.png)
 
 Wargame.kr 1번 클리어!
