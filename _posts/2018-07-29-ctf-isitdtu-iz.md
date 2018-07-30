@@ -58,7 +58,7 @@ show_source(__FILE__);
 
 소스코드가 주어지는 문제이며 PHP encoding과 관련된 문제인 것 같다.
 필터링에 걸리면 다음과 같이 ...가 뜨면서 종료된다.
-![]({{ site.baseurl }}/assets/posts/isitdtu/iz_die.png)
+![]({{ site.baseurl }}/assets/posts/ctf/isitdtu/iz_die.png)
 
 parse_url()을 사용하는데 php 매뉴얼에서 parse_url()에 대한 주의사항이 존재한다.
 ```
@@ -96,14 +96,14 @@ bool(false)
 이런 식으로 / 세 개를 parse_url()에 전달하면 false가 반환된다.
 문제 url에 `http://35.185.178.212///?_=0` 이렇게 해주면 _가 존재함에도 ...이 뜨지 않는다.
 
-![]({{ site.baseurl }}/assets/posts/isitdtu/iz_false.png)
+![]({{ site.baseurl }}/assets/posts/ctf/isitdtu/iz_fail.png)
 
 _이 존재하므로 이제 다음 !in_array($control, array(0,$number1)) 부분 조건문을 통과해야 하는데
 _ 매개변수가 0이나 랜덤하게 생성되는 숫자 $number1, $number2, $number3와 일치해야 한다. 
 난수보다는 0을 시도해보는게 나을 것 같다.
 
 다른 숫자를 넣어보면 fail이 뜬다.
-![]({{ site.baseurl }}/assets/posts/isitdtu/iz_fail.png)
+![]({{ site.baseurl }}/assets/posts/ctf/isitdtu/iz_fail.png)
 
 in_array()가 정수 소수를 구분하지 않고 요소를 검사해주기 때문에 다음과 같은 결과가 나온다.
 ```
@@ -112,6 +112,6 @@ bool(true)
 ```
 그래서
 `//?_=0.0`과 같이 0.0을 매개변수로 전달해주면 플래그가 뜨게 된다.
-![]({{ site.baseurl }}/assets/posts/isitdtu/iz_0flag.png)
+![]({{ site.baseurl }}/assets/posts/ctf/isitdtu/iz_0flag.png)
 
 `//?_=a`, `?%23&_=a`로도 플래그를 얻을 수 있다.
