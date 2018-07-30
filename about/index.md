@@ -32,5 +32,4 @@ layout: page
 ## Activities
 - CTF
 - Conference
-- Hacking Camp
-
+- Educational services
