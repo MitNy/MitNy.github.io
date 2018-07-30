@@ -96,7 +96,7 @@ bool(false)
 이런 식으로 / 세 개를 parse_url()에 전달하면 false가 반환된다.
 문제 url에 `http://35.185.178.212///?_=0` 이렇게 해주면 _가 존재함에도 ...이 뜨지 않는다.
 
-![]({{ site.baseurl }}/assets/posts/ctf/isitdtu/iz_fail.png)
+![]({{ site.baseurl }}/assets/posts/ctf/isitdtu/iz_false.png)
 
 _이 존재하므로 이제 다음 !in_array($control, array(0,$number1)) 부분 조건문을 통과해야 하는데
 _ 매개변수가 0이나 랜덤하게 생성되는 숫자 $number1, $number2, $number3와 일치해야 한다. 
