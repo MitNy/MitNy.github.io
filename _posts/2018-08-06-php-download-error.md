@@ -15,12 +15,13 @@ tags:
 
 웹 서버 세팅을 위해 apm을 정상적으로 설치했는데,
 처음엔 아래 명령어를 입력하지 않아서 user 접속시 404 not found만 떴었다.
+그 에러는 아래 명령어로 해결
 ```
 sudo a2enmod userdir
 sudo service apache2 restart
 ```
-위 명령어를 치니 `ip/~user/test.php` 등으로 php 파일에 접근하면 파일 내용이 보이는 것이 아니라
-다운로드 되는 현상이 지속되었다.
+404 not found는 해결했으나
+`ip/~user/test.php` 등으로 php 파일에 접근하면 파일 내용이 보이는 것이 아니라 다운로드 되는 현상이 지속되었다.
 이 에러 해결을 위해 아예 서버를 갈아엎고 온갖 삽질을 다 했는데 해결이 안됐었다.
 해결 방법을 찾아봐도 php.ini 에서 `short_open_tag = On` 로 default값인 Off를 On으로 바꾸라는 것이 제일 많았다.
 하지만 php를 항상 `<?php ?>`로 사용해왔기 때문에 효과적인 해결 방법은 아니었다.
