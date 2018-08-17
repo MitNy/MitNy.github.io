@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ! "[Wargame.kr] login filtering"
-categories: [Wargame.kr]
+categories: [Wargame]
 excerpt: " "
 comments: true
 share: true
