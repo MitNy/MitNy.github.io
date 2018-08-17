@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ! "[Ubuntu] php 파일 접근시 다운로드 에러"
-categories: [Ubuntu]
+title: ! "[PHP] php 파일 접근시 다운로드 에러"
+categories: [PHP]
 excerpt: " "
 comments: true
 share: true
