@@ -6,7 +6,7 @@ excerpt: " "
 comments: true
 share: true
 tags:
-  - PHP
+  - php
   - Ubuntu
   - download
 ---
