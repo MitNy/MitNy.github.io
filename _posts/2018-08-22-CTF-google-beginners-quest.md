@@ -15,7 +15,7 @@ tags:
 
 Google CTF에`Beginners Quest`라는 난이도가 낮은 문제들로 구성된 코너가 있다.
 
-1. LETTER (misc)
+# LETTER (misc)
 
 ![]({{ site.baseurl }}/assets/posts/ctf/google/ctf_google_beginners_letter.png)
 
@@ -31,7 +31,7 @@ Username과 Password 부분을 복사하고 메모장 같은 곳에 붙여넣기
 이런식으로 플래그가 뜬다 :)
 
 
-2. OCR IS COOL!
+# OCR IS COOL!
 
 ![]({{ site.baseurl }}/assets/posts/ctf/google/ctf_google_beginners_ocr.png)
 
