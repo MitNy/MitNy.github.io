@@ -82,3 +82,29 @@ if __name__ == '__main__':
 여기서 ctf만 대문자로 바꿔주면 된다.
 
 `CTF{caesarcipherisasubstitutioncipher}`
+
+# FLOPPY (misc)
+
+![]({{ site.baseurl }}/assets/posts/ctf/google/ctf_google_beginners_floppy.png)
+
+Attachment를 눌러 파일을 다운받으면 zip 파일 안에 `foo.ico` 라는 아이콘 파일이 존재한다.
+There is an .ico file on the disk, but it doesn't smell right.. 라고 하니 뭔가 수상한게 있나보다.
+
+![]({{ site.baseurl }}/assets/posts/ctf/google/ctf_google_beginners_floppy_hxd.png)
+
+헥스 에디터로 이 foo.ico 파일을 열면 처음엔 요상한 특수문자들이 있지만
+중간부터는 `PK` 로 시작하는 zip 파일의 시그니처가 보인다.
+이곳에 정리가 잘 되어있다. [파일 시그니처](http://forensic-proof.com/archives/300)
+
+PK부터 다음 PK까지 복사하여 새로운 .zip 파일로 만들어준다.
+
+![]({{ site.baseurl }}/assets/posts/ctf/google/ctf_google_beginners_floppy_zip.png)
+
+zip 파일을 열면 위와 같이 driver.txt 텍스트 파일이 존재하고
+이 파일의 내용은 다음과 같다.
+```
+This is the driver for the Aluminum-Key Hardware password storage device.
+CTF{qeY80sU6Ktko8BJW}
+In case of emergency, run www.com
+```
+
