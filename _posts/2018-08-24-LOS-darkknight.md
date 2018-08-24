@@ -12,7 +12,7 @@ tags:
   - write-up
 ---
 
-![]({{ site.baseurl }}/assets/posts/los/darknight.png)
+![]({{ site.baseurl }}/assets/posts/los/darkknight.png)
 
 `query : select id from prob_darkknight where id='guest' and pw='' and no=`
 
@@ -55,6 +55,7 @@ admin을 char함수로 표현하려면 `char(97,100,109,105,110)` 이 된다.
 이번 코드는 48부터 128까지 범위를 주고 `char(str(a))` 로 바꿔주었다.
 출력을 할 때도 파이썬의 chr함수를 사용해 `chr(a)` 이렇게 출력해주었다.
 
+### 코드
 ```php
 from requests import get
 import string
@@ -95,9 +96,9 @@ for i in range(1, length):
         print("\n")
 ```
 
-![]({{ site.baseurl }}/assets/posts/los/darknight_result.png)
+![]({{ site.baseurl }}/assets/posts/los/darkknight_result.png)
 
 결과대로 `1C62BA6F` 를 `?pw=1C62BA6F` 를 입력했는데 안돼서 뭐지..? 했는데
 소문자로 바꿔서 입력하니 풀렸다.
 
-![]({{ site.baseurl }}/assets/posts/los/darknight_clear.png)
+![]({{ site.baseurl }}/assets/posts/los/darkknight_clear.png)
