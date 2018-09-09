@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[LOS] darknight"
+title: ! "[LOS] darkknight"
 categories: [LOS]
 excerpt: " "
 comments: true
