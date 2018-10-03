@@ -96,7 +96,7 @@ hex값과 똑같은 문자를 넣으면 거짓이 떴다.
 
 위 코드는 결과값은 잘 나오는데 출력이 조금 이상해서 마지막 글자만 떨어져서 나온다.. 손 좀 봐야겠다.
 
-![]({{ site.baseurl }}/assets/posts/webhackingkr/13_minmax.png)
+![]({{ site.baseurl }}/assets/posts/webhackingkr/13_flag.png)
 
 여기서 나온 `challenge13luckclear` 를 Auth 부분에 입력하면 문제가 풀린다.
 
