@@ -50,7 +50,7 @@ import string
 from time import sleep
 
 url = "http://webhacking.kr/challenge/web/web-10/"
-cookies = dict(PHPSESSID="1f70714d3b9c01e58b7a5c6c6c1a08f2")
+cookies = dict(PHPSESSID="")
 special_strings = "~!@#$%^&*()+-_{}[]<>"
 alpha = string.ascii_letters+string.digits+special_strings
 result = ""
