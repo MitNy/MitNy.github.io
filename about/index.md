@@ -27,7 +27,12 @@ layout: page
 ## Projects
 - QDMS service
 - I/O Admin System
+- IoTrust Secure Cloud Sync
 - KUCIS
+
+## Papers
+- 클라우드 기반 네트워크 장비 관리 시스템 설계(KIPS_C2018B0001)
+- 오픈소스 기반의 네트워크장비 관리시스템 구현(KIPS_C2018B0006)
 
 ## Activities
 - CTF
