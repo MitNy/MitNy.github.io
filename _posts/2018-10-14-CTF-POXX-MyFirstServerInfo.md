@@ -51,7 +51,7 @@ cgi를 처음 알게 된건 이번 학기 네트워크 수업 실습때였는데
 |:---|:---|
 |allow_url_fopen=1|외부 url 파일 로드|
 |allow_url_include=1|외부 파일을 include_once, require 등의 함수와 같이 포함할 때 사용|
-|auto_prepend_file=php://input| HTTP 요청 바이데 있는 데이터 실행|
+|auto_prepend_file=php://input| HTTP 요청 바디에 있는 데이터 실행|
 
 
 위 옵션들을 바탕으로 문제 페이지에 넘겨보면
