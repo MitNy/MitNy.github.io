@@ -32,26 +32,14 @@ cgi를 처음 알게 된건 이번 학기 네트워크 수업 실습때였는데
 취약점 요약: 2012년 1월 PHP 5.4.2 이전 버전에서 원격 코드 실행이 가능한 취약점이 발견됐다. 이 취약점은 sapi/cgi/cgi_main.c 파일 내의 CGI 스크립트(php-cgi)가 -s,-d,-c 등의 매개 변수를 적절히 검증하지 않아 발생한다.
 
 1. 취약점 대상
-|구분|제품명|버전|
-|:---|:---|:---|
-|취약한 대상|PHP|5.3.12 이전 버전, 5.4.2 이전 버전|
-|권고 대상|PHP|5.3.12 이후 버전, 5.4.2 이후 버전|
+![]({{ site.baseurl }}/assets/posts/ctf/POXX2018/php-table1.png)
 
 2. 취약점 공격
 - php-cgi 주요 옵션
-|옵션|내용|
-|:---|:---|
-|-s|소스코드에 색을 입혀 출력|
-|-n|php.ini 파일 사용하지 않음|
-|-d|php.ini 파일에 정의된 설정 내용 조작|
+![]({{ site.baseurl }}/assets/posts/ctf/POXX2018/php-table2.png)
 
 - php.ini 주요 설정
-|설정|내용|
-|:---|:---|
-|allow_url_fopen=1|외부 url 파일 로드|
-|allow_url_include=1|외부 파일을 include_once, require 등의 함수와 같이 포함할 때 사용|
-|auto_prepend_file=php://input| HTTP 요청 바디에 있는 데이터 실행|
-
+![]({{ site.baseurl }}/assets/posts/ctf/POXX2018/php-table3.png)
 
 위 옵션들을 바탕으로 문제 페이지에 넘겨보면
 
