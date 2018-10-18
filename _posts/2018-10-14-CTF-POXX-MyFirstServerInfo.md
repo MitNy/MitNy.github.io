@@ -35,10 +35,10 @@ cgi를 처음 알게 된건 이번 학기 네트워크 수업 실습때였는데
 ![]({{ site.baseurl }}/assets/posts/ctf/POXX2018/php-table1.png)
 
 2. 취약점 공격
-- php-cgi 주요 옵션
+### php-cgi 주요 옵션
 ![]({{ site.baseurl }}/assets/posts/ctf/POXX2018/php-table2.png)
 
-- php.ini 주요 설정
+### php.ini 주요 설정
 ![]({{ site.baseurl }}/assets/posts/ctf/POXX2018/php-table3.png)
 
 위 옵션들을 바탕으로 문제 페이지에 넘겨보면
