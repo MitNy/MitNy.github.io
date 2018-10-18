@@ -5,7 +5,6 @@ categories: [CTF]
 excerpt: " "
 comments: true
 share: true
-published: false
 tags:
   - Web-hacking
   - CTF
