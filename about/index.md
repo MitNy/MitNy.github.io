@@ -8,7 +8,8 @@ layout: page
 ## Mi Jin Lee [MitNy]
 - White Hacker
 - 2016~ Chungnam National University
-- Active in ARGOS
+- Active in ARGOS and MadHat
+- Undergraduate research assistant at Mobile Networks Lab
 
 ## Links
 - Email : leemj314@gmail.com
