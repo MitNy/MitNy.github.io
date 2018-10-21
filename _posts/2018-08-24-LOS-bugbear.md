@@ -54,8 +54,9 @@ from requests import get
 import string
 from time import sleep
 
-url ="https://los.eagle-jump.org/bugbear_431917ddc1dec75b4d65a23bd39689f8.php"
-cookies = dict(PHPSESSID="qsm0jdsh94pdsd6rc0ej0espg0")
+
+url ="https://los.eagle-jump.org/bugbear.php"
+cookies = dict(PHPSESSID="")
 special_strings = "~!@#$%^&*()+-_{}[]<>"
 alpha = string.ascii_letters+string.digits+special_strings
 result = ""
