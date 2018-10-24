@@ -9,7 +9,7 @@ layout: page
 - White Hacker
 - 2016~ Chungnam National University
 - Active in ARGOS and MadHat
-- Undergraduate research assistant at Mobile Networks Lab
+- Undergraduate research assistant at Mobile Networks Lab July,2018 ~ November,2018
 
 ## Links
 - Email : leemj314@gmail.com
@@ -26,9 +26,9 @@ layout: page
 - **Hacking** :: Web Hacking
 
 ## Projects
-- QDMS service
-- I/O Admin System
-- IoTrust Secure Cloud Sync
+- QDMS (Quber Device Management Service) -CNU, MONET
+- I/O Admin System -CBNU
+- IoTrust Secure Cloud Sync -CNU, ISLAB
 - KUCIS
 
 ## Papers
