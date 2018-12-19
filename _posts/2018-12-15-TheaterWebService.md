@@ -17,6 +17,7 @@ tags:
    - [Demo]
 
 2. 프로젝트 진행
+
    1) 프로젝트 인원 : 1명 (이미진)
 
    2) 프로젝트 기간: 2018.12.01. ~ 2018.12.15. 
@@ -48,7 +49,7 @@ tags:
 
    - 영화관 관리 화면
 
-     ![]({{ site.baseurl }}/assets/posts/portfolio/theater/theater_movie_management.png)
+     ![]({{ site.baseurl }}/assets/posts/portfolio/theater/theater_management.png)
 
    - 티켓 발권 화면
 
