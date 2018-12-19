@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[Portfolio] Seminar Page"
+title: ! "[Portfolio] Seminar Management Service"
 categories: [Portfolio]
 excerpt: " "
 comments: true
@@ -32,7 +32,10 @@ tags:
 
    - Bootstrap을 이용한 화면 레이아웃 구성
 
-3. 화면 구성
+3. 데이터베이스 설계
+   - ERD
+    ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_db.png)
+4. 화면 구성
 
    - 메인 화면
      세미나 목록 출력, 세미나별 파일 다운로드, 키워드 검색     
