@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[Portfolio] Theater Manager Web Service"
+title: ! "[Portfolio] Seminar Page"
 categories: [Portfolio]
 excerpt: " "
 comments: true
@@ -19,7 +19,9 @@ tags:
 2. 프로젝트 진행
 
    1) 프로젝트 인원 : 1명 (이미진)
+
    2) 프로젝트 기간 : 2018.01. ~ 2018.02.28. 약 2개월
+
    3) 역할
 
    - Apache 웹 서버 구축및 보안 설정
