@@ -19,10 +19,10 @@ tags:
 2. 프로젝트 진행
 
    1) 프로젝트 인원 : 1명 (이미진)
+   2) 프로젝트 기간 : 2018.01. ~ 2018.02.28. 약 2개월
+   3) 역할
 
-   2) 역할
-
-   - Apache 구축
+   - Apache 웹 서버 구축및 보안 설정
 
    - MySQL 데이터베이스 설계
 
@@ -33,14 +33,25 @@ tags:
 3. 화면 구성
 
    - 메인 화면
+     세미나 목록 출력, 세미나별 파일 다운로드, 키워드 검색     
 
      ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_list.png)
 
    - 사진 목록
+     날짜별 발표자 사진 목록 출력
 
      ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_photo.png)
 
    - 랜덤 뽑기
+     세미나를 아직 하지 않은 사람을 랜덤하게 뽑아주는 기능
 
      ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_random.png)
 
+   - 관리자 로그인
+     ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_login.png)
+
+   - 세미나 추가
+     ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_add.png)
+
+   - 사진 추가
+     ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_photo_add.png)
