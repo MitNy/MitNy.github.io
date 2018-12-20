@@ -16,6 +16,7 @@ tags:
    - Android API 28, Google API, Google Firebase, 기상청 API를 사용하였다.
    - [주제 발표 문서](https://mitny.github.io/portfolio/181001_02_mobile/181001_02_mobile.html)
 
+
 2. 프로젝트 진행
 
    1) 프로젝트 인원 : 3명 (이미진 외 2명)
@@ -23,20 +24,26 @@ tags:
    2) 프로젝트 기간: 2018.09.13. ~ 2018.12.19.. 
 
    3) 역할
-   - 화면 레이아웃 구성
-   - Google API 연동, 버전 관리
+    - 화면 레이아웃 구성
+    - Google API 연동, 버전 관리
 
 3. 화면 구성
    - 로그인 화면
+    
      ![]({{ site.baseurl }}/assets/posts/portfolio/mobile/mobile_login.png)
    - 메인 화면(글 리스트)
+     
      ![]({{ site.baseurl }}/assets/posts/portfolio/mobile/mobile_main.png)
    - 글 조회 화면
+     
      ![]({{ site.baseurl }}/assets/posts/portfolio/mobile/mobile_view.png)
    - 찜 목록 화면
+     
      ![]({{ site.baseurl }}/assets/posts/portfolio/mobile/mobile_jjim.png)
    - 글 쓰기 화면
+     
      ![]({{ site.baseurl }}/assets/posts/portfolio/mobile/mobile_write.png)
    - 더 보기 화면
+     
      ![]({{ site.baseurl }}/assets/posts/portfolio/mobile/mobile_more.png)
 
