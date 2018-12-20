@@ -14,7 +14,7 @@ tags:
 
    - 고객의 영화관 예매, 관리자의 영화관 관리가 가능한 영화관 웹 페이지를 구현하였다.
 
-   - [Demo]
+   - [문서](https://mitny.github.io/portfolio/Theater/Theater_Project.pdf)
 
 2. 프로젝트 진행
 
