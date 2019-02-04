@@ -1,10 +1,15 @@
 ---
 layout: post
 title: ! "[Insomni'hack 2019] beginner_reverse"
+categories: [Webhacking.kr]
+excerpt: " "
+comments: true
+share: true
 tags:
   - CTF
-  - Write-up
+  - write-up
 ---
+
 
 `Insomni'hack teaser 2019`에 출제된 `beginner_reverse` 문제이다. 
 대회 당일에는 l33t-hoster를 봤었는데 서버도 닫히고 어려워서 포기했다ㅠㅜ
