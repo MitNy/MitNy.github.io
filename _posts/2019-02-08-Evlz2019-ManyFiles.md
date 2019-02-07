@@ -85,7 +85,8 @@ Evlz CTF의 플래그 형식인 'evlz' 혹시나 모를 'flag'를 조건으로 �
 
 ![]({{ site.baseurl }}/assets/posts/ctf/Evlz/rule.png)
 Burp Suite로 Scan 버튼을 눌렀을 때를 보면 /api/scan으로 rule을 POST해주는 걸 알 수 있다.
-이 부분에 위에서 약간 수정한 룰을 입력해준다. 보낼 때는 base64로 인코딩 해줘야 한다. (Ctrl+B)
+`MTM=`를 base64로 디코딩 해보면 Scan을 할 때 입력했던 `13`이 나온다.
+즉, 위에서 약간 수정한 룰을 보낼 때는 base64로 인코딩 해줘야 한다. (Ctrl+B)
 ![]({{ site.baseurl }}/assets/posts/ctf/Evlz/rule_burp.png)
 ![]({{ site.baseurl }}/assets/posts/ctf/Evlz/rule_base64.png)
 
