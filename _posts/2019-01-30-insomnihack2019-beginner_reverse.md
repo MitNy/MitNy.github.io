@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ! "[Insomni'hack 2019] beginner_reverse"
-categories: [Webhacking.kr]
+categories: [CTF]
 excerpt: " "
 comments: true
 share: true
