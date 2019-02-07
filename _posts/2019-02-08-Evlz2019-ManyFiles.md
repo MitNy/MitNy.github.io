@@ -1,7 +1,10 @@
 ---
 layout: post
 title: ! "[Evlz CTF 2019] ManyFiles"
-excerpt_separator: " "
+categories: [CTF]
+excerpt: " "
+comments: true
+share: true
 tags:
   - CTF
   - write-up
