@@ -77,7 +77,7 @@ for i in range(0,len(lights)):
 ```py
 from phue import Bridge
 
-b = Bridge("192.168.0.135")
+b = Bridge("Bridge IP")
 b.connect()
 
 lights = b.lights
