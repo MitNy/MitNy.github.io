@@ -32,7 +32,8 @@ Philips Hue 1.0 스타터 킷을 사용했다.
 [https://github.com/studioimaginaire/phue](https://github.com/studioimaginaire/phue)
 
 2. 전원 제어
-- lights[hue 전구 인덱스].on/off = True/False
+`lights[hue 전구 인덱스].on/off = True/False`
+
 ```py
 from phue import Bridge
 
@@ -52,8 +53,7 @@ for i in range(0,len(lights)):
 ```
 
 3. 밝기 제어
-- lights[hue 전구 인덱스].brightness = 0~254
-- 숫자가 커질 수록 밝아진다
+`lights[hue 전구 인덱스].brightness = 0~254` 숫자가 커질 수록 밝아진다
 
 ```py
 from phue import Bridge
@@ -73,7 +73,7 @@ for i in range(0,len(lights)):
 ```
 
 4. 색상 제어
-- lights[hue 전구 인덱스].xy = [0~1,0~1]
+`lights[hue 전구 인덱스].xy = [0~1,0~1]`
 ```py
 from phue import Bridge
 
