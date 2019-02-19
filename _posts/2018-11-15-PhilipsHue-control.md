@@ -117,4 +117,4 @@ def hueController(hueNum,power,brightness,x,y):
 
 
 ### 데모 영상
-[![hueController](https://img.youtube.com/vi/tI9AQxtTa1Q/0.jpg)](https://www.youtube.com/watch?v=tI9AQxtTa1Q?t=0s)
+<iframe width="786" height="442" src="https://www.youtube.com/embed/tI9AQxtTa1Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
