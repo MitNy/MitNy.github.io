@@ -11,7 +11,7 @@ tags:
   - install
 ---
 
-##설치
+## 설치
 
 ### 환경 : Kali Linux,VMware Workstation 12 pro
 
@@ -25,23 +25,23 @@ pip install -r pupy/requirements.txt
 wget https://github.com/n1nj4sec/pupy/releases/download/latest/payload_templates.txz
 tar xvf payload_templates.txz && mv payload_templates/* pupy/payload_templates/ && rm payload_templates.txz && rm -r payload_templates
 ```
-1. PUPY 설치
- 1) git clone https://github.com/n1nj4sec/pupy.git
-![]({{ site.baseurl }}/assets/posts/kali/pupy_git.png)
 
- 2) cd pupy
- 3) git submodule init
+#### PUPY 설치
+ 1. git clone https://github.com/n1nj4sec/pupy.git
+![]({{ site.baseurl }}/assets/posts/kali/pupy_git.png)
+ 2. cd pupy
+ 3. git submodule init
 ![]({{ site.baseurl }}/assets/posts/kali/pupy_init.png)
 
- 4) git submodule update
+ 4. git submodule update
 ![]({{ site.baseurl }}/assets/posts/kali/pupy_update.png)
 
- 5) pip install -r pupy/requirements.txt
+ 5. pip install -r pupy/requirements.txt
 
 ★설치가 안되거나 에러가 발생하는 경우 밑에 필요하다고 뜨는 것들을 설치해보면서 에러를 해결하시면 됩니다.
 
 
-##사용법
+## 사용법
 ★공격자 ip는 ifconfig로 확인하시길 바랍니다.
 ![]({{ site.baseurl }}/assets/posts/kali/pupy_ifconfig.png)
 
@@ -58,13 +58,13 @@ tar xvf payload_templates.txz && mv payload_templates/* pupy/payload_templates/ 
 
 ![]({{ site.baseurl }}/assets/posts/kali/pupy_mitny.png)
 
-`
+
 - pupysh.py 파일 실행
 
 - 패스워드 입력 후 타겟 컴퓨터에서 위에서 만든 파일 실행 시 세션이 잡힘.
 
 - sessions -i 1 -> Session 1이 타겟이 됨
-`
+
 
 ![]({{ site.baseurl }}/assets/posts/kali/pupy_start.png)
 
