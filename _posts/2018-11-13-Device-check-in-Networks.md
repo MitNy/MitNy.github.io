@@ -9,8 +9,6 @@ tags:
   - Networks
 ---
 
-![]({{ site.baseurl }}/assets/posts/webhackingkr/39_clear.png)
-
 ### 환경
 1. Raspberry Pi 3
 2. Raspbian Stretch with desktop
