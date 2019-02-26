@@ -101,4 +101,5 @@ if __name__ == "__main__":
 ```
 
 
+Firebase database에 잘 저장되고 있다 :)
 ![]({{ site.baseurl }}/assets/posts/python/parsing_data.png)
