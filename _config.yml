@@ -214,11 +214,7 @@ font:
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
-  GitHub: https://github.com/nesoy
-  Linkedin: https://www.linkedin.com/in/young-jae-kwon-3514b3141
-  Facebook: https://www.facebook.com/Nesoy92
-  SlideShare: https://www.slideshare.net/YoungJaeKwon3
-
+  GitHub: https://github.com/mitny
 
 # Social Links Icons
 # Icon Mapping:
