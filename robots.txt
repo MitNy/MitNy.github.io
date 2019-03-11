@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://mitny.github.io/sitemap.xml
