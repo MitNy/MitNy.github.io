@@ -5,10 +5,10 @@
 
 
 # Site
-title: Nesoy Blog
-subtitle: Que Sera Sera
-description: Software Programmer
-author: 권영재
+title: MitNy's BLOG
+#subtitle: Que Sera Sera
+#description: Software Programmer
+author: 이미진
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: ko
 date_format: '%Y-%m-%d'
@@ -79,7 +79,7 @@ plugins:
 favicon: /assets/favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Nesoy,Software,Blog"
+keywords: "MitNy,Security,Blog"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -238,7 +238,7 @@ social_icons:
 
 # Sidebar Avatar
 # in directory: /assets/images/avatar.gif
-avatar: /assets/images/YoungJae.jpg
+avatar: /assets/images/mm.png
 
 
 # Table Of Contents in the Sidebar
