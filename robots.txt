@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: http://mitny.github.io/sitemap.xml
+
+Sitemap: http://nesoy.github.io/sitemap.xml

@@ -1,7 +1,7 @@
 _site
 .sass-cache
-_drafts
 .ruby-version
 .DS_Store
 
 ### NESOY IGNORE FILE ####
+.prettierignore
