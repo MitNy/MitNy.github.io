@@ -5,9 +5,7 @@ categories: [GDB]
 excerpt: " "
 comments: true
 share: true
-tags:
-  - gdb
-  - commad
+tags: [gdb,command]
 ---
 
 ### 시작과 종료
