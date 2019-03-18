@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[Pwnable.kr] 4"
+title: ! "[Pwnable.kr] lotto"
 categories: [Pwnable.kr]
 excerpt: " "
 comments: true
