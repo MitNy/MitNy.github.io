@@ -35,7 +35,7 @@ tags:
 인증서 발급이 성공적으로 끝나면 다음 메시지가 뜬다.
 ![]({{ site.baseurl }}/assets/posts/ubuntu/letsNote.png)
 
-인증서의 위치는 `/etc/letsencrypt/liv/[domain]/` 위치에 있다
+인증서의 위치는 `/etc/letsencrypt/live/[domain]/` 위치에 있다
 - cert.pem : 인증서 파일
 - chain.pem : 인증서 발급자 파일
 - fullchain.pem : cert.pem+chain.pem
@@ -65,13 +65,16 @@ tags:
 ![]({{ site.baseurl }}/assets/posts/ubuntu/letsSSL.png)
 ![]({{ site.baseurl }}/assets/posts/ubuntu/letsConfig.png)
 
-3. back-ssl 활성화
+3. SSL 모듈 활성화
+`sudo a2enmod ssl`
+
+4. back-ssl 활성화
 `sudo a2ensite back-ssl`
 
-4. 443 포트 접속 허용하기
+5. 443 포트 접속 허용하기
 `sudo ufw allow 443/tcp`
 
-5. apache 재시작
+6. apache 재시작
 `sudo service apache2 restart`
 
 ### 사이트 접속 확인
