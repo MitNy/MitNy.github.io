@@ -33,7 +33,7 @@ Red plane 0 / Green plane 0 / Blue plane 0 에서는
 `VolgaCTF{5t3g0_m4tr3shk4_in_4cti0n}`
 
 다른 분들의 롸업을 보다가 좋은 툴도 알게 되었다.
-`zbarimg` 라는 툴로 이미지에서 바코드를 스캔 및 디코딩 해준다.
+`zbarimg` 라는 툴로 이미지에서 바코드를 스캔 및 디코딩 해준다.<br>
 사용하면 아래와 같이 QR 코드 스캔 결과를 출력해준다!
 ![]({{ site.baseurl }}/assets/posts/ctf/Volga2019/zbarimg.png)
 ![]({{ site.baseurl }}/assets/posts/ctf/Volga2019/zbarimg_flag.png)
