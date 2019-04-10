@@ -31,7 +31,8 @@ tags:
 
 - context.xml 에서 설정
 
-```<?xml version="1.0" encoding="UTF-8"?>
+```
+<?xml version="1.0" encoding="UTF-8"?>
 <Context path="/myWebApplicationPath" useHttpOnly="true">
 ```
 
@@ -56,9 +57,7 @@ cookie.setHttpOnly(true);
 
 - PHP 5.2.0 이상
 
-```
-session.cookie_httponly = True
-```
+`session.cookie_httponly = True`
 
 ### Secure Cookie
 
@@ -82,6 +81,4 @@ session.cookie_httponly = True
 
 - PHP
 
-```
-session.cookie_secure = True
-```
+`session.cookie_secure = True`
