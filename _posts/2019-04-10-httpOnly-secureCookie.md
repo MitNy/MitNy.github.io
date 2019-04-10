@@ -30,10 +30,8 @@ tags:
 - Tomcat 6 이상
 - context.xml 에서 설정
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/myWebApplicationPath" useHttpOnly="true">
-```
+`<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/myWebApplicationPath" useHttpOnly="true">`
 
 - Java 6 이상, Servlet 3.0 지원되는 경우
 - Java 코드 내에서
@@ -44,16 +42,16 @@ cookie.setHttpOnly(true);
 ```
 
 - WEB-INF/web.xml 에서 설정
-```xml
+`
 <session-config>
  <cookie-config>
   <http-only>true</http-only>
  </cookie-config>
 </session-config>
-```
+`
 
 - PHP 5.2.0 이상
-````php
+```php
 session.cookie_httponly = True
 ```
 
@@ -66,13 +64,13 @@ session.cookie_httponly = True
 - Java 6 이상, Servlet 3.0 지원되는 경우
 - WEB-INF/web.xml에서 설정
 
-```xml
+`
 <session-config>
  <cookie-config>
   <secure>true</secure>
  </cookie-config>
 </session-config>
-```
+`
 
 - PHP
 ```php
