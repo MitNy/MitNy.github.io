@@ -50,23 +50,29 @@ cookie.setHttpOnly(true);
 `
 
 - PHP 5.2.0 이상
+
 `session.cookie_httponly = True`
 
 ### Secure Cookie
 
 1. Secure Cookie란?
+
 - 웹브라우저와 웹서버가 HTTPS로 통신하는 경우에만 웹브라우저가 쿠키를 서버로 전송하는 옵션
 
 1. Secure 옵션 설정 방법
+
 - Java 6 이상, Servlet 3.0 지원되는 경우
+
 - WEB-INF/web.xml에서 설정
 
-`<session-config>
+```
+<session-config>
  <cookie-config>
   <secure>true</secure>
  </cookie-config>
 </session-config>
-`
+```
 
 - PHP
+
 `session.cookie_secure = True`
