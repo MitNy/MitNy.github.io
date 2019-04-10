@@ -11,8 +11,6 @@ tags:
   - Cookie
 ---
 
-![]({{ site.baseurl }}/assets/posts/webhackingkr/39_clear.png)
-
 * 부족한 부분 보완하기
 
 ### HTTP Only
