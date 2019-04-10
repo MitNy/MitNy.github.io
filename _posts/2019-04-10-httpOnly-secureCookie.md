@@ -43,15 +43,13 @@ cookie.setHttpOnly(true);
 ```
 
 - WEB-INF/web.xml 에서 설정
+
 ```xml
-<session-config>
- <cookie-config>
-  <http-only>true</http-only>
- </cookie-config>
-</session-config>
+<session-config><cookie-config><http-only>true</http-only></cookie-config></session-config>
 ```
 
 - PHP 5.2.0 이상
+
 ```php
 session.cookie_httponly = True
 ```
