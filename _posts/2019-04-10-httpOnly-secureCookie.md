@@ -30,42 +30,43 @@ tags:
 - Tomcat 6 이상
 - context.xml 에서 설정
 
-`<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/myWebApplicationPath" useHttpOnly="true">`
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/myWebApplicationPath" useHttpOnly="true">
+```
 
 - Java 6 이상, Servlet 3.0 지원되는 경우
 - Java 코드 내에서
 
-```
+```java
 Cookie cookie = getMyCookie("myCookieName");
 cookie.setHttpOnly(true);
 ```
 
 - WEB-INF/web.xml 에서 설정
-`<session-config>
+```xml
+<session-config>
  <cookie-config>
   <http-only>true</http-only>
  </cookie-config>
 </session-config>
-`
+```
 
 - PHP 5.2.0 이상
-
-`session.cookie_httponly = True`
+````php
+session.cookie_httponly = True
+```
 
 ### Secure Cookie
 
 1. Secure Cookie란?
-
 - 웹브라우저와 웹서버가 HTTPS로 통신하는 경우에만 웹브라우저가 쿠키를 서버로 전송하는 옵션
 
-1. Secure 옵션 설정 방법
-
+2. Secure 옵션 설정 방법
 - Java 6 이상, Servlet 3.0 지원되는 경우
-
 - WEB-INF/web.xml에서 설정
 
-```
+```xml
 <session-config>
  <cookie-config>
   <secure>true</secure>
@@ -74,5 +75,6 @@ cookie.setHttpOnly(true);
 ```
 
 - PHP
-
-`session.cookie_secure = True`
+```php
+session.cookie_secure = True
+```
