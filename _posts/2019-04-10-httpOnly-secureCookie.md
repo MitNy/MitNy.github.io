@@ -29,21 +29,18 @@ tags:
 
 - Tomcat 6 이상
 - context.xml 에서 설정
-
 ```xml
 <?xml version="1.0" encoding="UTF-8">
 <Context path="/myWebApplicationPath" useHttpOnly="true">
 ```
 - Java 6 이상, Servlet 3.0 지원되는 경우
 - Java 코드 내에서
-
 ```java
 Cookie cookie = getMyCookie("myCookieName");
 cookie.setHttpOnly(true);
 ```
 
 - WEB-INF/web.xml 에서 설정
-
 ```xml
 <session-config>
 	<cookie-config>
@@ -53,7 +50,6 @@ cookie.setHttpOnly(true);
 ```
 
 - PHP 5.2.0 이상
-
 ```php
 session.cookie_httponly = True
 ```
@@ -66,7 +62,6 @@ session.cookie_httponly = True
 2. Secure 옵션 설정 방법
 - Java 6 이상, Servlet 3.0 지원되는 경우
 - WEB-INF/web.xml에서 설정
-
 ```xml
 <session-config>
 	<cookie-config>
