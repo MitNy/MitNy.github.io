@@ -25,13 +25,13 @@ tags:
 2. HTTP Only 설정 방법
 - Tomcat 6 이상
 * context.xml 에서 설정
-```
-<?xml version="1.0" encoding="UTF-8"?>
+```<?xml version="1.0" encoding="UTF-8"?>
 <Context path="/myWebApplicationPath" useHttpOnly="true">
 ```
 
 - Java 6 이상, Servlet 3.0 지원되는 경우
 * Java 코드 내에서
+
 ```
 Cookie cookie = getMyCookie("myCookieName");
 cookie.setHttpOnly(true);
