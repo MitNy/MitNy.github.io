@@ -34,6 +34,7 @@ tags:
 <?xml version="1.0" encoding="UTF-8">
 <Context path="/myWebApplicationPath" useHttpOnly="true">
 ```
+
 - Java 6 이상, Servlet 3.0 지원되는 경우
 - Java 코드 내에서
 ```java
