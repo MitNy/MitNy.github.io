@@ -18,7 +18,7 @@ MySQL 테이블 데이터를 구글 스프레드 시트로 만들어야 하는�
 ![]({{ site.baseurl }}/assets/posts/mysql/eduboard.png)
 
 우선 외부에서 데이터베이스에 접속할 수 있도록 설정을 해주어야 한다.
-그 부분은 [이곳에서]("https://idchowto.com/?p=11068")
+그 부분은 [이곳에서](https://idchowto.com/?p=11068)
 
 설정이 끝나면 구글 스프레드 시트를 하나 만들고 `도구 > 스크립트 편집기`에 들어간다.
 ![]({{ site.baseurl }}/assets/posts/mysql/sheet_tools.png)
@@ -58,8 +58,8 @@ function exportDatabase() {
   conn.close();
 }
 ```
-[참고사이트1:Google Apps srcipt jdbc guide]("https://developers.google.com/apps-script/guides/jdbc")
-[참고사이트2:Blog]("https://medium.com/@pradeepbheron/pull-and-sync-data-between-google-doc-spreadsheet-and-mysql-1d5a09d787a4")
+1. 참고사이트1: [Google Apps srcipt jdbc guide](https://developers.google.com/apps-script/guides/jdbc)<br>
+2. 참고사이트2: [Blog](https://medium.com/@pradeepbheron/pull-and-sync-data-between-google-doc-spreadsheet-and-mysql-1d5a09d787a4)<br>
 
 위 코드는 ▶ 버튼을 눌러 실행시킬 수 있다.
 ![]({{ site.baseurl }}/assets/posts/mysql/gs_script.png)
