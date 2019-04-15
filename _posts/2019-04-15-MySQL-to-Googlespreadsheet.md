@@ -58,6 +58,42 @@ function exportDatabase() {
   conn.close();
 }
 ```
+
+### 시트별 삽입
+![]({{ site.baseurl }}/assets/posts/mysql/yearlySheet.png)
+시트가 이런식으로 나누어져있을 경우, 각 시트별로 데이터를 넣고싶다면 위 코드와 조금 다르게 해야한다.
+```javascript
+var sheet = SpreadsheetApp.getActiveSpreadsheet();
+var activeSheet = '';
+
+function database_2019() {
+  activeSheet = "2019"; // 시트명 변경
+  SpreadsheetApp.setActiveSheet(sheet.getSheetByName(activeSheet));
+  var conn = Jdbc.getConnection(dbUrl, user, userPwd); // DB 연결
+  var stmt = conn.createStatement();
+  stmt.setMaxRows(1000);
+  var results = stmt.executeQuery("SELECT stuID,name,seminarTheme,seminarDate FROM seminar_list WHERE seminarDate BETWEEN '2019-01-01' AND '2019-12-31' ORDER BY seminarDate DESC"); // 특정 기간 내 데이터만 불러오는 쿼리
+  var i=2;
+  while(results.next()) {
+    sID = sheet.getRange(activeSheet+"!A"+i); // "시트명!A2" 특정 시트의 A2 위치에 삽입
+    sName = sheet.getRange(activeSheet+"!B"+i); // EX) test!A2:B2 일 경우 A2부터 B2까지 사각형 모양으로 채움
+    sTheme = sheet.getRange(activeSheet+"!C"+i);
+    sDate = sheet.getRange(activeSheet+"!D"+i);
+    sID.setValue(results.getString("stuID"));
+    sName.setValue(results.getString("name"));
+    sTheme.setValue(results.getString("seminarTheme"));
+    sDate.setValue(results.getString("seminarDate"));
+    i++;
+  }
+  results.close();
+  stmt.close();
+  conn.close();
+}
+
+```
+
+
+
 1. 참고사이트1: [Google Apps srcipt jdbc guide](https://developers.google.com/apps-script/guides/jdbc)<br>
 2. 참고사이트2: [Blog](https://medium.com/@pradeepbheron/pull-and-sync-data-between-google-doc-spreadsheet-and-mysql-1d5a09d787a4)<br>
 
