@@ -23,7 +23,7 @@ MySQL 테이블 데이터를 구글 스프레드 시트로 만들어야 하는�
 설정이 끝나면 구글 스프레드 시트를 하나 만들고 `도구 > 스크립트 편집기`에 들어간다.
 ![]({{ site.baseurl }}/assets/posts/mysql/sheet_tools.png)
 
-```script
+```javascript
 <script src="https://gist.github.com/e6129c9fd9bc74e814d0?file-pull-and-sync-data-between-google-doc-spreadsheet-and-mysql-gs" type="text/javascript"/>
 var connectionName = 'IP:MySQL Port'; // 접속할 MySQL 서버의 IP와 Port(Default:3306)
 var user = ''; // MySQL 유저 ID
