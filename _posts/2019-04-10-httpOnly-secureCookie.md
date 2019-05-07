@@ -12,8 +12,6 @@ tags:
 
 ---
 
-- 부족한 부분 보완하기
-
 ### HTTP Only
 
 [HttpOnly-OWASP](https://www.owasp.org/index.php/HttpOnly)
@@ -78,3 +76,35 @@ session.cookie_httponly = True
 ```php
 session.cookie_secure = True
 ```
+
+### 직접 해보기
+
+PHP에서 설정하는 방법으로 위의 옵션들을 직접 적용해 볼 것이다.
+
+![]({{ site.baseurl }}/assets/posts/web/secure_cookie_comment.png)
+기본 옵션에서는 secure 옵션이 주석 처리 되어있다.
+![]({{ site.baseurl }}/assets/posts/web/httponly_cookie.png)
+
+위와 같이 `session.cookie_secure = True`,`session.cookie_httponly = True`로 설정해준 후
+apache 서버를 재시작해준다.
+
+그 후에 쿠키를 확인해보면 Secure, HTTP 전용 옵션이 체크되어있는 것을 확인할 수 있다.
+![]({{ site.baseurl }}/assets/posts/web/secure_only_session.png)
+
+설정되어 있지 않은 쿠키와 비교해보자
+![]({{ site.baseurl }}/assets/posts/web/none_cookie.png)
+
+첫번째로 확인해볼 것은 콘솔창에서 `document.cookie;` 를 쳤을 경우 쿠키가 출력되는가이다.
+
+![]({{ site.baseurl }}/assets/posts/web/document_cookie.png)
+예상대로 HTTP 전용 옵션이 꺼져있는 쿠키만 출력된다. 쿠키 에디터로 옵션을 꺼도 출력된다.
+
+두번째로 확인해볼 것은 http 통신에서 쿠키가 전송되는가이다.
+![]({{ site.baseurl }}/assets/posts/web/secure_5.png)
+https 통신으로 페이지에 접속했을 때는 secure 옵션이 적용된 쿠키 2개, 적용되지 않은 3개 총 5개의 쿠키가 있었다.
+
+하지만 https 통신으로 페이지에 접속했을 때 secure 옵션이 적용되지 않은 3개의 쿠키만 있었다.
+![]({{ site.baseurl }}/assets/posts/web/secure_3.png)
+
+옵션들이 잘 적용되는 것을 확인해보았다.
+보안 옵션을 적용해 안전한 페이지를 만들어요!! :)
