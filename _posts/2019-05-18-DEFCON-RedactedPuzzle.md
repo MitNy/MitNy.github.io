@@ -19,7 +19,7 @@ DEFCON 2019 Quals에 출제된 potpourri라는 분야의  Redacted-Puzzle 문제
 ![]({{ site.baseurl }}/assets/posts/ctf/DEFCON2019/redacted-puzzle.gif)
 문제 파일도 검게 칠해져 있는 걸 확인할 수 있다.
 
-![]({{ site.baseurl }}/assets/posts/ctf/DEFCON2019/puzzle_frame.gif)
+![]({{ site.baseurl }}/assets/posts/ctf/DEFCON2019/puzzle_frame.png)
 `exiftool redacted-puzzle.gif` 명령으로 파일에 대한 정보를 알아냈다.
 프레임 수가 총 35개라는 것을 알 수 있다.
 
