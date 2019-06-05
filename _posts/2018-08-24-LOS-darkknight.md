@@ -12,6 +12,7 @@ tags:
   - write-up
 ---
 
+### https://los.eagle-jump.org/ 버전
 ![]({{ site.baseurl }}/assets/posts/los/darkknight.png)
 
 `query : select id from prob_darkknight where id='guest' and pw='' and no=`
@@ -102,3 +103,9 @@ for i in range(1, length):
 소문자로 바꿔서 입력하니 풀렸다.
 
 ![]({{ site.baseurl }}/assets/posts/los/darkknight_clear.png)
+
+
+### https://los.rubiya.kr 버전
+![]({{ site.baseurl }}/assets/posts/los/darkknight_py_result.png)
+
+![]({{ site.baseurl }}/assets/posts/los/darkknight_py_clear.png)
