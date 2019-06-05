@@ -12,6 +12,7 @@ tags:
   - write-up
 ---
 
+### https://los.eagle-jump.org/ 버전
 ![]({{ site.baseurl }}/assets/posts/los/bugbear.png)
 
 `query : select id from prob_bugbear where id='guest' and pw='' and no=`
@@ -99,3 +100,10 @@ for i in range(1, length):
 마찬가지로 위 결과에서 알파벳을 소문자로 바꿔주고 `?pw=735c2773` 를 해주면 된다.
 
 ![]({{ site.baseurl }}/assets/posts/los/bugbear_clear.png)
+
+
+### https://los.rubiya.kr 버전
+
+![]({{ site.baseurl }}/assets/posts/los/bugbear_py_result.png)
+
+![]({{ site.baseurl }}/assets/posts/los/bugbear_py_clear.png)
