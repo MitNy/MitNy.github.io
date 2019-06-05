@@ -12,6 +12,8 @@ tags:
   - write-up
 ---
 
+
+### https://los.eagle-jump.org/ 버전
 ![]({{ site.baseurl }}/assets/posts/los/assassin.png)
 
 `query : select id from prob_assassin where pw like ''`
@@ -39,3 +41,6 @@ assassin 문제는 like를 이용한 문제이다. mysql를 활용해서 코딩�
 
 ![]({{ site.baseurl }}/assets/posts/los/assassin_clear.png)
 
+
+### https://los.rubiya.kr 버전
+![]({{ site.baseurl }}/assets/posts/los/assassin_2_clear.png)
