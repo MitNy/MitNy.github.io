@@ -2,12 +2,15 @@
 layout: post
 title: ! "[Facebook CTF 2019] Products Manager"
 categories: [CTF]
-excerpt_separator: <!--more-->
+excerpt: " "
 comments: true
+share: true
 tags:
   - CTF
   - write-up
 ---
+
+
 
 Facebook CTF에 출제된 100 포인트짜리 웹 문제 `Products Manager`이다
 
