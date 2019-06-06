@@ -30,20 +30,20 @@ Facebook CTF에 출제된 100 포인트짜리 웹 문제 `Products Manager`이�
 ![]({{ site.baseurl }}/assets/posts/ctf/Facebook/get_product.png)
 
 ![]({{ site.baseurl }}/assets/posts/ctf/Facebook/handle_post.png)
-`view.php`의 `handle_post()` 함수를 보면 `View details of your own product` 함수를 이용할 때
-입력하는 name과 secret 값이 존재하는지, Null이 아닌지 검사한 후
-check_name_secret()의 결과를 검사한다. False가 아니면 상품 정보를 출력해준다.
-그런데 위의 get_product() 함수는 `WHERE name = ? and secret = ?`이 아닌 name만으로 데이터를 반환해준다.
+`view.php`의 `handle_post()` 함수를 보면 `View details of your own product` 를 이용할 때<br>
+입력하는 name과 secret 값이 존재하는지, Null이 아닌지 검사한 후<br>
+check_name_secret()의 결과를 검사한다. False가 아니면 상품 정보를 출력해준다.<br>
+그런데 위의 get_product() 함수는 `WHERE name = ? and secret = ?`이 아닌 name만으로 데이터를 반환해준다.<br>
 name이 facebook이지만 secret은 내가 알고있는 값이라면? name과 secret을 일치시켜 facebook이라는 이름을 가진
 첫 번째 상품을 반환시킬 수 있다.
 
-하지만 이미 `facebook`이라는 이름은 존재하기 때문에 추가시킬 수 없다.
-뒷부분에 공백을 추가해 `facebook `을 name으로 임의의 값을 secret으로 해주면 상품을 추가할 수 있다.
+하지만 이미 `facebook`이라는 이름은 존재하기 때문에 추가시킬 수 없다.<br>
+뒷부분에 공백을 추가해 `facebook `을 name으로 임의의 값을 secret으로 해주면 상품을 추가할 수 있다.<br>
 이 문제에선 `MitNy1234567890`을 사용했다.
 
 ![]({{ site.baseurl }}/assets/posts/ctf/Facebook/add_success.png)
 
-추가가 되었다면 `View details of your own product`으로 가서
+추가가 되었다면 `View details of your own product`으로 가서<br>
 Name:`facebook `<br>
 Secret: MitNy1234567890  <br> 를 입력해보자
 
