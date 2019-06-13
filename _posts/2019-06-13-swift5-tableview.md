@@ -16,11 +16,11 @@ tags:
 
 ## Settings
 
-1. Class 지정
+- Class 지정
 ![]({{ site.baseurl }}/assets/posts/swift/viewController_class.png)
 Scene에 Class를 지정해준다.  class를 정해줘야 Outlet connect가 가능하다.
 
-2. TableView <-> ViewController connect
+- TableView <-> ViewController connect
 ![]({{ site.baseurl }}/assets/posts/swift/table_to_view.png)
 
 TableView를 control을 누른 상태에서 끌어 View 윗 부분 FileExtract에 놓는다.
@@ -31,7 +31,7 @@ dataSource와delegate를 선택한다.
 ![]({{ site.baseurl }}/assets/posts/swift/tableView_outlets.png)
 ViewController 코드에도 outlets를 연결해준다.
 
-3. TableColumn identifier 설정
+- TableColumn identifier 설정
 ![]({{ site.baseurl }}/assets/posts/swift/set_identifier.png)
 테이블의 각 컬럼에 identifier를 설정해준다.
 
