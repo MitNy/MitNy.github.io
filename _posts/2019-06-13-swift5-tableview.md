@@ -14,7 +14,6 @@ tags:
 
 테이블뷰를 하나 만들어준다.
 
-
 ## Settings
 
 1. Class 지정
