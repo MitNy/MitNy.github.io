@@ -11,6 +11,7 @@ tags:
 
 #### Selenium 설치
 `sudo pip3 install selenium`
+<br>
 [Selenium docs](https://selenium-python.readthedocs.io/)
 
 #### 웹 드라이버 설치
@@ -21,6 +22,7 @@ tags:
 #### 브라우저 실행 및 URL 접속
 - 야옹이 갤러리 URL : https://gall.dcinside.com/board/lists/?id=cat
 - webdriver.Chrome(웹 드라이버 설치 경로)
+
 ```py
 from selenium import webdriver
 
@@ -29,6 +31,7 @@ url = "http://gall.dcinside.com/board/lists/?id=cat"
 ```
 
 #### 오늘 올라온 게시글 제목 수집
+
 ```py
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -69,4 +72,5 @@ if __name__ == "__main__":
 ```
 
 #### 결과
+
 ![]({{ site.baseurl }}/assets/posts/python/dc_cat.png)
