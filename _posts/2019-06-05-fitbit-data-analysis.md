@@ -26,3 +26,4 @@ Fitbit을 한달동안 차고 다니면서 모인 데이터들을 처리하고 �
 ![]({{ site.baseurl }}/assets/posts/fitbit/fitbit_dataExport.png)
 기간과 다운로드할 데이터의 종류(신체,음식,활동,수면)을 지정해준 후 파일을 다운로드하면 된다.
 
+CSV 파일로 저장했는데 필요없는 데이터는 없애버리고 

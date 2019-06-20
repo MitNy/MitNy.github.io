@@ -11,9 +11,9 @@ tags:
   - download
 ---
 
-### 환경: Ubuntu 16.04 LTS / apache2 / php7.0
+### 환경: Ubuntu 18.04 LTS / apache2 / php7.0
 
-웹 서버 세팅을 위해 apm을 정상적으로 설치했는데,
+웹 서버 세팅을 위해 php모듈 포함 apm을 정상적으로 설치했는데,
 처음엔 아래 명령어를 입력하지 않아서 user 접속시 404 not found만 떴었다.
 그 에러는 아래 명령어로 해결
 ```
@@ -28,8 +28,46 @@ sudo service apache2 restart
 
 apache2.conf도 고쳐보고 php.ini도 고쳐보고 하다가 진짜 해결 방법을 찾았다.
 
-`/etc/apache2/mods-enabled/php7.0.conf` 파일에서 `php_admin_flag engine` 설정을 주석처리 하는 것이다.
+1. /etc/apache2/apache2.conf 수정
+![]({{ site.baseurl }}/assets/posts/php/apache2conf_edit.png)
 
-![]({{ site.baseurl }}/assets/posts/ubuntu/php7conf.png)
+모든 유저에 대한 public_html 디렉토리 설정을 해준다.
 
+```php
+<Directory /home/*/public_html/>
+        Options FollowSymLinks MultiViews
+        AddType application/x-httpd-php .php .jsp
+        AllowOverride FileInfo
+        Require all granted
+</Directory>
+```
 
+AddType 부분은 원하는대로 설정을 바꿔주면 된다.
+
+2. /etc/apache/mods-enabled/php7.2.conf
+* php는 버전에 따라 파일명 변경
+
+```php
+<IfModule mod_userdir.c>
+    <Directory /home/*/public_html>
+        php_admin_flag engine On
+    </Directory>
+</IfModule>
+```
+
+3. /etc/apache2/sites-enabled/000-default.conf 수정
+VirtualHost 바깥에 추가
+
+```php
+Alias /public_html /home/*/public_html
+<Directory /home/*/public_html>
+    Options FollowSymLinks
+    #DirectoryIndex index.php
+    AllowOverride All
+</Directory>
+```
+
+설정을 바꿔준 후에는 꼭 아파치를 재시작 해준다.
+`service apache2 restart`
+
+이렇게 설정해줬더니 php 파일이 다운로드 되는 것이 아닌 정상출력 되었다.
