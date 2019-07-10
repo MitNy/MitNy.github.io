@@ -12,20 +12,19 @@ tags:
 ---
 
 ### 환경 구축
+  - OS: Windows 10
   - IDE: Anaconda 2019.03 (64-bit)
   - Python version: 3.7
 
 ### 필수 업데이트
   * Anaconda Prompt에서 아래 명령어 실행
 ![]({{ site.baseurl }}/assets/posts/tensorflow/anaconda_prompt.png)
-  - conda 업데이트
-
- `conda update -n base conda`
+  * conda 업데이트
+  -  `conda update -n base conda`
 ![]({{ site.baseurl }}/assets/posts/tensorflow/base_conda_update.png)
 
-  - 파이썬 패키지 업데이트
-
-`conda update --all`
+  * 파이썬 패키지 업데이트
+  - `conda update --all`
 ![]({{ site.baseurl }}/assets/posts/tensorflow/conda_update.png)
 
 ### TensorFlow 설치
@@ -38,7 +37,7 @@ tags:
 ![]({{ site.baseurl }}/assets/posts/tensorflow/tensorflow_install_check.png)
 
 ### Jupyter Notebook 실행
-* 실행 방법
+<실행 방법><br>
 - Anaconda Navigator에서 Jupyter Notebook Launch 
 - Anaconda prompt에서 jupyter notebook 명령어 입력
 
