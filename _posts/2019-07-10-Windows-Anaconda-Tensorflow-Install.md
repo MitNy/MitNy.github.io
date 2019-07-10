@@ -20,10 +20,12 @@ tags:
 ![]({{ site.baseurl }}/assets/posts/tensorflow/anaconda_prompt.png)
 
   - conda 업데이트
+
 `conda update -n base conda`
 ![]({{ site.baseurl }}/assets/posts/tensorflow/base_conda_update.png)
 
   - 파이썬 패키지 업데이트
+
 `conda update --all`
 ![]({{ site.baseurl }}/assets/posts/tensorflow/conda_update.png)
 
