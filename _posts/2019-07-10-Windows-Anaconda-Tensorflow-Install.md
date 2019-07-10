@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ! "[TensorFlow] Windows에 Anaconda, TensorFlow 설치하기"
-categories: [Webhacking.kr]
+categories: [TensorFlow]
 excerpt: " "
 comments: true
 share: true
