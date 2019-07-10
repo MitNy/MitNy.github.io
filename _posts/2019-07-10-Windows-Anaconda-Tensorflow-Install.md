@@ -19,12 +19,10 @@ tags:
 ### 필수 업데이트
   * Anaconda Prompt에서 아래 명령어 실행
 ![]({{ site.baseurl }}/assets/posts/tensorflow/anaconda_prompt.png)
-  * conda 업데이트
-  -  `conda update -n base conda`
+  * conda 업데이트: `conda update -n base conda`
 ![]({{ site.baseurl }}/assets/posts/tensorflow/base_conda_update.png)
 
-  * 파이썬 패키지 업데이트
-  - `conda update --all`
+  * 파이썬 패키지 업데이트: `conda update --all`
 ![]({{ site.baseurl }}/assets/posts/tensorflow/conda_update.png)
 
 ### TensorFlow 설치
@@ -37,11 +35,12 @@ tags:
 ![]({{ site.baseurl }}/assets/posts/tensorflow/tensorflow_install_check.png)
 
 ### Jupyter Notebook 실행
-<실행 방법><br>
+**실행 방법**
 - Anaconda Navigator에서 Jupyter Notebook Launch 
 - Anaconda prompt에서 jupyter notebook 명령어 입력
 
 ![]({{ site.baseurl }}/assets/posts/tensorflow/jupyter_list.png)
+
 실행되면 로컬로 웹 페이지가 하나 뜬다. 디렉토리 목록이 뜨고 아무곳이나 선택해서 파일 등을 생성할 수 있다.
 
 ![]({{ site.baseurl }}/assets/posts/tensorflow/jupyter_check.png)
