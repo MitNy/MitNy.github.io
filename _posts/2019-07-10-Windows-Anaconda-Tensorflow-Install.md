@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[TensorFlow] Anaconda for Windows에 TensorFlow 설치하기"
+title: ! "[TensorFlow] Windows용 Anaconda에 TensorFlow 설치하기"
 categories: [TensorFlow]
 excerpt: " "
 comments: true
@@ -30,7 +30,6 @@ tags:
 `conda install tensorflow` (tensorflow 1.9.0 버전부터 pip 대신 conda 사용 권장)
 
 ![]({{ site.baseurl }}/assets/posts/tensorflow/tensorflow_install.png)
-
 - Python 쉘로 tensorflow 설치 확인
 ![]({{ site.baseurl }}/assets/posts/tensorflow/tensorflow_install_check.png)
 
