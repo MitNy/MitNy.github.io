@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ! "[TensorFlow] Windows에 Anaconda, TensorFlow 설치하기"
+title: ! "[TensorFlow] Anaconda for Windows에 TensorFlow 설치하기"
 categories: [TensorFlow]
 excerpt: " "
 comments: true
