@@ -16,11 +16,12 @@ tags:
 ### 세팅 환경
 - docker(Ubuntu 18.04)
 - Apache 2.2.32
+- php 4.4.9
 
 ### Docker 이미지 다운로드 및 컨테이너 실행
 
 ```bash
-docker puill ubuntu
+docker pull ubuntu
 docker run -it -d -p 3333:80 --name web ubuntu
 docker exec -it [Container ID] /bin/bash
 ```
@@ -99,7 +100,7 @@ php-4.4.9 폴더 안에 `php.ini-dist`파일과 `php.ini-recommended`파일이 �
 ### Apache /usr/local/apache2/conf/httpd.conf 파일 확인 및 수정
 
 1. ServerName 설정
-`ServerName [localhost or IP or domain]
+`ServerName [localhost or IP or domain]`
 
 2. LoadModule 확인
 `LoadModule php4_module        modules/libphp4.so`
@@ -126,9 +127,16 @@ AddType application/x-httpd-source .phps
 ![]({{ site.baseurl }}/assets/posts/web/phpinfo-check.png)
 
 
+이 과정을 Dockerfile로 만들어 한 번에 빌드할 수 있다.
+Dockerfile은 Github에 올려두었다.
+[https://github.com/MitNy/Vulnerable-Web-Server](https://github.com/MitNy/Vulnerable-Web-Server)
 
-### Dockerfile 빌드
+### Dockerfile 빌드 및 실행
 
-`docker build -t [Image ID] .`
+```
+docker build -t [Image ID] .
+docker run -it -d -p [port]:[port] --name [container name] [image name]
+# EX) docker run -it -d -p 3333:80 -name web vulnerable-web
+docker exec -it [Container ID] /bin/bash
 
-
+```
