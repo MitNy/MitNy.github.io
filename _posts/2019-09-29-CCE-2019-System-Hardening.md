@@ -16,7 +16,7 @@ tags:
 
 ### web.xml
 
-![]({{ site.baseurl }}/assets/posts/ctf/CCE2019/sh_1.png)
+![]({{ site.baseurl }}/assets/posts/ctf/CCE2019/sh_1.png) {:.alingleft}
 
 - web.xml 설정을 수정해서 PUT, DELETE 메소드를 차단하세요.
 
@@ -48,7 +48,7 @@ PUT,DELETE 메소드를 차단하려면 `<security-constraint>` 옵션을 추가
 
 ### elasticsearch.yml
 
-![]({{ site.baseurl }}/assets/posts/ctf/CCE2019/sh_2.png)
+![]({{ site.baseurl }}/assets/posts/ctf/CCE2019/sh_2.png) {:.alingleft}
 
 - elasticsearch.yml 파일을 수정해서 localhost Bind 만 허용되게 하시오
 
@@ -69,7 +69,7 @@ localhost Bind만 허용되게 해야하므로
 
 ### Django
 
-![]({{ site.baseurl }}/assets/posts/ctf/CCE2019/sh_3.png)
+![]({{ site.baseurl }}/assets/posts/ctf/CCE2019/sh_3.png) {:.alingleft}
 
 - django 설정을 변경해서 DEBUG 모드를 Off하세요
 
