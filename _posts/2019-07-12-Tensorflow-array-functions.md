@@ -75,6 +75,8 @@ print(session.run(tf.reverse(v1, [True, False]))) # [[7 8 9 2 1 0] [1 2 3 4 5 6]
 ```
 
 ### Transpose
+전치행렬 리턴
+
 ```py
 print("\n====== Transpose ======")
 print(session.run(tf.transpose(c3))) # [1 3 5]
