@@ -34,7 +34,6 @@ tags:
 
 3. 데이터베이스 설계
    - ERD
-    ![]({{ site.baseurl }}/assets/posts/portfolio/seminar/seminar_db.png)
 4. 화면 구성
 
    - 메인 화면
