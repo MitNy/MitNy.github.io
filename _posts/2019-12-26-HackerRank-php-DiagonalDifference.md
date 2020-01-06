@@ -13,7 +13,7 @@ tags:
 
 n개의 행과 열을 가지는 정사각형 2차원 배열이 주어지면 대각선 원소들을 더한 후 두 값의 차를 절대값으로 출력하는 문제
 
-### input
+### Input
 ```
 $n = 3
 $arr = 
@@ -22,11 +22,12 @@ $arr =
 10 8 -12
 ```
 
-### output
+### Output
 ```
 15
 ```
 
+### Code
 ```php
 <?php
 function diagonalDifference($n, $arr) {
