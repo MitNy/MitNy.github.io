@@ -34,8 +34,8 @@ function diagonalDifference($n, $arr) {
     $array_rk = 0;
     $array_tp = 0;
     for( $i=0; $i<$n; $i++ ) {
-        $array_rk += $arr[$i][$i];
-$array_tp += $arr[$i][$n-1-$i];
+		$array_rk += $arr[$i][$i];
+		$array_tp += $arr[$i][$n-1-$i];
     }
     return abs($array_rk-$array_tp);
 }
