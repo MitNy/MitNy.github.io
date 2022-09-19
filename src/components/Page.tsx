@@ -18,7 +18,10 @@ export default function Page({ posts } : PageProps) {
 	});
 
 	const pageCount = ( postCount <= limit ) ? 1 : Math.ceil(postCount / limit);
-	const liStyle = "ml-4 px-3 py-2 float-left cursor-pointer border-solid border-2 rounded-md"
+
+	const isFirst = (page == 1) ? " pointer-events-none" : "";
+	const isLast = (page == pageCount) ? " pointer-events-none" : "";
+	const liStyle = "mr-4 px-3 py-2 float-left cursor-pointer border-solid border-2 rounded-md";
 
 	const [showPost, setShowPost] = useState(posts.slice((page * limit) - limit, (page * limit)));
 
@@ -76,7 +79,7 @@ export default function Page({ posts } : PageProps) {
 
 	return (
 		<>
-			<div className="min-h-screen pb-52 mt-8">
+			<div className="w-full min-h-screen pb-24 mt-8">
 				{showPost.map((post, index) => (
 					<article
 						key={index}
@@ -96,10 +99,10 @@ export default function Page({ posts } : PageProps) {
 				))}
 			</div>
 			<nav className="position-relative translate-y-full mb-20">
-				<ul className="list-none mx-72">
-					<li id="prev" className={liStyle + " hover:border-rose-400"} onClick={handlePrevNext}>◀</li>
+				<ul className="list-none flex justify-center items-center">
+					<li id="prev" className={liStyle + " hover:border-rose-400 md:hover:none" + isFirst} onClick={handlePrevNext}>◀</li>
 					{pageItem()}
-					<li id="next" className={liStyle + " hover:border-rose-400"} onClick={handlePrevNext}>▶</li>
+					<li id="next" className={liStyle + " hover:border-rose-400 md:hover:none" + isLast} onClick={handlePrevNext}>▶</li>
 				</ul>
 			</nav>
 		</>

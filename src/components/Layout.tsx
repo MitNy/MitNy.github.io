@@ -9,7 +9,8 @@ export default function Layout(props: Props) {
 	return (
 		<>
 			<Header />
-			<div className='mx-16 my-8'>{props.children}</div>
+			<div className='mx-10 my-8'>
+				{props.children}</div>
 			<Footer />
 		</>
 	)
