@@ -89,7 +89,7 @@ export default function Page({ posts } : PageProps) {
 						<Link href={`/post/${post.slug}`}>
 							<a>
 								<span className="display: inline-block">
-									<p className="font-bold mb-4 hover:text-rose-400 float-left">{post.title}</p>
+									<p className="text-xl font-bold mb-4 hover:text-rose-400 float-left">{post.title}</p>
 								</span>
 								<p className="text-neutral-500 mb-4">{post.description}</p>
 								<p className="text-xs">{post.date}</p>
@@ -100,9 +100,17 @@ export default function Page({ posts } : PageProps) {
 			</div>
 			<nav className="position-relative translate-y-full mb-20">
 				<ul className="list-none flex justify-center items-center">
-					<li id="prev" className={liStyle + " hover:border-rose-400 md:hover:none" + isFirst} onClick={handlePrevNext}>◀</li>
+					<li id="prev" className={liStyle + " hover:border-rose-400 md:hover:none" + isFirst} onClick={handlePrevNext}>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+							<path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+						</svg>
+					</li>
 					{pageItem()}
-					<li id="next" className={liStyle + " hover:border-rose-400 md:hover:none" + isLast} onClick={handlePrevNext}>▶</li>
+					<li id="next" className={liStyle + " hover:border-rose-400 md:hover:none" + isLast} onClick={handlePrevNext}>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+							<path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+						</svg>
+					</li>
 				</ul>
 			</nav>
 		</>
