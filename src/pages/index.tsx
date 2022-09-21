@@ -3,7 +3,8 @@ import Head from "next/head"
 import Link from "next/link"
 import { useState } from "react"
 import { getPosts, IPost } from "../utils/posts"
-import Page from "../components/Page";
+import { SEO } from "../components/SEO"
+import Page from "../components/Page"
 
 interface IProps {
 	posts: IPost[]
@@ -12,10 +13,7 @@ interface IProps {
 const Home: NextPage<IProps> = ({ posts }) => {
 	return (
 		<div>
-			<Head>
-				<title>MitNy.log</title>
-			</Head>
-
+			<SEO title="Posts" canonical={`/`} />
 			<p className='text-4xl font-bold text-neutral-500'>Posts</p>
 			<Page posts={posts}/>
 		</div>

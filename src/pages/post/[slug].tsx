@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { getPostBySlug, getPostsSlugs, IPost } from "../../utils/posts"
 import MarkdownRenderer from "../../components/MarkdownRenderer"
+import { getCanonicalAbsolutePath, SEO } from "../../components/SEO";
 
 interface IProps {
 	post: IPost
@@ -16,15 +17,18 @@ interface IPathProps {
 
 const Post: NextPage<IProps> = ({ post }) => {
 	return (
-		<div className="w-full min-h-screen pb-24 mt-8">
-			<article className="prose max-w-none">
-				<div className="border-b">
-					<p className="text-4xl font-bold mb-0">{post?.title}</p>
-					<p className="text-xs text-neutral-500">{post?.date}</p>
-				</div>
-				<MarkdownRenderer mdString={post?.content}/>
-			</article>
-		</div>
+		<>
+			<SEO title={post?.title} canonical={getCanonicalAbsolutePath(`/posts/${post?.slug}`)} />
+			<div className="w-full min-h-screen pb-24 mt-8">
+				<article className="prose max-w-none">
+					<div className="border-b">
+						<p className="text-4xl font-bold mb-0">{post?.title}</p>
+						<p className="text-xs text-neutral-500">{post?.date}</p>
+					</div>
+					<MarkdownRenderer mdString={post?.content}/>
+				</article>
+			</div>
+		</>
 	)
 }
 

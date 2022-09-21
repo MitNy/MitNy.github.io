@@ -8,12 +8,13 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy-gh-pages": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add -f out/ && git checkout -b temp-for-deploy-gh-pages && git commit -m \"Deploy Next.js to gh-pages\" && git subtree split --prefix out -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages && git checkout master && git branch -D temp-for-deploy-gh-pages"
   },
   "dependencies": {
     "autoprefixer": "^10.4.11",
     "gray-matter": "^4.0.3",
     "next": "^12.3.0",
+    "next-seo": "^5.5.0",
     "postcss": "^8.4.16",
     "react": "17.0.2",
     "react-dom": "17.0.2",

@@ -4,7 +4,7 @@ description: '기존에 PHP와 Javascript ES5로 사용하고 있던 amCharts4�
 date: '2022-09-21'
 ---
 
-<img src="/posts/nextjs-amcharts4/amcharts-light-opaque.png" width="30%" />
+<img src="/posts/nextjs-amcharts4/amcharts-light-opaque.png" width="500px" />
 
 [amcharts4](https://www.amcharts.com/docs/v4/)
 <br>지도, 그래프 등 다양한 시각화 기능을 제공한다.<br>
@@ -170,4 +170,4 @@ export default const Chart = () => {
 
 ## Pie Chart 예제 결과
 
-<img src="/posts/nextjs-amcharts4/amcharts4-pie-sample.png" width="50%"/>
+<img src="/posts/nextjs-amcharts4/amcharts4-pie-sample.png" width="500px"/>
