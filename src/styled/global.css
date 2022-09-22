@@ -4,7 +4,7 @@
 
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 body { font-family: 'Noto Sans KR', sans-serif; }
-#__next { width: 100vw; height: 100vh; }
+#__next { height: 100vh; }
 
 /**
  * prism.js Twilight theme
