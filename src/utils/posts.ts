@@ -19,6 +19,7 @@ interface IMatterData {
 }
 
 const postsDirectory = path.join(process.cwd(), 'posts')
+const articlesDirectory = path.join(process.cwd(), 'articles')
 
 export function getPosts() {
 	// Get file names under /posts
@@ -81,9 +82,43 @@ export function getPostBySlug(findSlug: string) {
 	}
 }
 
+export function getOldPostBySlug(findSlug: string) {
+	// Get file names under /posts
+	const fileNames = fs.readdirSync(articlesDirectory)
+
+	// Find file by slug name
+	const file = fileNames.find((fileName) => fileName.includes(findSlug))
+
+	if (!file) return null
+
+	// Remove ".md" from file name to get slug
+	const slug = file.replace(/\.md$/, '')
+
+	// Read markdown file as string
+	const fullPath = path.join(articlesDirectory, file)
+	const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+	// Use gray-matter to parse the post metadata section
+	const matterResult = matter(fileContents)
+
+	// Combine the data with the slug
+	return {
+		slug,
+		content: matterResult.content,
+		...(matterResult.data as IMatterData),
+	}
+}
+
 export function getPostsSlugs() {
 	// Get file names under /posts
 	const fileNames = fs.readdirSync(postsDirectory)
+
+	return fileNames.map((fileName) => fileName.replace(/\.md$/, ''))
+}
+
+export function getOldPostsSlugs() {
+	// Get file names under /articles
+	const fileNames = fs.readdirSync(articlesDirectory)
 
 	return fileNames.map((fileName) => fileName.replace(/\.md$/, ''))
 }

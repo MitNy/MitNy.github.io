@@ -5,7 +5,8 @@
   "homepage": "https://mitny.github.io",
   "scripts": {
     "dev": "next dev -- --port 8000",
-    "build": "next build && next export",
+    "build": "rimraf public/robots.txt public/sitemap*.xml && next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
     "deploy-gh-pages": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add -f out/ && git checkout -b temp-for-deploy-gh-pages && git commit -m \"Deploy Next.js to gh-pages\" && git subtree split --prefix out -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages && git checkout master && git branch -D temp-for-deploy-gh-pages"
@@ -34,6 +35,7 @@
     "@types/react": "17.0.18",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
+    "next-sitemap": "^3.1.22",
     "typescript": "4.3.5"
   }
 }

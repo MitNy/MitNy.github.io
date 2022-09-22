@@ -2,6 +2,7 @@ import { DefaultSeo, DefaultSeoProps } from "next-seo";
 
 const DEFAULT_SEO: DefaultSeoProps = {
 	title: "MitNy.log",
+	description: "기록 저장소",
 	canonical: "https://mitny.github.io",
 	openGraph: {
 		type: "website",
@@ -9,6 +10,7 @@ const DEFAULT_SEO: DefaultSeoProps = {
 		url: "https://mitny.github.io",
 		title: "MitNy.log",
 		site_name: "MitNy.log",
+		description: "기록 저장소"
 	}
 };
 

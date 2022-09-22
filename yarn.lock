@@ -38,6 +38,11 @@
   dependencies:
     "regenerator-runtime" "^0.13.4"
 
+"@corex/deepmerge@^4.0.29":
+  "integrity" "sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A=="
+  "resolved" "https://registry.npmjs.org/@corex/deepmerge/-/deepmerge-4.0.29.tgz"
+  "version" "4.0.29"
+
 "@eslint/eslintrc@^0.4.3":
   "integrity" "sha512-J6KFFz5QCYUJq3pf0mjEcCJVERbzv71PUIDczuh9JkwGEzced6CO5ADLHB1rbf/+oPBtoPfMYNOpGDzCANlbXw=="
   "resolved" "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-0.4.3.tgz"
@@ -67,7 +72,7 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz"
   "version" "1.2.0"
 
-"@next/env@12.3.0":
+"@next/env@*", "@next/env@12.3.0":
   "integrity" "sha512-PTJpjAFVbzBQ9xXpzMTroShvD5YDIIy46jQ7d4LrWpY+/5a8H90Tm8hE3Hvkc5RBRspVo7kvEOnqQms0A+2Q6w=="
   "resolved" "https://registry.npmjs.org/@next/env/-/env-12.3.0.tgz"
   "version" "12.3.0"
@@ -1942,7 +1947,15 @@
   "resolved" "https://registry.npmjs.org/next-seo/-/next-seo-5.5.0.tgz"
   "version" "5.5.0"
 
-"next@^12.3.0", "next@^8.1.1-canary.54 || >=9.0.0", "next@>=10.2.0":
+"next-sitemap@^3.1.22":
+  "integrity" "sha512-aykbwYTNJ2GKSuxYpXgKK7m/a1Qao03ekUlsNLHvO8XuTTVZDAOe2hGcJtr2vQfXnLeZuSpNUs2IP6hCr4xVZA=="
+  "resolved" "https://registry.npmjs.org/next-sitemap/-/next-sitemap-3.1.22.tgz"
+  "version" "3.1.22"
+  dependencies:
+    "@corex/deepmerge" "^4.0.29"
+    "minimist" "^1.2.6"
+
+"next@*", "next@^12.3.0", "next@^8.1.1-canary.54 || >=9.0.0", "next@>=10.2.0":
   "integrity" "sha512-GpzI6me9V1+XYtfK0Ae9WD0mKqHyzQlGq1xH1rzNIYMASo4Tkl4rTe9jSqtBpXFhOS33KohXs9ZY38Akkhdciw=="
   "resolved" "https://registry.npmjs.org/next/-/next-12.3.0.tgz"
   "version" "12.3.0"

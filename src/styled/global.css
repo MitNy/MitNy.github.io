@@ -11,6 +11,17 @@ body { font-family: 'Noto Sans KR', sans-serif; }
  * Based (more or less) on the Twilight theme originally of Textmate fame.
  * @author Remy Bach
  */
+
+p > code {
+	background: gainsboro;
+	padding: 5px;
+	margin-left:2px;
+	margin-right: 2px;
+	border-radius: .5em;
+	color: black;
+}
+p > code::before, code::after { display: none }
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: white;
