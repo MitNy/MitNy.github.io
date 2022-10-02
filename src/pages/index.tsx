@@ -12,11 +12,11 @@ interface IProps {
 
 const Home: NextPage<IProps> = ({ posts }) => {
 	return (
-		<div>
+		<>
 			<SEO title="Posts" canonical={`/`} />
 			<p className='text-4xl font-bold text-neutral-500'>Posts</p>
 			<Page posts={posts}/>
-		</div>
+		</>
 	)
 }
 

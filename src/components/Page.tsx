@@ -79,7 +79,7 @@ export default function Page({ posts } : PageProps) {
 
 	return (
 		<>
-			<div className="w-full min-h-screen pb-24 mt-8">
+			<div>
 				{showPost.map((post, index) => (
 					<article
 						key={index}

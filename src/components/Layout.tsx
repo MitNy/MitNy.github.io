@@ -10,7 +10,10 @@ export default function Layout(props: Props) {
 		<>
 			<Header />
 			<div className='mx-10 my-8'>
-				{props.children}</div>
+				<div className="w-full min-h-screen pb-24 mt-8">
+				{props.children}
+				</div>
+			</div>
 			<Footer />
 		</>
 	)
