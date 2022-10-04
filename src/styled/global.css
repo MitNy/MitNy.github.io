@@ -259,4 +259,5 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 
 /* Header */
+.header { -webkit-tap-highlight-color: transparent; }
 .header-home { font-family: 'Neonderthaw' !important; }
