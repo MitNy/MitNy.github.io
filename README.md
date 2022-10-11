@@ -9,6 +9,6 @@
 
 - [x] Markdown 렌더링
 - [x] Pagination
-- [ ] favicon 만들기
-- [ ] 소개 페이지
+- [x] favicon 만들기
+- [x] 소개 페이지
 - [ ] tag로 post 묶기
