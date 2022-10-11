@@ -1,5 +1,5 @@
 ---
-title: '체크박스 상태 관리 및 전체 선택/해제 구현하기 with React, Typescript'
+title: '체크박스 상태 관리 및 전체 선택/해제 구현하기 with React, TypeScript'
 description: 'Array와 Set 두 가지 버전으로 구현해보기'
 date: '2022-09-27'
 ---

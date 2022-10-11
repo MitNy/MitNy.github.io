@@ -1,5 +1,5 @@
 ---
-title: 'react-i18next로 다국어 처리하기 with Next.js, Typescript'
+title: 'react-i18next로 다국어 처리하기 with Next.js, TypeScript'
 description: 'react-i18next로 다국어 리소스를 적용해보자'
 date: '2022-09-23'
 ---
