@@ -22,3 +22,7 @@ description: 'Jekyll 대신 Next.js로 블로그 만들기'
 
 - 신규 포스팅 경로: **https://mitny.github.io/post/{title}** EX) http://mitny.github.io/post/notice-blog-renewal
 - 예전 포스팅 경로: **https://mitny.github.io/articles/{yyyy-mm}/{title}** EX) https://mitny.github.io/articles/2016-08/gdb-command
+
+추후에 예전 포스팅들도 메뉴로 빼서 리스팅 할 예정이지만 어떤 글들이 있었는지 궁금하시다면 구글의 site 명령어로도 보실 수 있습니다.<br>
+(일부 포스팅은 복구하지 않았습니다.)<br>
+[site:https://mitny.github.io/](https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fmitny.github.io)
