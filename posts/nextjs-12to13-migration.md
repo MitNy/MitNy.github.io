@@ -19,12 +19,29 @@ app/ 디렉토리에서 Layout, Loading, Error 페이지 등을 관리할 수 �
 13 버전에서는 `next/navigation`를 사용해야 한다고 한다.<br>
 [참고 링크](https://stackoverflow.com/questions/71961539/router-push-is-not-working-as-expected-nextjs)
 
-```
+```js
 [12.x]
 import { useRouter } from "next/router";
 
 [13.x]
 import { useRouter } from 'next/navigation';
+```
+
+그리고 `next/navigation`을 사용하게 되면 pathname을 바로 가져올 수 없다.<br>
+12 버전에서 `.pathname`으로 사용하던 부분을 `next/navigation`의 `usePathname` 함수를 불러와 사용해야 한다.
+
+```js
+[12.x]
+import { useRouter } from "next/router";
+...
+const router = useRouter();
+const pathname = router.pathname;
+
+[13.x]
+import { useRouter, usePathname } from 'next/navigation';
+...
+const router = useRouter();
+const pathname = usePathname();
 ```
 
 <br>
@@ -34,7 +51,7 @@ import { useRouter } from 'next/navigation';
 `<Link>` 내부의 `<a>` 태그를 제거해야 한다.<br>
 `<a>` 태그가 존재하면 이런 에러가 뜬다.
 
-```bash
+```js
 Error: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.
 ```
 
@@ -42,7 +59,7 @@ Error: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehav
 codemods로 자동으로 변경해주는게 있다는대 수작업으로 변경한 뒤에 알게되었다...^^<br>
 [codemods#new-link](https://beta.nextjs.org/docs/upgrade-guide/codemods#new-link)
 
-```
+```js
 [12.x]
 <Link href='/test'>
     <a onClick={(e) => click(e)}>
