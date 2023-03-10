@@ -39,7 +39,7 @@ or문을 써야할 것 같다.
 
 이런식으로 써줘야
 
-`query : select id from prob_gremlin where id='mmjlee314' and pw='1'or'1=1'`
+`query : select id from prob_gremlin where id='userId' and pw='1'or'1=1'`
 
 이렇게 쿼리문이 완성된다.
 1 또는 1이 되므로 pw는 참이 된다.
