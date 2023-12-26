@@ -1,0 +1,96 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[Apache Thrift] Ping Pong Test |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[Apache Thrift] Ping Pong Test |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-07-10-Apache-Thrift-Ping-Pong-Test"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[Apache Thrift] Ping Pong Test</p><p class="text-xs text-neutral-500"></p></div><div><h3 id="환경-ubuntu-1604-lts">환경: Ubuntu 16.04 LTS</h3>
+<h3 id="thrift-version--0110">thrift version : 0.11.0</h3>
+<p>1.ping_pong thrift 파일을 작성한다.</p>
+<pre><code class="code-highlight"><span class="code-line">namespace py ping_pong
+</span><span class="code-line">
+</span><span class="code-line">service ping_pong
+</span><span class="code-line">{
+</span><span class="code-line">  string ping ()
+</span><span class="code-line">}
+</span></code></pre>
+<p><code>thrift --gen py ping_pong.thrift</code> 를 해주면 gen-py 디렉토리가 생성되고, 그 안에 파일들도 생겨난다.</p>
+<p><img src="/assets/posts/apache-thrift/ping_genpy.png" alt=""></p>
+<p><strong>thrift --gen error 시</strong>
+ImportError: No module named Thrift 이런식으로 thrift 관련 모듈이 없다고 뜬다면
+thrift 설치 폴더/thrift-0.11.0/lib/py 에 들어가서
+<code>sudo python setup.py install</code> 을 해줍니다.
+<img src="/assets/posts/apache-thrift/py_setup.png" alt=""></p>
+<p>설치 완료 후 다시 gen을 했을 때 <code>No Module named six</code>이 뜬다면
+<code>sudo apt-get install python-six</code> 또는 <code>sudo pip install six</code>를 해주면 된다.
+설치가 완료되었다면 다시 gen.</p>
+<p>gen-py 디렉토리 안에 ping과 pong을 보낼client.py와 server.py를 작성한다.</p>
+<p><strong>Client.py</strong></p>
+<pre class="language-py"><code class="language-py code-highlight"><span class="code-line"><span class="token keyword">import</span> time
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>transport <span class="token keyword">import</span> TSocket
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>transport <span class="token keyword">import</span> TTransport
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>protocol <span class="token keyword">import</span> TBinaryProtocol
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>server <span class="token keyword">import</span> TServer
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>Thrift <span class="token keyword">import</span> TException
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">import</span> ping_pong<span class="token punctuation">.</span>ping_pong
+</span><span class="code-line">
+</span><span class="code-line">socket <span class="token operator">=</span> TSocket<span class="token punctuation">.</span>TSocket<span class="token punctuation">(</span><span class="token string">'192.168.0.53'</span><span class="token punctuation">,</span> <span class="token number">9090</span><span class="token punctuation">)</span>
+</span><span class="code-line">transport <span class="token operator">=</span> TTransport<span class="token punctuation">.</span>TBufferedTransport<span class="token punctuation">(</span>socket<span class="token punctuation">)</span>
+</span><span class="code-line">protocol <span class="token operator">=</span> TBinaryProtocol<span class="token punctuation">.</span>TBinaryProtocol<span class="token punctuation">(</span>transport<span class="token punctuation">)</span>
+</span><span class="code-line">client <span class="token operator">=</span> ping_pong<span class="token punctuation">.</span>ping_pong<span class="token punctuation">.</span>Client<span class="token punctuation">(</span>protocol<span class="token punctuation">)</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+</span><span class="code-line">    <span class="token keyword">try</span><span class="token punctuation">:</span>
+</span><span class="code-line">        transport<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line">        <span class="token keyword">print</span> <span class="token string">">> ping to server"</span>
+</span><span class="code-line">        <span class="token keyword">print</span> client<span class="token punctuation">.</span>ping<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line">        transport<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line">        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</span><span class="code-line">    <span class="token keyword">except</span> TException<span class="token punctuation">,</span> tx<span class="token punctuation">:</span>
+</span><span class="code-line">        <span class="token keyword">print</span> <span class="token string">"%s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>tx<span class="token punctuation">.</span>message<span class="token punctuation">)</span>
+</span></code></pre>
+<p><strong>Server.py</strong></p>
+<pre class="language-py"><code class="language-py code-highlight"><span class="code-line"><span class="token keyword">import</span> sys
+</span><span class="code-line"><span class="token comment"># thrift 0.11.0</span>
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>transport <span class="token keyword">import</span> TSocket
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>transport <span class="token keyword">import</span> TTransport
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>protocol <span class="token keyword">import</span> TBinaryProtocol
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>server <span class="token keyword">import</span> TServer
+</span><span class="code-line"><span class="token keyword">from</span> thrift<span class="token punctuation">.</span>Thrift <span class="token keyword">import</span> TException
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">import</span> ping_pong<span class="token punctuation">.</span>ping_pong
+</span><span class="code-line">
+</span><span class="code-line">
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">class</span> <span class="token class-name">ping_pong_server</span><span class="token punctuation">(</span>ping_pong<span class="token punctuation">.</span>ping_pong<span class="token punctuation">.</span>Processor<span class="token punctuation">)</span><span class="token punctuation">:</span>
+</span><span class="code-line">    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> my_address<span class="token punctuation">,</span> my_port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+</span><span class="code-line">        self<span class="token punctuation">.</span>my_address <span class="token operator">=</span> my_address
+</span><span class="code-line">        self<span class="token punctuation">.</span>my_port <span class="token operator">=</span> my_port
+</span><span class="code-line">
+</span><span class="code-line">    <span class="token keyword">def</span> <span class="token function">startServer</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+</span><span class="code-line">        processor <span class="token operator">=</span> ping_pong<span class="token punctuation">.</span>ping_pong<span class="token punctuation">.</span>Processor<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+</span><span class="code-line">        transport <span class="token operator">=</span> TSocket<span class="token punctuation">.</span>TServerSocket<span class="token punctuation">(</span>host<span class="token operator">=</span>self<span class="token punctuation">.</span>my_address<span class="token punctuation">,</span> port<span class="token operator">=</span>self<span class="token punctuation">.</span>my_port<span class="token punctuation">)</span>
+</span><span class="code-line">        tfactory <span class="token operator">=</span> TTransport<span class="token punctuation">.</span>TBufferedTransportFactory<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line">        pfactory <span class="token operator">=</span> TBinaryProtocol<span class="token punctuation">.</span>TBinaryProtocolFactory<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line">
+</span><span class="code-line">        server <span class="token operator">=</span> TServer<span class="token punctuation">.</span>TThreadedServer<span class="token punctuation">(</span>processor<span class="token punctuation">,</span> transport<span class="token punctuation">,</span> tfactory<span class="token punctuation">,</span> pfactory<span class="token punctuation">)</span>
+</span><span class="code-line">
+</span><span class="code-line">        <span class="token keyword">print</span> <span class="token string">'Starting the server...'</span>
+</span><span class="code-line">        server<span class="token punctuation">.</span>serve<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line">        <span class="token keyword">print</span> <span class="token string">'done.'</span>
+</span><span class="code-line">
+</span><span class="code-line">
+</span><span class="code-line">    <span class="token keyword">def</span> <span class="token function">ping</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+</span><span class="code-line">        <span class="token keyword">print</span> <span class="token string">"&#x3C;&#x3C; ping from client"</span>
+</span><span class="code-line">	<span class="token keyword">print</span> <span class="token string">">> pong to client"</span>
+</span><span class="code-line">        <span class="token keyword">return</span> <span class="token string">"&#x3C;&#x3C; pong from server"</span>
+</span><span class="code-line">
+</span><span class="code-line">ping_pong_server<span class="token punctuation">(</span><span class="token string">'192.168.0.53'</span><span class="token punctuation">,</span> <span class="token number">9090</span><span class="token punctuation">)</span><span class="token punctuation">.</span>startServer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>localhost로 하려고 했으나 VM 두개를 돌려 아예 client와 server를 분리시켰다.</p>
+<p>server측 VM의inet addr로 소켓 통신을 할 것이다.
+server측에서 9090포트를 열고, client는192.168.0.53:9090에 접근 요청을 한다.
+client측에서는 ping을 보내고 server에서 받은 값을 출력한다.
+server측엥서는 client에서 보낸 ping을 받고 pong을 return 해준다.</p>
+<p>출력은 다음과 같다.
+<img src="/assets/posts/apache-thrift/ping_client.png" alt="">
+<img src="/assets/posts/apache-thrift/ping_server.png" alt=""></p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-07-10-Apache-Thrift-Ping-Pong-Test","content":"\n### 환경: Ubuntu 16.04 LTS\n### thrift version : 0.11.0\n\n1.ping_pong thrift 파일을 작성한다.\n\n```\nnamespace py ping_pong\n\nservice ping_pong\n{\n  string ping ()\n}\n```\n\n`thrift --gen py ping_pong.thrift` 를 해주면 gen-py 디렉토리가 생성되고, 그 안에 파일들도 생겨난다.\n\n![](/assets/posts/apache-thrift/ping_genpy.png)\n\n**thrift --gen error 시**\nImportError: No module named Thrift 이런식으로 thrift 관련 모듈이 없다고 뜬다면\nthrift 설치 폴더/thrift-0.11.0/lib/py 에 들어가서\n`sudo python setup.py install` 을 해줍니다.\n![](/assets/posts/apache-thrift/py_setup.png)\n\n설치 완료 후 다시 gen을 했을 때 `No Module named six`이 뜬다면 \n`sudo apt-get install python-six` 또는 `sudo pip install six`를 해주면 된다.\n설치가 완료되었다면 다시 gen.\n\ngen-py 디렉토리 안에 ping과 pong을 보낼client.py와 server.py를 작성한다.\n\n**Client.py**\n```py\nimport time\nfrom thrift.transport import TSocket\nfrom thrift.transport import TTransport\nfrom thrift.protocol import TBinaryProtocol\nfrom thrift.server import TServer\nfrom thrift.Thrift import TException\n\nimport ping_pong.ping_pong\n\nsocket = TSocket.TSocket('192.168.0.53', 9090)\ntransport = TTransport.TBufferedTransport(socket)\nprotocol = TBinaryProtocol.TBinaryProtocol(transport)\nclient = ping_pong.ping_pong.Client(protocol)\n\nwhile(1):\n    try:\n        transport.open()\n        print \"\u003e\u003e ping to server\"\n        print client.ping()\n        transport.close()\n        time.sleep(1)\n    except TException, tx:\n        print \"%s\" % (tx.message)\n```\n\n**Server.py**\n```py\nimport sys\n# thrift 0.11.0\nfrom thrift.transport import TSocket\nfrom thrift.transport import TTransport\nfrom thrift.protocol import TBinaryProtocol\nfrom thrift.server import TServer\nfrom thrift.Thrift import TException\n\nimport ping_pong.ping_pong\n\n\n\nclass ping_pong_server(ping_pong.ping_pong.Processor):\n    def __init__(self, my_address, my_port):\n        self.my_address = my_address\n        self.my_port = my_port\n\n    def startServer(self):\n        processor = ping_pong.ping_pong.Processor(self)\n        transport = TSocket.TServerSocket(host=self.my_address, port=self.my_port)\n        tfactory = TTransport.TBufferedTransportFactory()\n        pfactory = TBinaryProtocol.TBinaryProtocolFactory()\n\n        server = TServer.TThreadedServer(processor, transport, tfactory, pfactory)\n\n        print 'Starting the server...'\n        server.serve()\n        print 'done.'\n\n\n    def ping(self):\n        print \"\u003c\u003c ping from client\"\n\tprint \"\u003e\u003e pong to client\"\n        return \"\u003c\u003c pong from server\"\n\nping_pong_server('192.168.0.53', 9090).startServer();\n```\n\nlocalhost로 하려고 했으나 VM 두개를 돌려 아예 client와 server를 분리시켰다.\n\nserver측 VM의inet addr로 소켓 통신을 할 것이다.\nserver측에서 9090포트를 열고, client는192.168.0.53:9090에 접근 요청을 한다.\nclient측에서는 ping을 보내고 server에서 받은 값을 출력한다.\nserver측엥서는 client에서 보낸 ping을 받고 pong을 return 해준다.\n\n출력은 다음과 같다.\n![](/assets/posts/apache-thrift/ping_client.png)\n![](/assets/posts/apache-thrift/ping_server.png)\n\n","layout":"post","title":"[Apache Thrift] Ping Pong Test","categories":["Apache Thrift"],"excerpt":" ","comments":true,"share":true,"tags":["Apache Thrift","Ubuntu","ping pong"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-07","slug":"Apache-Thrift-Ping-Pong-Test"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

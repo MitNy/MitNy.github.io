@@ -1,0 +1,126 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[GDB] gdb 명령어 모음 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[GDB] gdb 명령어 모음 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2016-08-04-gdb-command"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[GDB] gdb 명령어 모음</p><p class="text-xs text-neutral-500"></p></div><div><h3 id="시작과-종료">시작과 종료</h3>
+<p>gdb [프로그램명] : 시작</p>
+<p>q(quit) or ctrl+d  : 종료</p>
+<h3 id="소스보기list">소스보기(list)</h3>
+<h3 id="브레이크-포인트">브레이크 포인트</h3>
+<p>b func : func 함수의 시작부분에 브레이크 포인트 설정</p>
+<p>b 10 : 10행에 브레이크 포인트 설정</p>
+<p>b *0x8049000 : 특정 주소에 브레이크 포인트 설정</p>
+<p>tb : b와 같으나 1회용 브레이크 포인트. 문법은 b와 동일</p>
+<p>info b : 현재 브레이크 포인트 보기</p>
+<p>cl : 브레이크 포인트 지우기</p>
+<p>d : 모든 브레이크 포인트 지우기</p>
+<h3 id="진행-명령어">진행 명령어</h3>
+<p>r(run) : 프로그램 수행</p>
+<p>k(kill) : 프로그램 수행 종료</p>
+<p>s(step) : 현재 행 수행 후 정지, 함수 호출시 함수 안으로 들어감</p>
+<p>s 5 : s 다섯번 수행</p>
+<p>n(next) : 현재 행 수행 후 정지, 함수 호출시 함수 수행 다음 행으로 감</p>
+<p>n 5 : n 다섯번 수행</p>
+<p>c(continue) : 다음 브레이크 포인트까지 진행</p>
+<p>u : 현재 루프를 빠져나감</p>
+<p>finish : 현재 함수를 수행하고 빠져 나감</p>
+<p>return : 현재 함수를 수행하지 않고 빠져 나감</p>
+<p>return : 위와 같으나 리턴값 지정</p>
+<h3 id="와치-포인트">와치 포인트</h3>
+<p>watch [변수명] : 특정변수에 와치 포인트를 설정하고, 특정변수가 바뀔 때마다 브레이크가 걸리면서 이전/현재 값을 출력한다.</p>
+<h3 id="변수출력-관련">변수출력 관련</h3>
+<p>info locals : 현재 스택의 로컬변수 모두를 출력</p>
+<p>info variables : 전역변수 모두 출력 (스압)</p>
+<p>p [변수명] : 해당변수 value 출력</p>
+<p>포인터변수 입력시 주소값 출력, *포인터변수명 -> 실제 value 출력</p>
+<p>p $[레지스터명] : 레지스터값 출력</p>
+<p>p *[포인터] : struct/class의 배열일 때 배열의 크기를 알림</p>
+<p>p /[출력형식][변수명] : 출력형식에 맞추어 변수값 출력</p>
+<p>t : 2진수</p>
+<p>o : 8진수</p>
+<p>d : 부호없는 10진수</p>
+<p>u : 부호없는 10진수</p>
+<p>x : 16진수</p>
+<p>c : 최초 1바이트 값을 문자형으로 출력</p>
+<p>f : 부동소수점</p>
+<p>a : 가장 가까운 심볼의 오프셋 출력</p>
+<p>p (캐스팅)[변수명] : 변수를 캐스팅하여 출력 ( p (char*)ptr )</p>
+<p>p [포인터변수or배열]+[숫자] : 특정 주소 + 숫자 위치 출력 ( p (array[1]+4) )</p>
+<p>p [변수명] = [value] : 특정 변수의 값을 설정</p>
+<p>info registers : 레지스터 전체 출력</p>
+<p>display [변수명] : 매번 p 치기 귀찮으니 특정변수 진행 중 계속 출력</p>
+<p>p와 동일한 방식으로 출력형식 지정가능</p>
+<p>disalbe display [번호] : 일시적으로 디스플레이 중단</p>
+<p>enable display [번호] : 중단했던 번호 다시 출력</p>
+<p>undisplay [번호] : 출력하던 display 변수 제거</p>
+<h3 id="스택-상태-검사">스택 상태 검사</h3>
+<p>info f : 스택 프레임 내용 출력</p>
+<p>info args : 함수 호출시 인자를 출력</p>
+<p>info locals : 함수의 지역변수를 출력</p>
+<p>info catch : 함수의 예외 핸들러를 출력</p>
+<p>bt : 전체 스택 프레임 출력(콜스택)</p>
+<p>frame [스택번호] : 스택번호의 스택 프레임으로 이동</p>
+<p>up : 상위 스택 프레임으로 이동</p>
+<p>up [숫자] : 숫자만큼 상위 스택프레임으로 이동</p>
+<p>down : 하위 스택 프레임으로 이동</p>
+<p>down [숫자] : 숫자만큼 하위 스택프레임으로 이동</p>
+<h3 id="메모리-상태-검사">메모리 상태 검사</h3>
+<p>x/[범위][출력형식][범위의단위] [메모리주소나 함수명]</p>
+<p>범위 : 기본 4바이트 단위</p>
+<p>출력 형식</p>
+<p>t : 2진수</p>
+<p>o : 8진수</p>
+<p>d : 부호없는 10진수</p>
+<p>u : 부호없는 10진수</p>
+<p>x : 16진수</p>
+<p>c : 최초 1바이트 값을 문자형으로 출력</p>
+<p>f : 부동소수점</p>
+<p>a : 가장 가까운 심볼의 오프셋 출력</p>
+<p>s: 문자열로 출력</p>
+<p>i : 어셈블리 형식으로 출력</p>
+<h3 id="범위의-단위">범위의 단위</h3>
+<p>b : 1 byte</p>
+<p>h : 2 byte</p>
+<p>w : 4 byte</p>
+<p>g : 8 byte</p>
+<p>ex)
+x/10 main : main 함수로부터 40 byte 출력</p>
+<h3 id="기타">기타</h3>
+<p>disas [함수명] : 특정함수의 어셈블리 코드 출력</p>
+<p>disas [주소] [주소] : 주소 사이의 어셈블리 코드 출력</p>
+<p>call [함수명(인자)] : 특정 함수를 인자값으로 호출</p>
+<p>jump *[주소] : 주소로 강제적으로 분기</p>
+<p>jump [행번호] : 특정 행으로 강제 분기</p>
+<p>jump [함수명] : 특정 함수로 강제 분기</p>
+<p>info signals : signal 종류 출력</p>
+<p>info tab키 : info로 확인 가능한 명령어 출력</p>
+<p>set {타입}[주소] = [값] : 특정 메모리에 값을 지정 ( set {int}0x8048300 = 100 )</p>
+<h3 id="환경-설정">환경 설정</h3>
+<p>info set : 설정 가능한 내용 출력</p>
+<h3 id="역어셈블-관련">역어셈블 관련</h3>
+<ol>
+<li>역어셈블 표시</li>
+</ol>
+<p>gdb$ disas (함수명)    or    gdb$ disas (함수 내의 시작 주소) (함수 내의 종료 주소)</p>
+<ul>
+<li>함수에 포함되지 않는 영역을 역어셈블 하는 경우</li>
+</ul>
+<p>gdb$ x/ (명령 수) i (선두 주소)</p>
+<p>=> 앞쪽의 주소에서 지정된 명령어만큼 역어셈블</p>
+<h3 id="브레이크-포인트-1">브레이크 포인트</h3>
+<ol>
+<li>브레이크 포인트 설정</li>
+</ol>
+<p>gdb$ b (함수 이름)    or gdb$ b (주소)</p>
+<ol start="2">
+<li>브레이크 포인트 상태 표시</li>
+</ol>
+<p>-브레이크 포인트가 어디에 설정되어 있는지 등의 상태를 확인</p>
+<p>gdb$ i b    (info break)</p>
+<ol start="3">
+<li>브레이크 포인트 삭제,비활성화,활성화</li>
+</ol>
+<p>-브레이크 포인트 삭제 : gdb$ d (브레이크 포인트 번호)</p>
+<p>-브레이크 포인트 비활성화 : gdb$ disable (브레이크 포인트 번호)</p>
+<p>-브레이크 포인트 활성화 : gdb$ enable (브레이크 포인트 번호)</p>
+<p>-일정 횟수만큼 브레이크 포인트를 통과하게끔 비활성화 : gdb$ ignore (브레이크 포인트 번호) ( 비활성화 할 횟수)</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2016-08-04-gdb-command","content":"\n### 시작과 종료\n\ngdb [프로그램명] : 시작\n\nq(quit) or ctrl+d  : 종료\n\n\n### 소스보기(list)\n\n### 브레이크 포인트\n\nb func : func 함수의 시작부분에 브레이크 포인트 설정\n\nb 10 : 10행에 브레이크 포인트 설정\n\nb *0x8049000 : 특정 주소에 브레이크 포인트 설정\n\ntb : b와 같으나 1회용 브레이크 포인트. 문법은 b와 동일\n\ninfo b : 현재 브레이크 포인트 보기\n\ncl : 브레이크 포인트 지우기\n\nd : 모든 브레이크 포인트 지우기\n\n### 진행 명령어\n\nr(run) : 프로그램 수행\n\nk(kill) : 프로그램 수행 종료\n\ns(step) : 현재 행 수행 후 정지, 함수 호출시 함수 안으로 들어감\n\ns 5 : s 다섯번 수행\n\nn(next) : 현재 행 수행 후 정지, 함수 호출시 함수 수행 다음 행으로 감\n\nn 5 : n 다섯번 수행\n\n\nc(continue) : 다음 브레이크 포인트까지 진행\n\nu : 현재 루프를 빠져나감\n\nfinish : 현재 함수를 수행하고 빠져 나감\n\nreturn : 현재 함수를 수행하지 않고 빠져 나감\n\nreturn : 위와 같으나 리턴값 지정\n\n\n### 와치 포인트\n\nwatch [변수명] : 특정변수에 와치 포인트를 설정하고, 특정변수가 바뀔 때마다 브레이크가 걸리면서 이전/현재 값을 출력한다.\n\n\n\n### 변수출력 관련\n\ninfo locals : 현재 스택의 로컬변수 모두를 출력\n\ninfo variables : 전역변수 모두 출력 (스압)\n\n\np [변수명] : 해당변수 value 출력\n\n포인터변수 입력시 주소값 출력, *포인터변수명 -\u003e 실제 value 출력\n\np $[레지스터명] : 레지스터값 출력\n\np *[포인터] : struct/class의 배열일 때 배열의 크기를 알림\n\np /[출력형식][변수명] : 출력형식에 맞추어 변수값 출력\n\nt : 2진수\n\no : 8진수\n\nd : 부호없는 10진수\n\nu : 부호없는 10진수\n\nx : 16진수\n\nc : 최초 1바이트 값을 문자형으로 출력\n\nf : 부동소수점\n\na : 가장 가까운 심볼의 오프셋 출력\n\np (캐스팅)[변수명] : 변수를 캐스팅하여 출력 ( p (char*)ptr )\n\np [포인터변수or배열]+[숫자] : 특정 주소 + 숫자 위치 출력 ( p (array[1]+4) )\n\np [변수명] = [value] : 특정 변수의 값을 설정\n\n\ninfo registers : 레지스터 전체 출력\n\n\ndisplay [변수명] : 매번 p 치기 귀찮으니 특정변수 진행 중 계속 출력\n\np와 동일한 방식으로 출력형식 지정가능\n\ndisalbe display [번호] : 일시적으로 디스플레이 중단\n\nenable display [번호] : 중단했던 번호 다시 출력\n\nundisplay [번호] : 출력하던 display 변수 제거\n\n\n\n### 스택 상태 검사\n\ninfo f : 스택 프레임 내용 출력\n\ninfo args : 함수 호출시 인자를 출력\n\ninfo locals : 함수의 지역변수를 출력\n\ninfo catch : 함수의 예외 핸들러를 출력\n\n\nbt : 전체 스택 프레임 출력(콜스택)\n\nframe [스택번호] : 스택번호의 스택 프레임으로 이동\n\nup : 상위 스택 프레임으로 이동\n\nup [숫자] : 숫자만큼 상위 스택프레임으로 이동\n\ndown : 하위 스택 프레임으로 이동\n\ndown [숫자] : 숫자만큼 하위 스택프레임으로 이동\n\n\n### 메모리 상태 검사\n\nx/[범위][출력형식][범위의단위] [메모리주소나 함수명]\n\n범위 : 기본 4바이트 단위\n\n출력 형식\n\nt : 2진수\n\no : 8진수\n\nd : 부호없는 10진수\n\nu : 부호없는 10진수\n\nx : 16진수\n\nc : 최초 1바이트 값을 문자형으로 출력\n\nf : 부동소수점\n\na : 가장 가까운 심볼의 오프셋 출력\n\ns: 문자열로 출력\n\ni : 어셈블리 형식으로 출력\n\n\n\n### 범위의 단위\n\nb : 1 byte \n\nh : 2 byte \n\nw : 4 byte\n\ng : 8 byte\n\n\nex)\nx/10 main : main 함수로부터 40 byte 출력\n\n\n### 기타\n\ndisas [함수명] : 특정함수의 어셈블리 코드 출력\n\ndisas [주소] [주소] : 주소 사이의 어셈블리 코드 출력\n\n\ncall [함수명(인자)] : 특정 함수를 인자값으로 호출\n\njump *[주소] : 주소로 강제적으로 분기\n\njump [행번호] : 특정 행으로 강제 분기\n\njump [함수명] : 특정 함수로 강제 분기\n\n\ninfo signals : signal 종류 출력\n\ninfo tab키 : info로 확인 가능한 명령어 출력\n\nset {타입}[주소] = [값] : 특정 메모리에 값을 지정 ( set {int}0x8048300 = 100 )\n\n\n### 환경 설정\n\ninfo set : 설정 가능한 내용 출력\n\n### 역어셈블 관련\n\n\n1) 역어셈블 표시\n\ngdb$ disas (함수명)    or    gdb$ disas (함수 내의 시작 주소) (함수 내의 종료 주소)\n\n\n- 함수에 포함되지 않는 영역을 역어셈블 하는 경우\n\ngdb$ x/ (명령 수) i (선두 주소)\n\n=\u003e 앞쪽의 주소에서 지정된 명령어만큼 역어셈블\n\n\n### 브레이크 포인트\n\n1) 브레이크 포인트 설정\n\ngdb$ b (함수 이름)    or gdb$ b (주소)\n\n\n2) 브레이크 포인트 상태 표시\n\n-브레이크 포인트가 어디에 설정되어 있는지 등의 상태를 확인\n\ngdb$ i b    (info break)\n\n\n3) 브레이크 포인트 삭제,비활성화,활성화\n\n-브레이크 포인트 삭제 : gdb$ d (브레이크 포인트 번호)\n\n-브레이크 포인트 비활성화 : gdb$ disable (브레이크 포인트 번호)\n\n-브레이크 포인트 활성화 : gdb$ enable (브레이크 포인트 번호)\n\n-일정 횟수만큼 브레이크 포인트를 통과하게끔 비활성화 : gdb$ ignore (브레이크 포인트 번호) ( 비활성화 할 횟수)\n","layout":"post","title":"[GDB] gdb 명령어 모음","categories":["GDB"],"excerpt":" ","comments":true,"share":true,"tags":["gdb","command"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2016-08","slug":"gdb-command"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

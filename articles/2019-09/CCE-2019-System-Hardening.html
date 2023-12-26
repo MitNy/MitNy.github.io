@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[CTF] 2019 사이버공격방어대회 예선 System Hardening |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[CTF] 2019 사이버공격방어대회 예선 System Hardening |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2019-09-29-CCE-2019-System-Hardening"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[CTF] 2019 사이버공격방어대회 예선 System Hardening</p><p class="text-xs text-neutral-500"></p></div><div><p>2019 사이버공격방어대회 예선에서 시스템 하드닝이라는 분야를 처음 접했다.<br>
+서로 다른 환경의 설정 파일을 조건에 맞게 수정하여 업로드하면 플래그를 준다.<br>
+총 3개의 문제가 나왔고 web.xml, elasticsearch.yml, django 설정을 바꾸는 것이었다.<br></p>
+<h3 id="webxml">web.xml</h3>
+<p><img src="/assets/posts/ctf/CCE2019/sh_1.png" alt=""></p>
+<ul>
+<li>web.xml 설정을 수정해서 PUT, DELETE 메소드를 차단하세요.</li>
+</ul>
+<p>ATTACHMENT를 클릭하면 설정 파일이 다운로드 되고, 그 파일을 수정하면 된다.</p>
+<p><img src="/assets/posts/ctf/CCE2019/sh_1_conf.png" alt=""></p>
+<p>업로드 해야 할 파일과 테스트 스크립트도 알려준다.</p>
+<p>PUT,DELETE 메소드를 차단하려면 <code>&#x3C;security-constraint></code> 옵션을 추가해주면 된다.
+모든 요청에 대해 PUT, DELETE 메소드를 차단하는 설정은 다음과 같다.</p>
+<pre><code class="code-highlight"><span class="code-line">&#x3C;security-constraint>
+</span><span class="code-line">	&#x3C;web-resource-collection>
+</span><span class="code-line">		&#x3C;web-resource-name>Restricted methods&#x3C;/web-resource-name>
+</span><span class="code-line">			&#x3C;url-pattern>/*&#x3C;/url-pattern>
+</span><span class="code-line">			&#x3C;http-method>PUT&#x3C;/http-method>
+</span><span class="code-line">			&#x3C;http-method>DELETE&#x3C;/http-method>
+</span><span class="code-line">			&#x3C;http-method>OPTIONS&#x3C;/http-method>
+</span><span class="code-line">			&#x3C;http-method>TRACE&#x3C;/http-method>
+</span><span class="code-line">		&#x3C;/web-resource-collection>
+</span><span class="code-line">		&#x3C;auth-constraint />
+</span><span class="code-line">&#x3C;/security-constraint>
+</span></code></pre>
+<p><img src="/assets/posts/ctf/CCE2019/sh_1_flag.png" alt=""></p>
+<h3 id="elasticsearchyml">elasticsearch.yml</h3>
+<p><img src="/assets/posts/ctf/CCE2019/sh_2.png" alt=""></p>
+<ul>
+<li>elasticsearch.yml 파일을 수정해서 localhost Bind 만 허용되게 하시오</li>
+</ul>
+<p><img src="/assets/posts/ctf/CCE2019/sh_2_conf.png" alt=""></p>
+<p><img src="/assets/posts/ctf/CCE2019/elasticsearchyml.png" alt="">
+elasticsearch.yml은 처음 들어보는 파일이었다.
+그래도 web.xml보다 훨씬 짧고 간단하다!
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html" target="_blank" rel="noopener noreferrer">Elasticsearch Network Settings</a> Elasticsearch의 네트워크 설정에 관한 레퍼런스를 참고하면 <code>network.host</code>를 다음과 같이 설정할 수 있다.</p>
+<p><img src="/assets/posts/ctf/CCE2019/elasticsearch.png" alt=""></p>
+<p>localhost Bind만 허용되게 해야하므로
+<code>network.host: 0.0.0.0</code>를 <code>network.host: _local_</code>로 변경해주면 된다.</p>
+<p><img src="/assets/posts/ctf/CCE2019/sh_2_flag.png" alt=""></p>
+<h3 id="django">Django</h3>
+<p><img src="/assets/posts/ctf/CCE2019/sh_3.png" alt=""></p>
+<ul>
+<li>django 설정을 변경해서 DEBUG 모드를 Off하세요</li>
+</ul>
+<p>Django는 한 번도 안써봤는데 elasticsearch.yml 보다 간단했다.</p>
+<p><img src="/assets/posts/ctf/CCE2019/sh_3_conf.png" alt=""></p>
+<p><code>설정 파일 폴더/django_proj/settings.py</code>를 수정하면 된다.</p>
+<p><img src="/assets/posts/ctf/CCE2019/djangosettings.png" alt=""></p>
+<p><code>DEBUG = True</code>를 <code>DEBUG = False</code>로 바꿔주기만 하면 된다.</p>
+<p><img src="/assets/posts/ctf/CCE2019/sh_3_flag.png" alt=""></p>
+<p>시스템 하드닝 분야는 생소한 이름과는 다르게 점수를 거저주는 문제였다.
+보안 설정에 대해 새로운걸 알게돼서 좋은 기회였다 :)</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2019-09-29-CCE-2019-System-Hardening","content":"\n2019 사이버공격방어대회 예선에서 시스템 하드닝이라는 분야를 처음 접했다.\u003cbr\u003e\n서로 다른 환경의 설정 파일을 조건에 맞게 수정하여 업로드하면 플래그를 준다.\u003cbr\u003e\n총 3개의 문제가 나왔고 web.xml, elasticsearch.yml, django 설정을 바꾸는 것이었다.\u003cbr\u003e\n\n### web.xml\n\n![](/assets/posts/ctf/CCE2019/sh_1.png)\n\n- web.xml 설정을 수정해서 PUT, DELETE 메소드를 차단하세요.\n\nATTACHMENT를 클릭하면 설정 파일이 다운로드 되고, 그 파일을 수정하면 된다.\n\n![](/assets/posts/ctf/CCE2019/sh_1_conf.png)\n\n업로드 해야 할 파일과 테스트 스크립트도 알려준다.\n\nPUT,DELETE 메소드를 차단하려면 `\u003csecurity-constraint\u003e` 옵션을 추가해주면 된다.\n모든 요청에 대해 PUT, DELETE 메소드를 차단하는 설정은 다음과 같다.\n\n```\n\u003csecurity-constraint\u003e\n\t\u003cweb-resource-collection\u003e\n\t\t\u003cweb-resource-name\u003eRestricted methods\u003c/web-resource-name\u003e\n\t\t\t\u003curl-pattern\u003e/*\u003c/url-pattern\u003e\n\t\t\t\u003chttp-method\u003ePUT\u003c/http-method\u003e\n\t\t\t\u003chttp-method\u003eDELETE\u003c/http-method\u003e\n\t\t\t\u003chttp-method\u003eOPTIONS\u003c/http-method\u003e\n\t\t\t\u003chttp-method\u003eTRACE\u003c/http-method\u003e\n\t\t\u003c/web-resource-collection\u003e\n\t\t\u003cauth-constraint /\u003e\n\u003c/security-constraint\u003e\n```\n\n![](/assets/posts/ctf/CCE2019/sh_1_flag.png)\n\n\n### elasticsearch.yml\n\n![](/assets/posts/ctf/CCE2019/sh_2.png)\n\n- elasticsearch.yml 파일을 수정해서 localhost Bind 만 허용되게 하시오\n\n![](/assets/posts/ctf/CCE2019/sh_2_conf.png)\n\n![](/assets/posts/ctf/CCE2019/elasticsearchyml.png)\nelasticsearch.yml은 처음 들어보는 파일이었다.\n그래도 web.xml보다 훨씬 짧고 간단하다!\n[Elasticsearch Network Settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html) Elasticsearch의 네트워크 설정에 관한 레퍼런스를 참고하면 `network.host`를 다음과 같이 설정할 수 있다.\n\n![](/assets/posts/ctf/CCE2019/elasticsearch.png)\n\nlocalhost Bind만 허용되게 해야하므로\n`network.host: 0.0.0.0`를 `network.host: _local_`로 변경해주면 된다.\n\n![](/assets/posts/ctf/CCE2019/sh_2_flag.png)\n\n\n### Django\n\n![](/assets/posts/ctf/CCE2019/sh_3.png)\n\n- django 설정을 변경해서 DEBUG 모드를 Off하세요\n\nDjango는 한 번도 안써봤는데 elasticsearch.yml 보다 간단했다.\n\n![](/assets/posts/ctf/CCE2019/sh_3_conf.png)\n\n`설정 파일 폴더/django_proj/settings.py`를 수정하면 된다.\n\n![](/assets/posts/ctf/CCE2019/djangosettings.png)\n\n`DEBUG = True`를 `DEBUG = False`로 바꿔주기만 하면 된다.\n\n![](/assets/posts/ctf/CCE2019/sh_3_flag.png)\n\n\n\n시스템 하드닝 분야는 생소한 이름과는 다르게 점수를 거저주는 문제였다.\n보안 설정에 대해 새로운걸 알게돼서 좋은 기회였다 :)\n","layout":"post","title":"[CTF] 2019 사이버공격방어대회 예선 System Hardening","categories":["CTF"],"excerpt":" ","comments":true,"share":true,"tags":["CTF","write-up"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2019-09","slug":"CCE-2019-System-Hardening"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

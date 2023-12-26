@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[FreeACS] Ubuntu에 FreeACS 설치하기 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[FreeACS] Ubuntu에 FreeACS 설치하기 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-07-16-Ubuntu-FreeACS-install"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[FreeACS] Ubuntu에 FreeACS 설치하기</p><p class="text-xs text-neutral-500"></p></div><div><h2 id="how-to-install-freeacs-on-ubuntu-1604">How to install FreeACS on Ubuntu 16.04</h2>
+<h3 id="환경--ubuntu-1604-lts">환경 : Ubuntu 16.04 LTS</h3>
+<p><a href="https://github.com/freeacs/freeacs/wiki/Get-started" target="_blank" rel="noopener noreferrer">참고</a></p>
+<pre><code class="code-highlight"><span class="code-line">sudo apt-get update
+</span><span class="code-line">sudo apt-get install tomcat7
+</span><span class="code-line">sudo wget https://raw.githubusercontent.com/freeacs/freeacs/master/scripts/install.sh -v -O install.sh &#x26;&#x26; chmod +x install.sh &#x26;&#x26; sudo ./install.sh;
+</span></code></pre>
+<p>스크립트를 실행시키면 설치가 시작된다
+<img src="/assets/posts/freeacs/freeacs_install.png" alt=""></p>
+<p>보통 우분투에서 무언갈 설치할 때 (Y/n)이 뜰 경우 Y가 default값이었으나
+freeacs 설치 스크립트에선 꼭 y를 입력하고 엔터를 쳐줘야 설치가 된다.</p>
+<p>mysql root 패스워드 설정을 해주는 부분이 나타나면 원하는 패스워드를 입력해주면 된다.
+<img src="/assets/posts/freeacs/freeacs_mysql_pw2.jpg" alt=""></p>
+<p>스크립트가 다 실행되고 나면 설치는 90% 되었으나, 나머지는 Fusion Installation.pdf를 보고 하라고 한다.
+<img src="/assets/posts/freeacs/freeacs_install_90.png" alt=""></p>
+<p>설치된 폴더에 가보면 다음과 같은 파일들이 존재한다.
+<img src="/assets/posts/freeacs/freeacs_file.png" alt=""></p>
+<h2 id="fusion-installationpdf">Fusion Installation.pdf</h2>
+<p>노란색으로 색칠된 부분은 옵션이지만 Comment를 읽고 넘어가는 것이 좋다고 한다.</p>
+<p><img src="/assets/posts/freeacs/freeacs_install_1.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_2.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_3.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_4.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_5.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_6.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_7.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_8.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_9.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_10.png" alt="">
+<img src="/assets/posts/freeacs/freeacs_install_11.png" alt=""></p>
+<pre><code class="code-highlight"><span class="code-line">bind-address=0.0.0.0
+</span><span class="code-line">max_allowed_packet=32M
+</span><span class="code-line">innodb_buffer_pool_size=1024M
+</span><span class="code-line">service mysql restart
+</span><span class="code-line">,${catalina.base}/common,${catalina.base}/common/*.properties
+</span><span class="code-line">AUTHBIND=yes
+</span><span class="code-line">JAVA_OPTS="-Djava.awt.headless=true -Xmx768m -XX:+UseConcMarkSweepGC"
+</span><span class="code-line">/var/lib/tomcat7
+</span><span class="code-line">service tomcat7 restart
+</span><span class="code-line">wget localhost
+</span><span class="code-line">wget localhost/web
+</span><span class="code-line">wget localhost/tr069
+</span></code></pre>
+<p>설정을 다 마치고 localhost/web 또는 ip/web에 들어가보면 로그인 페이지를 볼 수 있다.
+<img src="/assets/posts/freeacs/freeacs_login.png" alt="">
+<code>ID: admin / PW: freeacs</code> 로 로그인 하면 된다.
+로그인을 하고 들어가면 아래와 같은 페이지를 볼 수 있다.
+<img src="/assets/posts/freeacs/freeacs_webpage.png" alt=""></p>
+<p><code>freeacs MySQL ID:acs / PW:acs</code></p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-07-16-Ubuntu-FreeACS-install","content":"\n## How to install FreeACS on Ubuntu 16.04\n### 환경 : Ubuntu 16.04 LTS\n\n[참고](https://github.com/freeacs/freeacs/wiki/Get-started)\n\n```\nsudo apt-get update\nsudo apt-get install tomcat7\nsudo wget https://raw.githubusercontent.com/freeacs/freeacs/master/scripts/install.sh -v -O install.sh \u0026\u0026 chmod +x install.sh \u0026\u0026 sudo ./install.sh;\n```\n스크립트를 실행시키면 설치가 시작된다\n![](/assets/posts/freeacs/freeacs_install.png)\n\n보통 우분투에서 무언갈 설치할 때 (Y/n)이 뜰 경우 Y가 default값이었으나\nfreeacs 설치 스크립트에선 꼭 y를 입력하고 엔터를 쳐줘야 설치가 된다.\n\nmysql root 패스워드 설정을 해주는 부분이 나타나면 원하는 패스워드를 입력해주면 된다.\n![](/assets/posts/freeacs/freeacs_mysql_pw2.jpg)\n\n스크립트가 다 실행되고 나면 설치는 90% 되었으나, 나머지는 Fusion Installation.pdf를 보고 하라고 한다.\n![](/assets/posts/freeacs/freeacs_install_90.png)\n\n설치된 폴더에 가보면 다음과 같은 파일들이 존재한다.\n![](/assets/posts/freeacs/freeacs_file.png)\n\n## Fusion Installation.pdf\n노란색으로 색칠된 부분은 옵션이지만 Comment를 읽고 넘어가는 것이 좋다고 한다.\n\n![](/assets/posts/freeacs/freeacs_install_1.png)\n![](/assets/posts/freeacs/freeacs_install_2.png)\n![](/assets/posts/freeacs/freeacs_install_3.png)\n![](/assets/posts/freeacs/freeacs_install_4.png)\n![](/assets/posts/freeacs/freeacs_install_5.png)\n![](/assets/posts/freeacs/freeacs_install_6.png)\n![](/assets/posts/freeacs/freeacs_install_7.png)\n![](/assets/posts/freeacs/freeacs_install_8.png)\n![](/assets/posts/freeacs/freeacs_install_9.png)\n![](/assets/posts/freeacs/freeacs_install_10.png)\n![](/assets/posts/freeacs/freeacs_install_11.png)\n\n\n```\nbind-address=0.0.0.0\nmax_allowed_packet=32M\ninnodb_buffer_pool_size=1024M\nservice mysql restart\n,${catalina.base}/common,${catalina.base}/common/*.properties\nAUTHBIND=yes\nJAVA_OPTS=\"-Djava.awt.headless=true -Xmx768m -XX:+UseConcMarkSweepGC\"\n/var/lib/tomcat7\nservice tomcat7 restart\nwget localhost\nwget localhost/web\nwget localhost/tr069\n```\n\n설정을 다 마치고 localhost/web 또는 ip/web에 들어가보면 로그인 페이지를 볼 수 있다.\n![](/assets/posts/freeacs/freeacs_login.png)\n`ID: admin / PW: freeacs` 로 로그인 하면 된다.\n로그인을 하고 들어가면 아래와 같은 페이지를 볼 수 있다.\n![](/assets/posts/freeacs/freeacs_webpage.png)\n\n`freeacs MySQL ID:acs / PW:acs`\n","layout":"post","title":"[FreeACS] Ubuntu에 FreeACS 설치하기","categories":["FreeACS"],"excerpt":" ","comments":true,"share":true,"tags":["FreeACS","Ubuntu","install"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-07","slug":"Ubuntu-FreeACS-install"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

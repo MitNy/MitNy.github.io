@@ -1,0 +1,92 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[WEB] HTTP Only flag와 Secure Cookie에 대하여 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[WEB] HTTP Only flag와 Secure Cookie에 대하여 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2019-04-10-httpOnly-secureCookie"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[WEB] HTTP Only flag와 Secure Cookie에 대하여</p><p class="text-xs text-neutral-500"></p></div><div><h3 id="http-only">HTTP Only</h3>
+<p><a href="https://www.owasp.org/index.php/HttpOnly" target="_blank" rel="noopener noreferrer">HttpOnly-OWASP</a></p>
+<ol>
+<li>HTTP Only란?</li>
+</ol>
+<ul>
+<li>document.cookie와 같은 자바스크립트로 쿠키를 조회하는 것을 막는 옵션</li>
+<li>브라우저에서 HTTP Only가 설정된 쿠키를 조회할 수 없다.</li>
+<li>서버로 HTTP Request 요청을 보낼때만 쿠키를 전송한다.</li>
+<li>이를 통해 XSS(Cross Site Scripting) 공격을 차단할 수 있다.</li>
+</ul>
+<ol>
+<li>HTTP Only 설정 방법</li>
+</ol>
+<ul>
+<li>Tomcat 6 이상</li>
+<li>context.xml 에서 설정</li>
+</ul>
+<pre class="language-xml"><code class="language-xml code-highlight"><span class="code-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>?xml</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">encoding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</span><span class="code-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>Context</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/myWebApplicationPath<span class="token punctuation">"</span></span> <span class="token attr-name">useHttpOnly</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</span></code></pre>
+<ul>
+<li>Java 6 이상, Servlet 3.0 지원되는 경우</li>
+<li>Java 코드 내에서</li>
+</ul>
+<pre class="language-java"><code class="language-java code-highlight"><span class="code-line"><span class="token class-name">Cookie</span> cookie <span class="token operator">=</span> <span class="token function">getMyCookie</span><span class="token punctuation">(</span><span class="token string">"myCookieName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">cookie<span class="token punctuation">.</span><span class="token function">setHttpOnly</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<ul>
+<li>WEB-INF/web.xml 에서 설정</li>
+</ul>
+<pre class="language-xml"><code class="language-xml code-highlight"><span class="code-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>session-config</span><span class="token punctuation">></span></span>
+</span><span class="code-line">	<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>cookie-config</span><span class="token punctuation">></span></span>
+</span><span class="code-line">		<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>http-only</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>http-only</span><span class="token punctuation">></span></span>
+</span><span class="code-line">	<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>cookie-config</span><span class="token punctuation">></span></span>
+</span><span class="code-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>session-config</span><span class="token punctuation">></span></span>
+</span></code></pre>
+<ul>
+<li>PHP 5.2.0 이상</li>
+</ul>
+<pre class="language-php"><code class="language-php code-highlight"><span class="code-line">session<span class="token operator">.</span>cookie_httponly <span class="token operator">=</span> <span class="token constant boolean">True</span>
+</span></code></pre>
+<h3 id="secure-cookie">Secure Cookie</h3>
+<ol>
+<li>Secure Cookie란?</li>
+</ol>
+<ul>
+<li>웹브라우저와 웹서버가 HTTPS로 통신하는 경우에만 웹브라우저가 쿠키를 서버로 전송하는 옵션</li>
+</ul>
+<ol start="2">
+<li>Secure 옵션 설정 방법</li>
+</ol>
+<ul>
+<li>Java 6 이상, Servlet 3.0 지원되는 경우</li>
+<li>WEB-INF/web.xml에서 설정</li>
+</ul>
+<pre class="language-xml"><code class="language-xml code-highlight"><span class="code-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>session-config</span><span class="token punctuation">></span></span>
+</span><span class="code-line">	<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>cookie-config</span><span class="token punctuation">></span></span>
+</span><span class="code-line">		<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>secure</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>secure</span><span class="token punctuation">></span></span>
+</span><span class="code-line">	<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>cookie-config</span><span class="token punctuation">></span></span>
+</span><span class="code-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>session-config</span><span class="token punctuation">></span></span>
+</span></code></pre>
+<ul>
+<li>PHP</li>
+</ul>
+<pre class="language-php"><code class="language-php code-highlight"><span class="code-line">session<span class="token operator">.</span>cookie_secure <span class="token operator">=</span> <span class="token constant boolean">True</span>
+</span></code></pre>
+<h3 id="직접-해보기">직접 해보기</h3>
+<p>PHP에서 설정하는 방법으로 위의 옵션들을 직접 적용해 볼 것이다.</p>
+<p><img src="/assets/posts/web/secure_cookie_comment.png" alt="">
+기본 옵션에서는 secure 옵션이 주석 처리 되어있다.
+<img src="/assets/posts/web/httponly_cookie.png" alt=""></p>
+<p>위와 같이 <code>session.cookie_secure = True</code>,<code>session.cookie_httponly = True</code>로 설정해준 후
+apache 서버를 재시작해준다.</p>
+<p>그 후에 쿠키를 확인해보면 Secure, HTTP 전용 옵션이 체크되어있는 것을 확인할 수 있다.
+<img src="/assets/posts/web/secure_only_session.png" alt=""></p>
+<p>설정되어 있지 않은 쿠키와 비교해보자
+<img src="/assets/posts/web/none_cookie.png" alt=""></p>
+<p>첫번째로 확인해볼 것은 콘솔창에서 <code>document.cookie;</code> 를 쳤을 경우 쿠키가 출력되는가이다.</p>
+<p><img src="/assets/posts/web/document_cookie.png" alt="">
+예상대로 HTTP 전용 옵션이 꺼져있는 쿠키만 출력된다. 쿠키 에디터로 옵션을 꺼도 출력된다.</p>
+<p>두번째로 확인해볼 것은 http 통신에서 쿠키가 전송되는가이다.
+<img src="/assets/posts/web/secure_5.png" alt="">
+https 통신으로 페이지에 접속했을 때는 secure 옵션이 적용된 쿠키 2개, 적용되지 않은 3개 총 5개의 쿠키가 있었다.</p>
+<p>하지만 https 통신으로 페이지에 접속했을 때 secure 옵션이 적용되지 않은 3개의 쿠키만 있었다.
+<img src="/assets/posts/web/secure_3.png" alt=""></p>
+<p>옵션들이 잘 적용되는 것을 확인해보았다.
+보안 옵션을 적용해 안전한 페이지를 만들어요!! :)</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2019-04-10-httpOnly-secureCookie","content":"\n### HTTP Only\n\n[HttpOnly-OWASP](https://www.owasp.org/index.php/HttpOnly)\n\n1. HTTP Only란?\n\n- document.cookie와 같은 자바스크립트로 쿠키를 조회하는 것을 막는 옵션\n- 브라우저에서 HTTP Only가 설정된 쿠키를 조회할 수 없다.\n- 서버로 HTTP Request 요청을 보낼때만 쿠키를 전송한다.\n- 이를 통해 XSS(Cross Site Scripting) 공격을 차단할 수 있다.\n\n1. HTTP Only 설정 방법\n\n- Tomcat 6 이상\n- context.xml 에서 설정\n\n```xml\n\u003c?xml version=\"1.0\" encoding=\"UTF-8\"\u003e\n\u003cContext path=\"/myWebApplicationPath\" useHttpOnly=\"true\"\u003e\n```\n\n- Java 6 이상, Servlet 3.0 지원되는 경우\n- Java 코드 내에서\n```java\nCookie cookie = getMyCookie(\"myCookieName\");\ncookie.setHttpOnly(true);\n```\n\n- WEB-INF/web.xml 에서 설정\n\n```xml\n\u003csession-config\u003e\n\t\u003ccookie-config\u003e\n\t\t\u003chttp-only\u003etrue\u003c/http-only\u003e\n\t\u003c/cookie-config\u003e\n\u003c/session-config\u003e\n```\n\n- PHP 5.2.0 이상\n```php\nsession.cookie_httponly = True\n```\n\n### Secure Cookie\n\n1. Secure Cookie란?\n- 웹브라우저와 웹서버가 HTTPS로 통신하는 경우에만 웹브라우저가 쿠키를 서버로 전송하는 옵션\n\n2. Secure 옵션 설정 방법\n- Java 6 이상, Servlet 3.0 지원되는 경우\n- WEB-INF/web.xml에서 설정\n\n```xml\n\u003csession-config\u003e\n\t\u003ccookie-config\u003e\n\t\t\u003csecure\u003etrue\u003c/secure\u003e\n\t\u003c/cookie-config\u003e\n\u003c/session-config\u003e\n```\n\n- PHP\n```php\nsession.cookie_secure = True\n```\n\n### 직접 해보기\n\nPHP에서 설정하는 방법으로 위의 옵션들을 직접 적용해 볼 것이다.\n\n![](/assets/posts/web/secure_cookie_comment.png)\n기본 옵션에서는 secure 옵션이 주석 처리 되어있다.\n![](/assets/posts/web/httponly_cookie.png)\n\n위와 같이 `session.cookie_secure = True`,`session.cookie_httponly = True`로 설정해준 후\napache 서버를 재시작해준다.\n\n그 후에 쿠키를 확인해보면 Secure, HTTP 전용 옵션이 체크되어있는 것을 확인할 수 있다.\n![](/assets/posts/web/secure_only_session.png)\n\n설정되어 있지 않은 쿠키와 비교해보자\n![](/assets/posts/web/none_cookie.png)\n\n첫번째로 확인해볼 것은 콘솔창에서 `document.cookie;` 를 쳤을 경우 쿠키가 출력되는가이다.\n\n![](/assets/posts/web/document_cookie.png)\n예상대로 HTTP 전용 옵션이 꺼져있는 쿠키만 출력된다. 쿠키 에디터로 옵션을 꺼도 출력된다.\n\n두번째로 확인해볼 것은 http 통신에서 쿠키가 전송되는가이다.\n![](/assets/posts/web/secure_5.png)\nhttps 통신으로 페이지에 접속했을 때는 secure 옵션이 적용된 쿠키 2개, 적용되지 않은 3개 총 5개의 쿠키가 있었다.\n\n하지만 https 통신으로 페이지에 접속했을 때 secure 옵션이 적용되지 않은 3개의 쿠키만 있었다.\n![](/assets/posts/web/secure_3.png)\n\n옵션들이 잘 적용되는 것을 확인해보았다.\n보안 옵션을 적용해 안전한 페이지를 만들어요!! :)\n","layout":"post","title":"[WEB] HTTP Only flag와 Secure Cookie에 대하여","categories":["WEB"],"excerpt":" ","comments":true,"share":true,"tags":["web","HTTP","Cookie"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2019-04","slug":"httpOnly-secureCookie"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

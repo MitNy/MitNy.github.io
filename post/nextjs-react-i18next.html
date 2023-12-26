@@ -1,0 +1,141 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>react-i18next로 다국어 처리하기 with Next.js, TypeScript |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="react-i18next로 다국어 처리하기 with Next.js, TypeScript |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/post/nextjs-react-i18next"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/post/%5Bslug%5D-ef72dfdcfccf709c.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">react-i18next로 다국어 처리하기 with Next.js, TypeScript</p><p class="text-xs text-neutral-500">2022-09-23</p></div><div><p>처음 Next.js에서 다국어 처리를 해줄 때는 <code>next-i18next</code>를 사용했었는데<br>
+SSR로 구현하다보니 __NEXT_DATA__에 리소스가 노출되는 문제가 있어서 클라이언트단에서 번역 처리가 되도록 <code>react-i18next</code>를 사용하기로 했다.<br>
+next-i18next를 CSR에서도 사용할 수 있다거나 리소스를 노출시키지 않고 사용할 수 있는 방법을 찾게 되면 그 때 다시 next-i18next를 사용해보겠다..</p>
+<h3 id="설치">설치</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> i18next @types/i18next react-i18next @types/react-i18next
+</span></code></pre>
+<h3 id="리소스-디렉토리-생성">리소스 디렉토리 생성</h3>
+<p>현재 프로젝트 디렉토리 구조는 이런 식으로 되어있다.<br>
+컴포넌트, 페이지 같은 것들은 src의 하위 디렉토리로 관리하고 있는데<br>
+리소스 디렉토리는 public에 만들지 않고 src/locales로 만들어주겠다.</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token builtin class-name">.</span>
+</span><span class="code-line">├── next.config.js
+</span><span class="code-line">├── next-env.d.ts
+</span><span class="code-line">├── next-i18next.config.js
+</span><span class="code-line">├── node_modules
+</span><span class="code-line">├── package.json
+</span><span class="code-line">├── public
+</span><span class="code-line">├── src
+</span><span class="code-line">│   ├── components
+</span><span class="code-line">│   ├── pages
+</span><span class="code-line">│   └── styles
+</span><span class="code-line">└── tsconfig.json
+</span></code></pre>
+<h3 id="srclocales">src/locales</h3>
+<p>src/locales에서는 각 언어별로 따로 디렉토리를 만들어주고, i18next 설정 파일인 i18n.ts를 만들어 줄 것이다.<br></p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token builtin class-name">.</span>
+</span><span class="code-line">├── locales
+</span><span class="code-line">│   ├── i18n.ts
+</span><span class="code-line">│   ├── en
+</span><span class="code-line">│   │   └── common.json
+</span><span class="code-line">│   ├── ja
+</span><span class="code-line">│   │   └── common.json
+</span><span class="code-line">│   └── ko
+</span><span class="code-line">│       └── common.json
+</span></code></pre>
+<h3 id="i18nts">i18n.ts</h3>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line"><span class="token keyword module">import</span> <span class="token imports">i18n<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">Resource</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"i18next"</span><span class="token punctuation">;</span>
+</span><span class="code-line"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> initReactI18next <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"react-i18next"</span><span class="token punctuation">;</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword module">import</span> <span class="token imports">ko</span> <span class="token keyword module">from</span> <span class="token string">"./ko/common.json"</span><span class="token punctuation">;</span>
+</span><span class="code-line"><span class="token keyword module">import</span> <span class="token imports">en</span> <span class="token keyword module">from</span> <span class="token string">"./en/common.json"</span><span class="token punctuation">;</span>
+</span><span class="code-line"><span class="token keyword module">import</span> <span class="token imports">ja</span> <span class="token keyword module">from</span> <span class="token string">"./ja/common.json"</span><span class="token punctuation">;</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">const</span> <span class="token literal-property property">resources</span><span class="token operator">:</span><span class="token maybe-class-name">Resource</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+</span><span class="code-line">  <span class="token literal-property property">ko</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> ko <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">  <span class="token literal-property property">en</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> en <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">  <span class="token literal-property property">ja</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> ja <span class="token punctuation">}</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span><span class="code-line">
+</span><span class="code-line">i18n<span class="token punctuation">.</span><span class="token method function property-access">use</span><span class="token punctuation">(</span>initReactI18next<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">init</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+</span><span class="code-line">	resources<span class="token punctuation">,</span> <span class="token comment">// 리소스</span>
+</span><span class="code-line">	<span class="token literal-property property">ns</span><span class="token operator">:</span> <span class="token string">"common"</span><span class="token punctuation">,</span> <span class="token comment">// namespace 설정</span>
+</span><span class="code-line">	<span class="token literal-property property">lng</span><span class="token operator">:</span> <span class="token string">"ko"</span><span class="token punctuation">,</span> <span class="token comment">// 초기 설정 언어</span>
+</span><span class="code-line">	<span class="token literal-property property">fallbackLng</span><span class="token operator">:</span> <span class="token string">"ko"</span><span class="token punctuation">,</span>
+</span><span class="code-line">	<span class="token literal-property property">interpolation</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line">		<span class="token literal-property property">escapeValue</span><span class="token operator">:</span> <span class="token boolean">false</span>
+</span><span class="code-line">	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">	<span class="token literal-property property">react</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line">		<span class="token literal-property property">useSuspense</span><span class="token operator">:</span> <span class="token boolean">false</span>
+</span><span class="code-line">	<span class="token punctuation">}</span>
+</span><span class="code-line"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword module">export</span> <span class="token keyword module">default</span> i18n<span class="token punctuation">;</span>
+</span></code></pre>
+<p>언어별 리소스 파일을 import 해서 resources 객체에 넣어준 후 i18next를 초기화한다.<br>
+리소스 파일은 아래와 같이 각 메뉴별로 key를 나눠놨는데 비구조화 할당 시 각 key를 namespace로 인식하는 것 같았다.</p>
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line"><span class="token comment">// ko/common.json</span>
+</span><span class="code-line"><span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token property">"menu"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line">		<span class="token property">"logout"</span><span class="token operator">:</span> <span class="token string">"로그아웃"</span><span class="token punctuation">,</span>
+</span><span class="code-line">		...
+</span><span class="code-line">	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">	<span class="token property">"config"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line">		...
+</span><span class="code-line">	<span class="token punctuation">}</span>
+</span><span class="code-line">	...
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p><code>t('key1.key2')</code>가 아닌 <code>t('key1:key2')</code>로 접근해야 리소스가 제대로 불러와졌다.<br>
+그래서 resources 객체 생성은 비구조화 할당이 아닌 지금의 코드로 변경하게 되었다.</p>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line"><span class="token comment">// ko에 비구조화 할당했을 때</span>
+</span><span class="code-line"><span class="token keyword">const</span> <span class="token literal-property property">resources</span><span class="token operator">:</span><span class="token maybe-class-name">Resource</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+</span><span class="code-line">  <span class="token literal-property property">ko</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token spread operator">...</span>ko <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">  <span class="token literal-property property">en</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token spread operator">...</span>en <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">  <span class="token literal-property property">ja</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token spread operator">...</span>ja <span class="token punctuation">}</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment">// console.log(resources);</span>
+</span><span class="code-line"><span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token literal-property property">ko</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">menu</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">logout</span><span class="token operator">:</span> <span class="token string">'로그아웃'</span><span class="token punctuation">,</span> <span class="token spread operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token spread operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">	<span class="token literal-property property">en</span><span class="token operator">:</span> <span class="token spread operator">...</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line"><span class="token comment">// ko.common에 바로 넣어줬을 때</span>
+</span><span class="code-line"><span class="token keyword">const</span> <span class="token literal-property property">resources</span><span class="token operator">:</span><span class="token maybe-class-name">Resource</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+</span><span class="code-line">  <span class="token literal-property property">ko</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> ko <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">  <span class="token literal-property property">en</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> en <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">  <span class="token literal-property property">ja</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> ja <span class="token punctuation">}</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment">// console.log(resources);</span>
+</span><span class="code-line"><span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token literal-property property">ko</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">common</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">menu</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token known-class-name class-name">Object</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line">	<span class="token literal-property property">en</span><span class="token operator">:</span> <span class="token spread operator">...</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>i18next의 기본 namespace 값은 translation인데 리소스 파일명과 맞추기 위해 <code>ns: "common"</code> 설정도 해줬다.<br>
+fallbackLng는 만약 en으로 언어 설정을 바꾸려고 했는데 어떤 리소스 키가 en에 없을 경우 대신 값을 가져올 언어를 설정하는 것이다.<br>
+자세한 설정은 <a href="https://www.i18next.com/overview/configuration-options" target="_blank" rel="noopener noreferrer">이 곳</a>에..</p>
+<p>설정이 끝났다면 이제 i18n을 import 해서 사용하면 된다.<br>
+우선 프로젝트 전체에서 사용할 리소스여서 <code>_app.tsx</code>에 i18n을 import 해주었다.</p>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line"><span class="token keyword module">import</span> <span class="token string">"../locales/i18n"</span><span class="token punctuation">;</span>
+</span><span class="code-line"><span class="token spread operator">...</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">App</span></span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> <span class="token spread operator">...</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>
+</span><span class="code-line">		<span class="token spread operator">...</span>
+</span><span class="code-line">	<span class="token punctuation">)</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token maybe-class-name">MyApp</span>
+</span></code></pre>
+<p>이후에는 직접 리소스를 사용할 곳에서 <code>useTranslation</code>을 import 하고 사용하면 된다.</p>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line"><span class="token comment">// src/pages/ex.tsx</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token spread operator">...</span>
+</span><span class="code-line"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> useTranslation <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"react-i18next"</span><span class="token punctuation">;</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Example</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token keyword">const</span> <span class="token punctuation">{</span> t <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useTranslation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">
+</span><span class="code-line">	<span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>
+</span><span class="code-line">		<span class="token operator">&#x3C;</span>div<span class="token operator">></span><span class="token punctuation">{</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token string">'menu.logout'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&#x3C;</span><span class="token operator">/</span>div<span class="token operator">></span>
+</span><span class="code-line">	<span class="token punctuation">)</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span><span class="code-line">
+</span></code></pre></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"nextjs-react-i18next","content":"\n처음 Next.js에서 다국어 처리를 해줄 때는 `next-i18next`를 사용했었는데\u003cbr\u003e\nSSR로 구현하다보니 __NEXT_DATA__에 리소스가 노출되는 문제가 있어서 클라이언트단에서 번역 처리가 되도록 `react-i18next`를 사용하기로 했다.\u003cbr\u003e\nnext-i18next를 CSR에서도 사용할 수 있다거나 리소스를 노출시키지 않고 사용할 수 있는 방법을 찾게 되면 그 때 다시 next-i18next를 사용해보겠다..\n\n\n### 설치\n```bash\nnpm install i18next @types/i18next react-i18next @types/react-i18next\n```\n\n### 리소스 디렉토리 생성\n현재 프로젝트 디렉토리 구조는 이런 식으로 되어있다.\u003cbr\u003e\n컴포넌트, 페이지 같은 것들은 src의 하위 디렉토리로 관리하고 있는데\u003cbr\u003e\n리소스 디렉토리는 public에 만들지 않고 src/locales로 만들어주겠다.\n\n```bash\n.\n├── next.config.js\n├── next-env.d.ts\n├── next-i18next.config.js\n├── node_modules\n├── package.json\n├── public\n├── src\n│   ├── components\n│   ├── pages\n│   └── styles\n└── tsconfig.json\n```\n\n### src/locales\nsrc/locales에서는 각 언어별로 따로 디렉토리를 만들어주고, i18next 설정 파일인 i18n.ts를 만들어 줄 것이다.\u003cbr\u003e\n\n```bash\n.\n├── locales\n│   ├── i18n.ts\n│   ├── en\n│   │   └── common.json\n│   ├── ja\n│   │   └── common.json\n│   └── ko\n│       └── common.json\n```\n\n### i18n.ts\n```js\nimport i18n, { Resource } from \"i18next\";\nimport { initReactI18next } from \"react-i18next\";\n\nimport ko from \"./ko/common.json\";\nimport en from \"./en/common.json\";\nimport ja from \"./ja/common.json\";\n\nconst resources:Resource = {\n  ko: { common: ko },\n  en: { common: en },\n  ja: { common: ja }\n}\n\ni18n.use(initReactI18next).init({\n\tresources, // 리소스\n\tns: \"common\", // namespace 설정\n\tlng: \"ko\", // 초기 설정 언어\n\tfallbackLng: \"ko\",\n\tinterpolation: {\n\t\tescapeValue: false\n\t},\n\treact: {\n\t\tuseSuspense: false\n\t}\n});\n\nexport default i18n;\n```\n\n언어별 리소스 파일을 import 해서 resources 객체에 넣어준 후 i18next를 초기화한다.\u003cbr\u003e\n리소스 파일은 아래와 같이 각 메뉴별로 key를 나눠놨는데 비구조화 할당 시 각 key를 namespace로 인식하는 것 같았다.\n\n```json\n// ko/common.json\n{\n\t\"menu\": {\n\t\t\"logout\": \"로그아웃\",\n\t\t...\n\t},\n\t\"config\": {\n\t\t...\n\t}\n\t...\n}\n```\n`t('key1.key2')`가 아닌 `t('key1:key2')`로 접근해야 리소스가 제대로 불러와졌다.\u003cbr\u003e\n그래서 resources 객체 생성은 비구조화 할당이 아닌 지금의 코드로 변경하게 되었다.\n\n```js\n// ko에 비구조화 할당했을 때\nconst resources:Resource = {\n  ko: { ...ko },\n  en: { ...en },\n  ja: { ...ja }\n}\n\n// console.log(resources);\n{\n\tko: { menu: { logout: '로그아웃', ... }, ... },\n\ten: ...\n}\n```\n\n```js\n// ko.common에 바로 넣어줬을 때\nconst resources:Resource = {\n  ko: { common: ko },\n  en: { common: en },\n  ja: { common: ja }\n}\n\n// console.log(resources);\n{\n\tko: { common: { menu: [Object] } },\n\ten: ...\n}\n```\n\n\ni18next의 기본 namespace 값은 translation인데 리소스 파일명과 맞추기 위해 `ns: \"common\"` 설정도 해줬다.\u003cbr\u003e\nfallbackLng는 만약 en으로 언어 설정을 바꾸려고 했는데 어떤 리소스 키가 en에 없을 경우 대신 값을 가져올 언어를 설정하는 것이다.\u003cbr\u003e\n자세한 설정은 [이 곳](https://www.i18next.com/overview/configuration-options)에..\n\n설정이 끝났다면 이제 i18n을 import 해서 사용하면 된다.\u003cbr\u003e\n우선 프로젝트 전체에서 사용할 리소스여서 `_app.tsx`에 i18n을 import 해주었다.\n\n```js\nimport \"../locales/i18n\";\n...\n\nfunction App({ ... }) {\n\treturn (\n\t\t...\n\t)\n}\n\nexport default MyApp\n```\n\n이후에는 직접 리소스를 사용할 곳에서 `useTranslation`을 import 하고 사용하면 된다.\n\n```js\n// src/pages/ex.tsx\n\n...\nimport { useTranslation } from \"react-i18next\";\n\nexport default function Example() {\n\tconst { t } = useTranslation();\n\n\treturn (\n\t\t\u003cdiv\u003e{t('menu.logout')}\u003c/div\u003e\n\t)\n}\n\n```\n\n","title":"react-i18next로 다국어 처리하기 with Next.js, TypeScript","description":"react-i18next로 다국어 리소스를 적용해보자","date":"2022-09-23"}},"__N_SSG":true},"page":"/post/[slug]","query":{"slug":"nextjs-react-i18next"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

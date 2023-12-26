@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[WEB] HTTP 상태 코드 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[WEB] HTTP 상태 코드 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-01-09-http-Status-code"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[WEB] HTTP 상태 코드</p><p class="text-xs text-neutral-500"></p></div><div><h2 id="http-status-code">HTTP Status Code</h2>
+<p><strong>1XX</strong></p>
+<p>100 Continue
+101 Switching Protocols</p>
+<p><strong>2XX</strong></p>
+<p>200 에러 없이 전송 성공
+202 Accepted, 서버가 클라이언트의 명령을 받음
+203 Non-authoritavive Information, 서버가 클라이언트 요구 중 일부만 전송
+204 Non Content, 클라이언트 요구를 처리했으나 전송할 데이터가 없음
+205 Reset Content
+206 Partial Content</p>
+<p><strong>3XX</strong></p>
+<p>300 Multiple Choisces, 최근에 옮겨진 데이터 요청
+301 Moved Permanently, 요구한 데이터를 변경된 임시 URL에서 찾았음
+302 Moved Permanently, 요구한 데이터가 변경된 URL에 있음을 명시
+303 See Other, 요구한 데이터를 변경하지 않았기 때문에 문제가 있음
+304 Not modified
+305 Use Proxy</p>
+<p><strong>4XX</strong></p>
+<p>400 Bad Request, 요청 실패
+401.1 Unauthorized, 권한 없음(접속 실패)
+401.2 Unauthorized, 권한 없음(서버 설정으로 인한 접속 실패)
+402 Payment Required, 예약됨
+403.1 Forbidden, 금지(수행 접근 금지)
+403.2 Forbidden, 금지(읽기 접근 금지)
+403.6 Forbidden, 금지(IP 주소 거부됨)
+403.8 Forbidden, 금지(사이트 접근 거부됨)
+403.9 Forbidden, 접근 금지(연결된 사용자 수 과다)
+403.11 Forbidden, 접근 금지(패스워드 변경됨)
+404 Not Found, 문서를 찾을 수 없음
+405 Method not allowed, 메소드 허용 안 됨
+406 Not Acceptable, 받아들일 수 없음
+407 Proxy Authentication Required, proxy 인증이 필요함
+408 Request timeout, 요청 시간이 지남
+410 Gone, 영구적으로 사용할 수 없음</p>
+<p><strong>5XX</strong></p>
+<p>500 Internal Server Error, 서버 내부 에러
+501 Not Implemented, 적용 안 됨
+502 Bad gateway, 게이트웨이 상태 나쁨
+503 Service Unavailable
+504 Gateway timeout
+505 HTTP Version Not Supported</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-01-09-http-Status-code","content":"\n## HTTP Status Code\n\n**1XX**\n\n100 Continue\n101 Switching Protocols\n\n**2XX**\n\n200 에러 없이 전송 성공\n202 Accepted, 서버가 클라이언트의 명령을 받음\n203 Non-authoritavive Information, 서버가 클라이언트 요구 중 일부만 전송\n204 Non Content, 클라이언트 요구를 처리했으나 전송할 데이터가 없음\n205 Reset Content\n206 Partial Content\n\n\n**3XX**\n\n300 Multiple Choisces, 최근에 옮겨진 데이터 요청\n301 Moved Permanently, 요구한 데이터를 변경된 임시 URL에서 찾았음\n302 Moved Permanently, 요구한 데이터가 변경된 URL에 있음을 명시\n303 See Other, 요구한 데이터를 변경하지 않았기 때문에 문제가 있음\n304 Not modified\n305 Use Proxy\n\n\n**4XX**\n\n400 Bad Request, 요청 실패\n401.1 Unauthorized, 권한 없음(접속 실패)\n401.2 Unauthorized, 권한 없음(서버 설정으로 인한 접속 실패)\n402 Payment Required, 예약됨\n403.1 Forbidden, 금지(수행 접근 금지)\n403.2 Forbidden, 금지(읽기 접근 금지)\n403.6 Forbidden, 금지(IP 주소 거부됨)\n403.8 Forbidden, 금지(사이트 접근 거부됨)\n403.9 Forbidden, 접근 금지(연결된 사용자 수 과다)\n403.11 Forbidden, 접근 금지(패스워드 변경됨)\n404 Not Found, 문서를 찾을 수 없음\n405 Method not allowed, 메소드 허용 안 됨\n406 Not Acceptable, 받아들일 수 없음\n407 Proxy Authentication Required, proxy 인증이 필요함\n408 Request timeout, 요청 시간이 지남\n410 Gone, 영구적으로 사용할 수 없음\n\n\n**5XX**\n\n500 Internal Server Error, 서버 내부 에러\n501 Not Implemented, 적용 안 됨\n502 Bad gateway, 게이트웨이 상태 나쁨\n503 Service Unavailable\n504 Gateway timeout\n505 HTTP Version Not Supported\n","layout":"post","title":"[WEB] HTTP 상태 코드","categories":["WEB"],"excerpt":" ","comments":true,"share":true,"tags":["web","http"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-01","slug":"http-Status-code"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[PHP] XE와 서브도메인 페이지 간 쿠키 공유 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[PHP] XE와 서브도메인 페이지 간 쿠키 공유 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2019-02-20-XE-subdomain-cookie-share"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[PHP] XE와 서브도메인 페이지 간 쿠키 공유</p><p class="text-xs text-neutral-500"></p></div><div><p>동아리의 세미나 페이지에 동아리 회원만 접근할 수 있도록 해야 하는데, 어떻게 해야할 지 기술적으로 몰라서 안했었다.<br>
+최근에 도메인과 서브 도메인간 쿠키 공유가 가능하다는 것을 알게 되어서 시작!<br>
+XE로 만들어진 동아리 홈페이지에 로그인을 해야만 세미나 페이지에 접근할 수 있도록 하는 것이 목적이다.<br>
+XE 홈페이지의 <code>xe_logged</code>,<code>PHPSESSID</code> 쿠키를 사용할 것이다.<br></p>
+<p>세미나 페이지는 아무런 쿠키도 설정되어 있지 않은 상태이다.
+<img src="/assets/posts/php/prev_cookie.png" alt=""></p>
+<p>우선 세미나 페이지 서버의 php.ini 파일을 수정해준다.<br>
+<code>/etc/php/7.0/apache2/php.ini</code><br>
+<img src="/assets/posts/php/phpini.png" alt=""></p>
+<p>처음에는 아무 것도 입력되지 않은 상태이고 이 곳에
+<code>.domain</code>을 적어주면 된다.<br>
+예를 들어 서브 도메인이<code>web.abc.com</code> 이라면 <code>.abc.com</code>이다.</p>
+<p>수정 내용을 저장한 후, <code>service apache2 restart</code>로 아파치를 재시작 해준다.</p>
+<p>PHPSESSID 쿠키의 도메인이 www.abc.com이 아닌 .abc.com 가 되도록 수정해야 한다.
+<code>xe 설치 폴더/classes/context/Context.class.php</code> 에서 session_start() 전에 코드 한줄을 추가해준다.
+<code>ini_set('session.cookie_domain', '.domain')</code>
+<img src="/assets/posts/php/phpsessid.png" alt=""></p>
+<p>그럼 XE 홈페이지에서 PHPSESSID의 domain이 .abc.com으로 바뀐 것을 볼 수 있다.
+<img src="/assets/posts/php/home_cookie.png" alt=""></p>
+<p>다른 쿠키들은 그대로 www.abc.com으로 설정되어 있다.</p>
+<p>다음으로 로그인 상태를 알려주는 <code>xe_logged</code> 쿠키는 XE 모듈 코드를 직접 수정해주어야 한다.
+xe_logged 쿠키가 생성되는 부분은 <code>xe 설치 폴더/modules/member/member.controller.php</code> 코드 내에 존재한다.
+vi 편집 명령어 중 하나인 <code>/xe_logged</code>를 사용하면 쉽게 찾을 수 있다.</p>
+<p><img src="/assets/posts/php/xe_logged.png" alt=""></p>
+<p>처음에는 <code>setcookie('xe_logged', 'true', 0, '/')</code> 로 되어있으나, 서브 도메인에서도 사용할 수 있도록 cookie domain 을 추가할 것이다.</p>
+<p><img src="/assets/posts/php/xe_logged_domain2.png" alt=""></p>
+<p><code>setcookie('xe_logged', 'true', 0, '/','.abc.com')</code> 이렇게 설정을 해주면</p>
+<p><img src="/assets/posts/php/next_cookie.png" alt=""></p>
+<p>서브 도메인에서도 XE 홈페이지에서 생성된 쿠키를 확인할 수 있다.</p>
+<h4 id="쿠키-설정">쿠키 설정</h4>
+<p>setcookie(cookie name, cookie value, cookie lifetime, cookie path, domain, connection type, http access);</p>
+<ul>
+<li>cookie name : 쿠키 이름</li>
+<li>cookie value : 쿠키 값</li>
+<li>cookie lifetime : 쿠키 만료 시간</li>
+<li>cookie path : 웹 사이트의 특정 디렉토리 내에서만 유효하도록 설정, '/' 일 경우 웹 사이트 전체에서 접>근 가능</li>
+<li>cookie domain : 특정 서브도메인 또는 도메인 전체를 유효범위로 지정</li>
+<li>connection type : true/false, true일 경우 https만 접근 가능</li>
+<li>http access : true/false, true일 경우 http만 접근 가능</li>
+</ul>
+<p><a href="http://jinolog.com/programming/etc/2011/11/13/sharing-cookies-across-multiple-domains.html" target="_blank" rel="noopener noreferrer">참고</a></p>
+<p>다음 할 일은 이 쿠키들을 이용해 홈페이지에 로그인 한 사람만 접근할 수 있도록
+기존 코드를 수정하는 것이다 :)</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2019-02-20-XE-subdomain-cookie-share","content":"\n동아리의 세미나 페이지에 동아리 회원만 접근할 수 있도록 해야 하는데, 어떻게 해야할 지 기술적으로 몰라서 안했었다.\u003cbr\u003e\n최근에 도메인과 서브 도메인간 쿠키 공유가 가능하다는 것을 알게 되어서 시작!\u003cbr\u003e\nXE로 만들어진 동아리 홈페이지에 로그인을 해야만 세미나 페이지에 접근할 수 있도록 하는 것이 목적이다.\u003cbr\u003e\nXE 홈페이지의 `xe_logged`,`PHPSESSID` 쿠키를 사용할 것이다.\u003cbr\u003e\n\n세미나 페이지는 아무런 쿠키도 설정되어 있지 않은 상태이다.\n![](/assets/posts/php/prev_cookie.png)\n\n우선 세미나 페이지 서버의 php.ini 파일을 수정해준다.\u003cbr\u003e\n`/etc/php/7.0/apache2/php.ini`\u003cbr\u003e\n![](/assets/posts/php/phpini.png)\n\n처음에는 아무 것도 입력되지 않은 상태이고 이 곳에\n`.domain`을 적어주면 된다.\u003cbr\u003e\n예를 들어 서브 도메인이`web.abc.com` 이라면 `.abc.com`이다.\n\n수정 내용을 저장한 후, `service apache2 restart`로 아파치를 재시작 해준다.\n\n\nPHPSESSID 쿠키의 도메인이 www.abc.com이 아닌 .abc.com 가 되도록 수정해야 한다.\n`xe 설치 폴더/classes/context/Context.class.php` 에서 session_start() 전에 코드 한줄을 추가해준다.\n`ini_set('session.cookie_domain', '.domain')`\n![](/assets/posts/php/phpsessid.png)\n\n그럼 XE 홈페이지에서 PHPSESSID의 domain이 .abc.com으로 바뀐 것을 볼 수 있다.\n![](/assets/posts/php/home_cookie.png)\n\n다른 쿠키들은 그대로 www.abc.com으로 설정되어 있다.\n\n다음으로 로그인 상태를 알려주는 `xe_logged` 쿠키는 XE 모듈 코드를 직접 수정해주어야 한다.\nxe_logged 쿠키가 생성되는 부분은 `xe 설치 폴더/modules/member/member.controller.php` 코드 내에 존재한다.\nvi 편집 명령어 중 하나인 `/xe_logged`를 사용하면 쉽게 찾을 수 있다.\n\n![](/assets/posts/php/xe_logged.png)\n\n처음에는 `setcookie('xe_logged', 'true', 0, '/')` 로 되어있으나, 서브 도메인에서도 사용할 수 있도록 cookie domain 을 추가할 것이다.\n\n![](/assets/posts/php/xe_logged_domain2.png)\n\n`setcookie('xe_logged', 'true', 0, '/','.abc.com')` 이렇게 설정을 해주면\n\n![](/assets/posts/php/next_cookie.png)\n\n서브 도메인에서도 XE 홈페이지에서 생성된 쿠키를 확인할 수 있다.\n\n#### 쿠키 설정\nsetcookie(cookie name, cookie value, cookie lifetime, cookie path, domain, connection type, http access);\n\n- cookie name : 쿠키 이름\n- cookie value : 쿠키 값\n- cookie lifetime : 쿠키 만료 시간\n- cookie path : 웹 사이트의 특정 디렉토리 내에서만 유효하도록 설정, '/' 일 경우 웹 사이트 전체에서 접\u003e근 가능\n- cookie domain : 특정 서브도메인 또는 도메인 전체를 유효범위로 지정\n- connection type : true/false, true일 경우 https만 접근 가능\n- http access : true/false, true일 경우 http만 접근 가능\n\n[참고](http://jinolog.com/programming/etc/2011/11/13/sharing-cookies-across-multiple-domains.html)\n\n\n다음 할 일은 이 쿠키들을 이용해 홈페이지에 로그인 한 사람만 접근할 수 있도록\n기존 코드를 수정하는 것이다 :)\n","layout":"post","title":"[PHP] XE와 서브도메인 페이지 간 쿠키 공유","categories":["PHP"],"excerpt":" ","comments":true,"share":true,"tags":["PHP","Cookie"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2019-02","slug":"XE-subdomain-cookie-share"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

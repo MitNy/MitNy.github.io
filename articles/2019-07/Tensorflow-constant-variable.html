@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[TensorFlow] TensorFlow 상수와 변수 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[TensorFlow] TensorFlow 상수와 변수 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2019-07-11-Tensorflow-constant-variable"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[TensorFlow] TensorFlow 상수와 변수</p><p class="text-xs text-neutral-500"></p></div><div><h3 id="constant">constant</h3>
+<p>텐서플로우에서 상수를 생성해줄 때 사용</p>
+<pre><code class="code-highlight"><span class="code-line">test = tf.constant("TEST")
+</span><span class="code-line">print(test)
+</span><span class="code-line">
+</span><span class="code-line">sess = tf.Session()
+</span><span class="code-line">print(sess.run(test))
+</span></code></pre>
+<p>위와 같이 원하는 값을 생성해줄 수 있다. <br>
+하지만 일반적인 언어의 변수 선언과는 다르게 바로 사용하면 생성해준 값을 얻을 수 없다.</p>
+<p><img src="/assets/posts/tensorflow/tf_constant.png" alt=""></p>
+<p>위 코드를 실행한 결과로, 단순히 생성 후 <code>print(test)</code>를 해주게 되면 텐서의 타입 등이 출력된다.<br>
+shape이 ()이면 상수 텐서라는 의미이다.<br>
+TEST 문자열을 얻고 싶다면 그래프를 실행할 Session을 만들어주어야 한다. <br>
+Session 생성 후 실행하고자 하는 텐서 그래프(변수, 수식 등)를 run 함수로 실행시키면 된다.<br></p>
+<hr>
+<h3 id="placeholder">placeholder</h3>
+<p>계산할 때 입력을 받는 변수를 생성해줄 때 사용</p>
+<pre><code class="code-highlight"><span class="code-line">X_1 = tf.placeholder(tf.float32, [2,2])
+</span><span class="code-line">X_2 = tf.placeholder(tf.float32, [None,2])
+</span><span class="code-line">print(X_1)
+</span><span class="code-line">print(X_2)
+</span></code></pre>
+<p><img src="/assets/posts/tensorflow/tf_placeholder.png" alt=""></p>
+<p>X_1은 실수형 텐서의 구조가 2차원 행렬 [2][2]의 구조를 가지고,<br>
+X_2는 실수형 텐서의 구조가 2차원 행렬 [?][2]의 구조를 가진다.<br>
+None은 크기가 정해져있지 않을 때 사용한다.<br></p>
+<p>matmul 등의 함수로 행렬을 계산해줄 수 있다.<br></p>
+<pre><code class="code-highlight"><span class="code-line">X_3 = tf.placeholder(tf.float32, [2,4])
+</span><span class="code-line">x3_data = [[1,2,3,4],[4,3,2,1]]
+</span><span class="code-line">
+</span><span class="code-line">W_1 = tf.placeholder(tf.float32, [4,2])
+</span><span class="code-line">w1_data = [[0,1],[1,2],[2,3],[3,4]]
+</span><span class="code-line">
+</span><span class="code-line">exp = tf.matmul(X_3, W_1)
+</span><span class="code-line">session = tf.Session()
+</span><span class="code-line">session.run(tf.global_variables_initializer())
+</span><span class="code-line">
+</span><span class="code-line">print(session.run(exp, feed_dict={X_3:x3_data, W_1:w1_data}))
+</span><span class="code-line">
+</span><span class="code-line">session.close()
+</span></code></pre>
+<p><img src="/assets/posts/tensorflow/tf_placeholder_mul.png" alt=""></p>
+<p><code>global_variables_initializer()</code>는 변수를 초기화해주는 함수이며, 초기화된 결과를 세션에 전달해주어야 한다.<br></p>
+<p>위에서 constant를 <code>session.run(상수명)</code> 이렇게 출력해줬다면<br>
+placeholder는 계산할 수식을 정해두고 <code>feed_dict</code>를 이용해 값을 각 placeholder에 넣어줘야 한다.<br>
+위 코드의 경우 X_3에는 x3_data의 값이, W_1에는 w1_data의 값이 들어가는 것이다.<br></p>
+<hr>
+<h3 id="variable">Variable</h3>
+<p>값이 계속 변하는 변수를 생성해줄 때 사용</p>
+<pre><code class="code-highlight"><span class="code-line">X_4 = tf.placeholder(tf.float32, [2,2])
+</span><span class="code-line">x4_data = [[4,5],[7,8]]
+</span><span class="code-line">
+</span><span class="code-line">W_2 = tf.Variable(tf.random_normal([2,2]))
+</span><span class="code-line">
+</span><span class="code-line">exp = tf.matmul(X_4, W_2)
+</span><span class="code-line">session = tf.Session()
+</span><span class="code-line">session.run(tf.global_variables_initializer())
+</span><span class="code-line">
+</span><span class="code-line">print(session.run(W_2))
+</span><span class="code-line">print(session.run(exp, feed_dict={X_4: x4_data}))
+</span><span class="code-line">session.close()
+</span></code></pre>
+<p><img src="/assets/posts/tensorflow/tf_variable.png" alt=""></p>
+<p>placeholder와 같이 응용하여 X_4는 [2][2] 행렬,<br>
+Variable을 사용할 W_2도 마찬가지로 [2][2] 행렬이다.<br>
+W_2의 값은 0과 1 사이의 정규분포 값으로 랜덤하게 생성된다. <br></p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2019-07-11-Tensorflow-constant-variable","content":"\n\n### constant\n텐서플로우에서 상수를 생성해줄 때 사용\n\n```\ntest = tf.constant(\"TEST\")\nprint(test)\n\nsess = tf.Session()\nprint(sess.run(test))\n```\n위와 같이 원하는 값을 생성해줄 수 있다. \u003cbr\u003e\n하지만 일반적인 언어의 변수 선언과는 다르게 바로 사용하면 생성해준 값을 얻을 수 없다.\n\n![](/assets/posts/tensorflow/tf_constant.png)\n\n위 코드를 실행한 결과로, 단순히 생성 후 `print(test)`를 해주게 되면 텐서의 타입 등이 출력된다.\u003cbr\u003e\nshape이 ()이면 상수 텐서라는 의미이다.\u003cbr\u003e\nTEST 문자열을 얻고 싶다면 그래프를 실행할 Session을 만들어주어야 한다. \u003cbr\u003e\nSession 생성 후 실행하고자 하는 텐서 그래프(변수, 수식 등)를 run 함수로 실행시키면 된다.\u003cbr\u003e\n\n-------------------------------------------------------------------------------------------------------\n### placeholder\n계산할 때 입력을 받는 변수를 생성해줄 때 사용\n\n```\nX_1 = tf.placeholder(tf.float32, [2,2])\nX_2 = tf.placeholder(tf.float32, [None,2])\nprint(X_1)\nprint(X_2)\n```\n![](/assets/posts/tensorflow/tf_placeholder.png)\n\nX_1은 실수형 텐서의 구조가 2차원 행렬 [2][2]의 구조를 가지고,\u003cbr\u003e\nX_2는 실수형 텐서의 구조가 2차원 행렬 [?][2]의 구조를 가진다.\u003cbr\u003e\nNone은 크기가 정해져있지 않을 때 사용한다.\u003cbr\u003e\n\nmatmul 등의 함수로 행렬을 계산해줄 수 있다.\u003cbr\u003e\n\n```\nX_3 = tf.placeholder(tf.float32, [2,4])\nx3_data = [[1,2,3,4],[4,3,2,1]]\n\nW_1 = tf.placeholder(tf.float32, [4,2])\nw1_data = [[0,1],[1,2],[2,3],[3,4]]\n\nexp = tf.matmul(X_3, W_1)\nsession = tf.Session()\nsession.run(tf.global_variables_initializer())\n\nprint(session.run(exp, feed_dict={X_3:x3_data, W_1:w1_data}))\n\nsession.close()\n```\n\n![](/assets/posts/tensorflow/tf_placeholder_mul.png)\n\n`global_variables_initializer()`는 변수를 초기화해주는 함수이며, 초기화된 결과를 세션에 전달해주어야 한다.\u003cbr\u003e\n\n위에서 constant를 `session.run(상수명)` 이렇게 출력해줬다면\u003cbr\u003e\nplaceholder는 계산할 수식을 정해두고 `feed_dict`를 이용해 값을 각 placeholder에 넣어줘야 한다.\u003cbr\u003e\n위 코드의 경우 X_3에는 x3_data의 값이, W_1에는 w1_data의 값이 들어가는 것이다.\u003cbr\u003e\n\n----------------------------------------------------------------------------------------------------------\n### Variable\n\n값이 계속 변하는 변수를 생성해줄 때 사용\n\n```\nX_4 = tf.placeholder(tf.float32, [2,2])\nx4_data = [[4,5],[7,8]]\n\nW_2 = tf.Variable(tf.random_normal([2,2]))\n\nexp = tf.matmul(X_4, W_2)\nsession = tf.Session()\nsession.run(tf.global_variables_initializer())\n\nprint(session.run(W_2))\nprint(session.run(exp, feed_dict={X_4: x4_data}))\nsession.close()\n```\n![](/assets/posts/tensorflow/tf_variable.png)\n\nplaceholder와 같이 응용하여 X_4는 [2][2] 행렬,\u003cbr\u003e\nVariable을 사용할 W_2도 마찬가지로 [2][2] 행렬이다.\u003cbr\u003e\nW_2의 값은 0과 1 사이의 정규분포 값으로 랜덤하게 생성된다. \u003cbr\u003e\n\n\n\n\n","layout":"post","title":"[TensorFlow] TensorFlow 상수와 변수","categories":["TensorFlow"],"excerpt":" ","comments":true,"share":true,"tags":["TensorFlow"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2019-07","slug":"Tensorflow-constant-variable"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

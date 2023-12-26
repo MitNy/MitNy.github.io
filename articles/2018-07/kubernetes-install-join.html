@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[Kubernetes] Kubernetes 설치부터 노드 join까지 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[Kubernetes] Kubernetes 설치부터 노드 join까지 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-07-19-kubernetes-install-join"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[Kubernetes] Kubernetes 설치부터 노드 join까지</p><p class="text-xs text-neutral-500"></p></div><div><h2 id="how-to-install-and-node-join-kubernetes">How to install and node join Kubernetes</h2>
+<h3 id="환경-ubuntu-1604-lts">환경: Ubuntu 16.04 LTS</h3>
+<ol>
+<li>master로 쓸 VM 하나와 node로 쓸 VM 하나를 준비한다.</li>
+<li>아래의 설치 과정을 동일하게 진행한다.</li>
+</ol>
+<h3 id="hostname-변경하는-방법">hostname 변경하는 방법</h3>
+<pre><code class="code-highlight"><span class="code-line">1. vi /etc/hosts 에서 변경
+</span><span class="code-line">2. hostnamectl set-hostname 호스트네임
+</span><span class="code-line">
+</span><span class="code-line">확인: $ hostname
+</span></code></pre>
+<p>도커는 설치되어 있다는 전제하에 포스팅합니다!</p>
+<p><code>swapoff -a</code></p>
+<h3 id="kubernetes-설치">Kubernetes 설치</h3>
+<pre><code class="code-highlight"><span class="code-line">sudo apt-get update &#x26;&#x26; apt-get install -y apt-transport-https curl
+</span><span class="code-line">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add –
+</span><span class="code-line">cat &#x3C;&#x3C;EOF >/etc/apt/sources.list.d/kubernetes.list
+</span><span class="code-line">deb http://apt.kubernetes.io/ kubernetes-xenial main
+</span><span class="code-line">EOF
+</span><span class="code-line">sudo apt-get update
+</span><span class="code-line">sudo apt-get install kubelet kubeadm kubectl
+</span></code></pre>
+<p><code>docker info | grep -i cgroup</code></p>
+<p><code>sudo vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</code>
+-> Environment="KUBELET_CGROUP_ARGS=--cgroup-driver=cgroupfs" 추가
+<img src="/assets/posts/kubernetes/kube_conf.png" alt=""></p>
+<p><code>sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</code></p>
+<p>아래 과정부터는 master와 node가 구분된다.</p>
+<h2 id="master">master</h2>
+<h3 id="master-초기화">master 초기화</h3>
+<p><code>kubeadm init</code></p>
+<p>kubeadm init 시 아래와 같은 에러가 발생할 수도 있다.</p>
+<pre><code class="code-highlight"><span class="code-line">[preflight] Some fatal errors occurred:
+</span><span class="code-line">	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-apiserver-amd64:v1.11.1]: exit status 1
+</span><span class="code-line">	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-controller-manager-amd64:v1.11.1]: exit status 1
+</span><span class="code-line">	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-scheduler-amd64:v1.11.1]: exit status 1
+</span><span class="code-line">	[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-proxy-amd64:v1.11.1]: exit status 1
+</span></code></pre>
+<p><img src="/assets/posts/kubernetes/kube_version_error.png" alt=""></p>
+<p>버전과 관련된 에러이기 때문에 <code>kubeadm init --kubernetes-version=1.11.0</code> 이렇게 버전 옵션을 따로 줘서 해결할 수 있다.</p>
+<p>초기화가 정상적으로 됐다면 아래와 같은 화면을 볼 수 있다.
+<img src="/assets/posts/kubernetes/kube_init.png" alt=""></p>
+<p>root가 아닌 regular user로 아래 명령어들을 입력해주면 된다. regular user로 돌아가고 싶다면 <code>su (username)</code></p>
+<pre><code class="code-highlight"><span class="code-line">mkdir -p $HOME/.kube
+</span><span class="code-line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+</span><span class="code-line">sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</span></code></pre>
+<p>네트워크 배포도 필요한데 <a href="https://kubernetes.io/docs/concepts/cluster-administration/addons/" target="_blank" rel="noopener noreferrer">https://kubernetes.io/docs/concepts/cluster-administration/addons/</a> 이 곳에서 원하는 네트워크를 선택해 <code>kubectl apply -f [podnetwork].yaml</code> 명령어를 입력해주면 된다.
+네트워크들에 대한 설명은 써있는데 무슨 차인지는 더 공부해봐야 될 것 같다..</p>
+<p>calico 네트워크 배포
+<img src="/assets/posts/kubernetes/kube_calico.png" alt=""></p>
+<p>node가 master로 join하기 위한 명령어도 주어진다. 이 명령어는 node에서 사용하는 것이다.</p>
+<p>join 전에는 master만 존재한다.
+<img src="/assets/posts/kubernetes/kube_join_before.png" alt=""></p>
+<h2 id="node">node</h2>
+<p>설치와 설정이 완료된 node 서버에서 join 명령어를 입력해준다.
+<img src="/assets/posts/kubernetes/kube_join.png" alt=""></p>
+<p>join이 성공적으로 되면 master 서버에서 <code>kubectl get nodes</code> 명령어로 join된 node들을 볼 수 있다.</p>
+<p><img src="/assets/posts/kubernetes/kube_join_done.png" alt=""></p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-07-19-kubernetes-install-join","content":"\n## How to install and node join Kubernetes\n### 환경: Ubuntu 16.04 LTS\n\n1. master로 쓸 VM 하나와 node로 쓸 VM 하나를 준비한다.\n2. 아래의 설치 과정을 동일하게 진행한다.\n\n### hostname 변경하는 방법\n```\n1. vi /etc/hosts 에서 변경\n2. hostnamectl set-hostname 호스트네임\n\n확인: $ hostname\n```\n\n도커는 설치되어 있다는 전제하에 포스팅합니다!\n\n`swapoff -a`\n\n### Kubernetes 설치\n```\nsudo apt-get update \u0026\u0026 apt-get install -y apt-transport-https curl\ncurl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add –\ncat \u003c\u003cEOF \u003e/etc/apt/sources.list.d/kubernetes.list\ndeb http://apt.kubernetes.io/ kubernetes-xenial main\nEOF\nsudo apt-get update\nsudo apt-get install kubelet kubeadm kubectl\n```\n\n`docker info | grep -i cgroup`\n\n`sudo vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf`\n-\u003e Environment=\"KUBELET_CGROUP_ARGS=--cgroup-driver=cgroupfs\" 추가\n![](/assets/posts/kubernetes/kube_conf.png)\n\n`sed -i \"s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g\" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf`\n\n\n아래 과정부터는 master와 node가 구분된다.\n## master\n### master 초기화\n`kubeadm init`\n\nkubeadm init 시 아래와 같은 에러가 발생할 수도 있다.\n```\n[preflight] Some fatal errors occurred:\n\t[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-apiserver-amd64:v1.11.1]: exit status 1\n\t[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-controller-manager-amd64:v1.11.1]: exit status 1\n\t[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-scheduler-amd64:v1.11.1]: exit status 1\n\t[ERROR ImagePull]: failed to pull image [k8s.gcr.io/kube-proxy-amd64:v1.11.1]: exit status 1\n```\n\n![](/assets/posts/kubernetes/kube_version_error.png)\n\n버전과 관련된 에러이기 때문에 `kubeadm init --kubernetes-version=1.11.0` 이렇게 버전 옵션을 따로 줘서 해결할 수 있다.\n\n초기화가 정상적으로 됐다면 아래와 같은 화면을 볼 수 있다.\n![](/assets/posts/kubernetes/kube_init.png)\n\nroot가 아닌 regular user로 아래 명령어들을 입력해주면 된다. regular user로 돌아가고 싶다면 `su (username)`\n\n```\nmkdir -p $HOME/.kube\nsudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config\nsudo chown $(id -u):$(id -g) $HOME/.kube/config\n```\n\n네트워크 배포도 필요한데 [https://kubernetes.io/docs/concepts/cluster-administration/addons/](https://kubernetes.io/docs/concepts/cluster-administration/addons/) 이 곳에서 원하는 네트워크를 선택해 `kubectl apply -f [podnetwork].yaml` 명령어를 입력해주면 된다.\n네트워크들에 대한 설명은 써있는데 무슨 차인지는 더 공부해봐야 될 것 같다..\n\ncalico 네트워크 배포\n![](/assets/posts/kubernetes/kube_calico.png)\n\n\nnode가 master로 join하기 위한 명령어도 주어진다. 이 명령어는 node에서 사용하는 것이다.\n\njoin 전에는 master만 존재한다.\n![](/assets/posts/kubernetes/kube_join_before.png)\n\n## node\n설치와 설정이 완료된 node 서버에서 join 명령어를 입력해준다.\n![](/assets/posts/kubernetes/kube_join.png)\n\njoin이 성공적으로 되면 master 서버에서 `kubectl get nodes` 명령어로 join된 node들을 볼 수 있다.\n\n![](/assets/posts/kubernetes/kube_join_done.png)\n\n","layout":"post","title":"[Kubernetes] Kubernetes 설치부터 노드 join까지","categories":["Kubernetes"],"excerpt":" ","comments":true,"share":true,"tags":["Kubernetes","Ubuntu","install","join"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-07","slug":"kubernetes-install-join"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

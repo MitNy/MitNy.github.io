@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W055DP4N3J"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W055DP4N3J');</script><head><meta charSet="utf-8"/><meta name="description" content="기록 저장소"/><meta property="og:description" content="기록 저장소"/><meta property="og:url" content="https://mitny.github.io"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="MitNy.log"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><title>[PHP] php 파일 접근시 다운로드 에러 |  MitNy.log</title><meta name="robots" content="index,follow"/><meta property="og:title" content="[PHP] php 파일 접근시 다운로드 에러 |  MitNy.log"/><link rel="canonical" href="https://mitny.github.io/articles/2018-08-06-php-download-error"/><meta name="next-head-count" content="12"/><meta name="naver-site-verification" content="b408dee953bcbbb1038384f191f36dac0551c0fb"/><meta name="google-site-verification" content="vUtYhRYNCWYYTdurCRaVmtnWpPLuXKKwRAm5F6R9sNs"/><link rel="preload" href="/_next/static/css/e6a7c67d207b98b3.css" as="style"/><link rel="stylesheet" href="/_next/static/css/e6a7c67d207b98b3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-005bdf76005efab4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-14a2a9a26060c1d3.js" defer=""></script><script src="/_next/static/chunks/401-9f1400d964d6d7ce.js" defer=""></script><script src="/_next/static/chunks/pages/articles/%5Bdir_slug%5D/%5Bslug%5D-0b7b92862b8a360a.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_buildManifest.js" defer=""></script><script src="/_next/static/nJPyYqODS0udXw2rMLLyn/_ssgManifest.js" defer=""></script></head><link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/><link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/><link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/manifest.json"/><meta name="msapplication-TileColor" content="#ffffff"/><meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png"/><meta name="theme-color" content="#ffffff"/><body><div id="__next" data-reactroot=""><div class="header h-16 bg-white drop-shadow-md text-black"><div class="mx-10 pt-3 cursor-pointer"><p class="header-home text-3xl float-left">MitNy.log</p><p class="text-base font-bold pt-2 float-right">About</p></div></div><div class="mx-10 my-8"><div class="w-full min-h-screen pb-24 mt-8"><div class="w-full min-h-screen pb-24 mt-8"><article class="prose max-w-none"><div class="border-b"><p class="text-4xl font-bold mb-0">[PHP] php 파일 접근시 다운로드 에러</p><p class="text-xs text-neutral-500"></p></div><div><h3 id="환경-ubuntu-1804-lts--apache2--php70">환경: Ubuntu 18.04 LTS / apache2 / php7.0</h3>
+<p>웹 서버 세팅을 위해 php모듈 포함 apm을 정상적으로 설치했는데,
+처음엔 아래 명령어를 입력하지 않아서 user 접속시 404 not found만 떴었다.
+그 에러는 아래 명령어로 해결</p>
+<pre><code class="code-highlight"><span class="code-line">sudo a2enmod userdir
+</span><span class="code-line">sudo service apache2 restart
+</span></code></pre>
+<p>404 not found는 해결했으나
+<code>ip/~user/test.php</code> 등으로 php 파일에 접근하면 파일 내용이 보이는 것이 아니라 다운로드 되는 현상이 지속되었다.
+이 에러 해결을 위해 아예 서버를 갈아엎고 온갖 삽질을 다 했는데 해결이 안됐었다.
+해결 방법을 찾아봐도 php.ini 에서 <code>short_open_tag = On</code> 로 default값인 Off를 On으로 바꾸라는 것이 제일 많았다.
+하지만 php를 항상 <code>&#x3C;?php ?></code>로 사용해왔기 때문에 효과적인 해결 방법은 아니었다.</p>
+<p>apache2.conf도 고쳐보고 php.ini도 고쳐보고 하다가 진짜 해결 방법을 찾았다.</p>
+<ol>
+<li>/etc/apache2/apache2.conf 수정
+<img src="/assets/posts/php/apache2conf_edit.png" alt=""></li>
+</ol>
+<p>모든 유저에 대한 public_html 디렉토리 설정을 해준다.</p>
+<pre class="language-php"><code class="language-php code-highlight"><span class="code-line"><span class="token operator">&#x3C;</span>Directory <span class="token operator">/</span>home<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">/</span>public_html<span class="token operator">/</span><span class="token operator">></span>
+</span><span class="code-line">        Options FollowSymLinks MultiViews
+</span><span class="code-line">        AddType application<span class="token operator">/</span>x<span class="token operator">-</span>httpd<span class="token operator">-</span>php <span class="token operator">.</span>php <span class="token operator">.</span>jsp
+</span><span class="code-line">        AllowOverride FileInfo
+</span><span class="code-line">        <span class="token keyword">Require</span> all granted
+</span><span class="code-line"><span class="token operator">&#x3C;</span><span class="token operator">/</span>Directory<span class="token operator">></span>
+</span></code></pre>
+<p>AddType 부분은 원하는대로 설정을 바꿔주면 된다.</p>
+<ol start="2">
+<li>/etc/apache/mods-enabled/php7.2.conf</li>
+</ol>
+<ul>
+<li>php는 버전에 따라 파일명 변경</li>
+</ul>
+<pre class="language-php"><code class="language-php code-highlight"><span class="code-line"><span class="token operator">&#x3C;</span>IfModule mod_userdir<span class="token operator">.</span>c<span class="token operator">></span>
+</span><span class="code-line">    <span class="token operator">&#x3C;</span>Directory <span class="token operator">/</span>home<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">/</span>public_html<span class="token operator">></span>
+</span><span class="code-line">        php_admin_flag engine On
+</span><span class="code-line">    <span class="token operator">&#x3C;</span><span class="token operator">/</span>Directory<span class="token operator">></span>
+</span><span class="code-line"><span class="token operator">&#x3C;</span><span class="token operator">/</span>IfModule<span class="token operator">></span>
+</span></code></pre>
+<ol start="3">
+<li>/etc/apache2/sites-enabled/000-default.conf 수정
+VirtualHost 바깥에 추가</li>
+</ol>
+<pre class="language-php"><code class="language-php code-highlight"><span class="code-line">Alias <span class="token operator">/</span>public_html <span class="token operator">/</span>home<span class="token comment">/*/public_html
+</span></span><span class="code-line"><span class="token comment">&#x3C;Directory /home/*/</span>public_html<span class="token operator">></span>
+</span><span class="code-line">    Options FollowSymLinks
+</span><span class="code-line">    <span class="token comment">#DirectoryIndex index.php</span>
+</span><span class="code-line">    AllowOverride All
+</span><span class="code-line"><span class="token operator">&#x3C;</span><span class="token operator">/</span>Directory<span class="token operator">></span>
+</span></code></pre>
+<p>설정을 바꿔준 후에는 꼭 아파치를 재시작 해준다.
+<code>service apache2 restart</code></p>
+<p>이렇게 설정해줬더니 php 파일이 다운로드 되는 것이 아닌 정상출력 되었다.</p></div></article></div></div></div><footer class="h-16 bg-neutral-500"></footer></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"slug":"2018-08-06-php-download-error","content":"\n### 환경: Ubuntu 18.04 LTS / apache2 / php7.0\n\n웹 서버 세팅을 위해 php모듈 포함 apm을 정상적으로 설치했는데,\n처음엔 아래 명령어를 입력하지 않아서 user 접속시 404 not found만 떴었다.\n그 에러는 아래 명령어로 해결\n```\nsudo a2enmod userdir\nsudo service apache2 restart\n```\n404 not found는 해결했으나\n`ip/~user/test.php` 등으로 php 파일에 접근하면 파일 내용이 보이는 것이 아니라 다운로드 되는 현상이 지속되었다.\n이 에러 해결을 위해 아예 서버를 갈아엎고 온갖 삽질을 다 했는데 해결이 안됐었다.\n해결 방법을 찾아봐도 php.ini 에서 `short_open_tag = On` 로 default값인 Off를 On으로 바꾸라는 것이 제일 많았다.\n하지만 php를 항상 `\u003c?php ?\u003e`로 사용해왔기 때문에 효과적인 해결 방법은 아니었다.\n\napache2.conf도 고쳐보고 php.ini도 고쳐보고 하다가 진짜 해결 방법을 찾았다.\n\n1. /etc/apache2/apache2.conf 수정\n![](/assets/posts/php/apache2conf_edit.png)\n\n모든 유저에 대한 public_html 디렉토리 설정을 해준다.\n\n```php\n\u003cDirectory /home/*/public_html/\u003e\n        Options FollowSymLinks MultiViews\n        AddType application/x-httpd-php .php .jsp\n        AllowOverride FileInfo\n        Require all granted\n\u003c/Directory\u003e\n```\n\nAddType 부분은 원하는대로 설정을 바꿔주면 된다.\n\n2. /etc/apache/mods-enabled/php7.2.conf\n* php는 버전에 따라 파일명 변경\n\n```php\n\u003cIfModule mod_userdir.c\u003e\n    \u003cDirectory /home/*/public_html\u003e\n        php_admin_flag engine On\n    \u003c/Directory\u003e\n\u003c/IfModule\u003e\n```\n\n3. /etc/apache2/sites-enabled/000-default.conf 수정\nVirtualHost 바깥에 추가\n\n```php\nAlias /public_html /home/*/public_html\n\u003cDirectory /home/*/public_html\u003e\n    Options FollowSymLinks\n    #DirectoryIndex index.php\n    AllowOverride All\n\u003c/Directory\u003e\n```\n\n설정을 바꿔준 후에는 꼭 아파치를 재시작 해준다.\n`service apache2 restart`\n\n이렇게 설정해줬더니 php 파일이 다운로드 되는 것이 아닌 정상출력 되었다.\n","layout":"post","title":"[PHP] php 파일 접근시 다운로드 에러","categories":["PHP"],"excerpt":" ","comments":true,"share":true,"tags":["php","Ubuntu","download"]}},"__N_SSG":true},"page":"/articles/[dir_slug]/[slug]","query":{"dir_slug":"2018-08","slug":"php-download-error"},"buildId":"nJPyYqODS0udXw2rMLLyn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
