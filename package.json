@@ -1,10 +1,9 @@
 {
   "name": "mitny.log",
-  "version": "1.0",
   "private": true,
   "homepage": "https://mitny.github.io",
   "scripts": {
-    "dev": "next dev -- --port 8000",
+    "dev": "next dev -- --port 10443",
     "build": "rimraf public/robots.txt public/sitemap*.xml && next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
